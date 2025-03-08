@@ -1,0 +1,17 @@
+# Ignore personal keys or sensitive files
+gpt-personal-key.txt
+
+# Ignore Jupyter notebook checkpoints
+.ipynb_checkpoints/
+
+# Ignore large datasets if not needed
+*.csv
+*.json
+*.xml
+*.parquet
+
+# Ignore temporary or system files
+.DS_Store
+Thumbs.db
+*.log
+*.tmp
