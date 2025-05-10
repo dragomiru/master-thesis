@@ -1,0 +1,224 @@
+from langchain_community.vectorstores import FAISS
+from langchain_huggingface import HuggingFaceEmbeddings
+from typing import List, Dict, Optional, Any
+from config import EMBEDDINGS_MODEL_NAME
+
+def get_embeddings_model(model_name: str) -> Optional[Any]:
+    """
+    Initializes and returns a HuggingFace embeddings model.
+
+    Args:
+        model_name (str): The name of the HuggingFace model to use for embeddings.
+                          Example: "all-mpnet-base-v2".
+
+    Returns:
+        Optional[Any]: The initialized embeddings model, or None if initialization fails.
+    """
+    try:
+        print(f"[INFO] Initializing embeddings model: {model_name}")
+        embeddings = HuggingFaceEmbeddings(model_name=model_name)
+        return embeddings
+    except Exception as e:
+        print(f"[ERROR] Failed to initialize embeddings model '{model_name}': {e}")
+        return None
+
+def create_faiss_store_from_texts(
+    texts: List[str],
+    embeddings_model: Any
+) -> Optional[FAISS]:
+    """
+    Creates a FAISS vector store from a list of text strings.
+
+    Args:
+        texts (List[str]): A list of text documents/chunks.
+        embeddings_model (Any): The pre-initialized embeddings model.
+
+    Returns:
+        Optional[FAISS]: The created FAISS vector store, or None if creation fails or input is empty.
+    """
+    if not texts:
+        print("[WARNING] No texts provided to create FAISS store.")
+        return None
+    if not embeddings_model:
+        print("[ERROR] Embeddings model not provided to create_faiss_store_from_texts.")
+        return None
+    try:
+        print(f"[INFO] Creating FAISS vector store from {len(texts)} text chunks.")
+        vectorstore = FAISS.from_texts(texts, embeddings_model)
+        print("[INFO] FAISS vector store created successfully.")
+        return vectorstore
+    except Exception as e:
+        print(f"[ERROR] Failed to create FAISS vector store from texts: {e}")
+        return None
+
+def create_faiss_store_from_document_lists(
+    document_lists: List[List[str]],
+    embeddings_model: Any
+) -> Optional[FAISS]:
+    """
+    Creates a FAISS vector store from a list of lists of document chunks.
+    The inner lists are flattened before creating the store.
+
+    Args:
+        document_lists (List[List[str]]): A list where each element is a list of text chunks.
+                                          Typically used for event_chunks or factor_chunks.
+        embeddings_model (Any): The pre-initialized embeddings model.
+
+    Returns:
+        Optional[FAISS]: The created FAISS vector store, or None if creation fails or input is empty.
+    """
+    if not document_lists:
+        print("[WARNING] No document lists provided to create FAISS store.")
+        return None
+    if not embeddings_model:
+        print("[ERROR] Embeddings model not provided to create_faiss_store_from_document_lists.")
+        return None
+
+    flat_chunks = [chunk for sublist in document_lists for chunk in sublist if sublist] # Ensure sublist is not empty
+    if not flat_chunks:
+        print("[WARNING] No effective chunks found after flattening document lists.")
+        return None
+    
+    return create_faiss_store_from_texts(flat_chunks, embeddings_model)
+
+
+def find_most_relevant_report_chunks(
+    vectorstore_reports: FAISS,
+    entity_queries: Dict[str, str],
+    top_k: int = 3
+) -> str:
+    """
+    Finds the most relevant text chunks for each entity of interest from the report's vector store.
+
+    Args:
+        vectorstore_reports (FAISS): The FAISS vector store for the incident report.
+        entity_queries (Dict[str, str]): Mapping of entity name to query string.
+        top_k (int): Number of chunks to retrieve per entity.
+
+    Returns:
+        str: Combined unique relevant chunks as a single string.
+    """
+    if not vectorstore_reports:
+        print("[ERROR] Report vector store not provided to find_most_relevant_report_chunks.")
+        return ""
+        
+    retrieved_chunks_content = set() # Store page_content to ensure uniqueness
+
+    for entity, query in entity_queries.items():
+        print(f"[INFO] Searching report vector store for entity: {entity} (Query: '{query[:50]}...')")
+        try:
+            found_documents = vectorstore_reports.similarity_search(query, k=top_k)
+            for doc in found_documents:
+                retrieved_chunks_content.add(doc.page_content)
+        except Exception as e:
+            print(f"[ERROR] Error during similarity search for entity '{entity}': {e}")
+            continue # Continue with other entities
+
+    if not retrieved_chunks_content:
+        print("[INFO] No relevant chunks found for any entity in the report.")
+        return ""
+
+    combined_text = "\n".join(list(retrieved_chunks_content)) # Convert set to list before joining
+    print(f"\n[INFO] Found {len(retrieved_chunks_content)} unique relevant chunks from the report.")
+    return combined_text
+
+
+def find_most_relevant_generic_chunks(
+    vectorstore: FAISS,
+    query_input: str,
+    top_k: int = 3
+) -> str:
+    """
+    Retrieves the most relevant chunks from a generic vector store based on the query.
+    This was originally `find_most_relevant_iss_chunks` for categories/factors.
+
+    Args:
+        vectorstore (FAISS): The FAISS vector store to query (e.g., for categories, factors).
+        query_input (str): The query string.
+        top_k (int): Number of top chunks to retrieve.
+
+    Returns:
+        str: Combined relevant chunks as a single string.
+    """
+    if not vectorstore:
+        print(f"[ERROR] Vector store not provided to find_most_relevant_generic_chunks for query: '{query_input[:50]}...'.")
+        return ""
+    if not query_input:
+        print("[WARNING] Empty query input provided to find_most_relevant_generic_chunks.")
+        return ""
+        
+    print(f"[INFO] Querying generic vector store with: '{query_input[:50]}...' (top_k={top_k})")
+    try:
+        found_documents = vectorstore.similarity_search(query_input, k=top_k)
+        # Extract the page_content from each Document object
+        chunk_contents = [doc.page_content for doc in found_documents if doc.page_content]
+        
+        if not chunk_contents:
+            print(f"[INFO] No relevant generic chunks found for query: '{query_input[:50]}...'.")
+            return ""
+
+        combined_text = "\n".join(chunk_contents)
+        return combined_text
+    except Exception as e:
+        print(f"[ERROR] Error during similarity search for generic query '{query_input[:50]}...': {e}")
+        return ""
+
+if __name__ == '__main__':
+    print("--- Testing vector_store/faiss_handler.py ---")
+
+    # 1. Test Embeddings Model Initialization
+    try:
+        from config import EMBEDDINGS_MODEL_NAME
+    except ImportError:
+        EMBEDDINGS_MODEL_NAME = "sentence-transformers/all-mpnet-base-v2" # Fallback for direct test
+        print(f"[WARNING] Using fallback EMBEDDINGS_MODEL_NAME: {EMBEDDINGS_MODEL_NAME}")
+
+
+    embeddings = get_embeddings_model(EMBEDDINGS_MODEL_NAME)
+    if embeddings:
+        print("[SUCCESS] Embeddings model loaded.")
+
+        # 2. Test FAISS store creation from texts
+        sample_texts = [
+            "The quick brown fox jumps over the lazy dog.",
+            "Langchain provides tools for building LLM applications.",
+            "FAISS is a library for efficient similarity search.",
+            "Streamlit helps create web apps for Python scripts."
+        ]
+        text_vectorstore = create_faiss_store_from_texts(sample_texts, embeddings)
+        if text_vectorstore:
+            print("[SUCCESS] FAISS store from texts created.")
+
+            # 3. Test find_most_relevant_report_chunks
+            test_entity_queries = {
+                "animal": "What does the fox do?",
+                "tool": "What is FAISS?"
+            }
+            relevant_report_text = find_most_relevant_report_chunks(text_vectorstore, test_entity_queries, top_k=1)
+            print(f"\nRelevant Report Chunks Sample:\n{relevant_report_text[:200]}...")
+            assert "fox" in relevant_report_text or "FAISS" in relevant_report_text # Basic check
+
+            # 4. Test find_most_relevant_generic_chunks
+            generic_query = "information about dogs"
+            relevant_generic_text = find_most_relevant_generic_chunks(text_vectorstore, generic_query, top_k=1)
+            print(f"\nRelevant Generic Chunks for '{generic_query}':\n{relevant_generic_text}")
+            assert "dog" in relevant_generic_text # Basic check
+
+        # 5. Test FAISS store creation from document lists
+        sample_doc_lists = [
+            ["Event type A is about collisions.", "Details of collision A."],
+            ["Factor X involves human error.", "More on human error X."],
+            ["Event type B is derailment.", "Details of derailment B."]
+        ]
+        doc_list_vectorstore = create_faiss_store_from_document_lists(sample_doc_lists, embeddings)
+        if doc_list_vectorstore:
+            print("[SUCCESS] FAISS store from document lists created.")
+            query_for_doc_list = "tell me about event A"
+            relevant_text_from_doc_list = find_most_relevant_generic_chunks(doc_list_vectorstore, query_for_doc_list, top_k=1)
+            print(f"\nRelevant Chunks from Doc List for '{query_for_doc_list}':\n{relevant_text_from_doc_list}")
+            assert "Event type A" in relevant_text_from_doc_list
+
+    else:
+        print("[FAIL] Embeddings model could not be loaded. Further tests skipped.")
+    
+    print("---------------------------------------------")
