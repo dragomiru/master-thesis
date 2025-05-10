@@ -1,5 +1,5 @@
 # Ignore personal keys or sensitive files
-gpt-personal-key.txt
+personal-keys.txt
 
 # Ignore Jupyter notebook checkpoints
 .ipynb_checkpoints/
