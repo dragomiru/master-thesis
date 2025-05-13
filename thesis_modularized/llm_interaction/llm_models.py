@@ -2,122 +2,136 @@ import os
 import getpass
 import tiktoken
 from typing import Optional, Any
+import certifi
+import httpx 
 
-from langchain.chat_models import init_chat_model
+# Langchain imports
 from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain_openai import ChatOpenAI
 from langchain.memory import ConversationBufferMemory
 
 from dotenv import load_dotenv
 load_dotenv()
 
 def _get_api_key_from_env_or_prompt(env_var_name: str, prompt_message: str) -> Optional[str]:
-    """Tries to get an API key from environment variables, then prompts the user."""
+    """
+    Tries to get an API key from environment variables.
+    If not found, prompts the user securely.
+    """
     api_key = os.getenv(env_var_name)
-    if not api_key:
-        print(f"Environment variable {env_var_name} not found.")
-        try:
-            api_key = getpass.getpass(prompt_message)
-        except Exception as e:
-            print(f"Could not prompt for API key: {e}")
-            return None
-    return api_key
+    if api_key:
+        print(f"[INFO_API_KEY] Found API key in environment variable '{env_var_name}'.")
+        return api_key
 
-def init_llm(model_type: str, openai_api_key: Optional[str] = None, google_api_key: Optional[str] = None, temperature: float = 0.2,
-    max_tokens: Optional[int] = None) -> Optional[Any]:
-    """
-    Initializes and returns a Langchain chat model (OpenAI or Google).
-
-    Args:
-        model_type (str): The identifier for the model.
-        openai_api_key (Optional[str]): OpenAI API key.
-        google_api_key (Optional[str]): Google API key.
-        temperature (float): Sampling temperature for the LLM.
-        max_tokens (Optional[int]): Max tokens to generate.
-
-    Returns:
-        Optional[Any]: The initialized Langchain chat model instance or None on failure.
-    """
-    print(f"[INFO] Initializing LLM: {model_type}")
+    print(f"Environment variable '{env_var_name}' not found for API key. Prompting user.")
     try:
-        if model_type.startswith("gpt"):
-            key = openai_api_key or _get_api_key_from_env_or_prompt("OPENAI_API_KEY", "Enter your OpenAI API Key: ")
-            if not key:
-                print("[ERROR] OpenAI API Key is required for GPT models.")
-                return None
-            os.environ["OPENAI_API_KEY"] = key
-            
-            model_kwargs = {"temperature": temperature}
-            if max_tokens:
-                model_kwargs["max_tokens"] = max_tokens
-            chat_model = init_chat_model(model_name=model_type, model_provider="openai", model_kwargs=model_kwargs)
-
-        elif model_type.startswith("gemini"):
-            key = google_api_key or _get_api_key_from_env_or_prompt("GOOGLE_API_KEY", "Enter your Google AI Studio API Key: ")
-            if not key:
-                print("[ERROR] Google API Key is required for Gemini models.")
-                return None
-            
-            chat_model = ChatGoogleGenerativeAI(model=model_type,google_api_key=key)
-        else:
-            print(f"[ERROR] Unsupported model type: {model_type}")
+        api_key = getpass.getpass(prompt_message)
+        if not api_key:
+            print(f"[ERROR_API_KEY] No input received for {env_var_name} from prompt.")
             return None
-        
-        print(f"[INFO] LLM '{model_type}' initialized successfully.")
-        return chat_model
+        return api_key
     except Exception as e:
-        print(f"[ERROR] Failed to initialize LLM '{model_type}': {e}")
+        print(f"[ERROR_API_KEY] Could not prompt for API key '{env_var_name}': {e}")
         return None
 
-def count_tokens_openai(text: str, model_name: str = "gpt-4o-mini") -> int:
+def init_llm(model_identifier: str) -> Optional[Any]: # Simplified signature
     """
-    Efficiently counts tokens in a text for a given OpenAI model.
-    Returns 0 if not an OpenAI model or if an error occurs.
+    Initializes and returns a Langchain chat model (OpenAI or Google).
     """
-    if not model_name.startswith("gpt"):
+    if not model_identifier or not isinstance(model_identifier, str):
+        print(f"[ERROR_INIT_LLM] 'model_identifier' must be a non-empty string. Received: {model_identifier}")
+        return None
+
+    print(f"[INFO_INIT_LLM] Attempting to initialize LLM: {model_identifier}")
+    
+    # Temporarily pop SSL_CERT_FILE and REQUESTS_CA_BUNDLE from env
+    # This helps ensure that for the OpenAI call, we explicitly control the SSL context.
+    original_ssl_cert_file = os.environ.pop('SSL_CERT_FILE', None)
+    original_requests_ca_bundle = os.environ.pop('REQUESTS_CA_BUNDLE', None)
+
+    chat_model = None
+    try:
+        if model_identifier.startswith("gpt"):
+            openai_key = _get_api_key_from_env_or_prompt("OPENAI_API_KEY", "Enter your OpenAI API Key: ")
+            if not openai_key:
+                print("[ERROR_INIT_LLM] OpenAI API Key is essential for GPT models and could not be obtained.")
+                # Restore env vars before returning if key is missing
+                if original_ssl_cert_file is not None: os.environ['SSL_CERT_FILE'] = original_ssl_cert_file
+                if original_requests_ca_bundle is not None: os.environ['REQUESTS_CA_BUNDLE'] = original_requests_ca_bundle
+                return None
+            
+            # Explicitly configure the httpx client with certifi's CA bundle for OpenAI
+            ca_bundle_path = certifi.where()
+                
+            proxies = {
+                "http://": os.getenv("HTTP_PROXY"),
+                "https://": os.getenv("HTTPS_PROXY"),
+            }
+            active_proxies = {k: v for k, v in proxies.items() if v}
+            
+            if active_proxies:
+                print(f"[DEBUG_INIT_LLM_GPT] Configuring httpx client with proxies: {active_proxies}")
+                custom_http_client = httpx.Client(verify=ca_bundle_path, proxies=active_proxies)
+            else:
+                print("[DEBUG_INIT_LLM_GPT] No HTTP_PROXY/HTTPS_PROXY found, configuring httpx client without explicit proxies.")
+                custom_http_client = httpx.Client(verify=ca_bundle_path)
+
+            chat_model = ChatOpenAI(
+                model=model_identifier,
+                api_key=openai_key,
+                http_client=custom_http_client
+            )
+            print(f"[INFO_INIT_LLM] OpenAI model '{model_identifier}' initialized successfully.")
+
+        elif model_identifier.startswith("gemini"):
+            google_key = _get_api_key_from_env_or_prompt("GOOGLE_API_KEY", "Enter your Google AI Studio API Key: ")
+            if not google_key:
+                print("[ERROR_INIT_LLM] Google API Key is essential for Gemini models.")
+                # Restore env vars before returning if key is missing
+                if original_ssl_cert_file is not None: os.environ['SSL_CERT_FILE'] = original_ssl_cert_file
+                if original_requests_ca_bundle is not None: os.environ['REQUESTS_CA_BUNDLE'] = original_requests_ca_bundle
+                return None
+            
+            # print(f"[DEBUG_INIT_LLM_GEMINI] Using Google API Key: {'Present' if google_key else 'Not Present'}")
+            
+            # print(f"[DEBUG_INIT_LLM_GEMINI] Instantiating ChatGoogleGenerativeAI with model='{model_identifier}' and explicit api_key.")
+            chat_model = ChatGoogleGenerativeAI(
+                model=model_identifier, 
+                google_api_key=google_key
+                # Not passing generation_config to keep it minimal
+            )
+            print(f"[INFO_INIT_LLM] Gemini model '{model_identifier}' initialized successfully.")
+        else:
+            print(f"[ERROR_INIT_LLM] Unsupported model identifier prefix: '{model_identifier}'.")
+            return None # Env vars will be restored in finally
+        
+        return chat_model
+        
+    except Exception as e: 
+        print(f"[ERROR_INIT_LLM] Failed to initialize LLM '{model_identifier}': {e}")
+        print(f"    Error Type: {type(e)}")
+        return None
+    finally:
+        if original_ssl_cert_file is not None:
+            os.environ['SSL_CERT_FILE'] = original_ssl_cert_file
+        if original_requests_ca_bundle is not None:
+            os.environ['REQUESTS_CA_BUNDLE'] = original_requests_ca_bundle
+
+def count_tokens_openai(text: str, model_name: str) -> int:
+    if not model_name or not model_name.startswith("gpt"): 
         return 0
     try:
         encoding = tiktoken.encoding_for_model(model_name)
-        token_integers = encoding.encode(text)
-        num_tokens = len(token_integers)
-        return num_tokens
+        return len(encoding.encode(text))
+    except KeyError:
+        try:
+            encoding = tiktoken.get_encoding("cl100k_base") # Fallback for gpt-3.5/4
+            return len(encoding.encode(text))
+        except Exception: 
+            return 0 # Fallback if cl100k_base also fails
     except Exception as e:
-        print(f"[ERROR] Could not count tokens for model {model_name}: {e}")
+        print(f"[ERROR_TOKEN_COUNT] Could not count tokens for model '{model_name}': {e}")
         return 0
 
 def get_conversation_memory() -> ConversationBufferMemory:
-    """
-    Creates and returns a new conversation buffer memory.
-    """
     return ConversationBufferMemory(memory_key="chat_history", return_messages=True)
-
-if __name__ == '__main__':
-    print("--- Testing llm_interaction/llm_models.py ---")
-    
-    try:
-        from config import DEFAULT_LLM_MODEL, GOOGLE_API_KEY, OPENAI_API_KEY
-    except ImportError:
-        print("[WARNING] config.py not found or not fully configured for testing llm_models.py")
-        DEFAULT_LLM_MODEL = "gemini-1.5-flash-latest"
-        GOOGLE_API_KEY = None
-        OPENAI_API_KEY = None
-    
-    print(f"\nAttempting to initialize default model: {DEFAULT_LLM_MODEL}")
-    llm = init_llm(DEFAULT_LLM_MODEL, openai_api_key=OPENAI_API_KEY, google_api_key=GOOGLE_API_KEY)
-    if llm:
-        print(f"[SUCCESS] Successfully initialized {DEFAULT_LLM_MODEL}")
-    else:
-        print(f"[FAIL] Failed to initialize {DEFAULT_LLM_MODEL}")
-
-    # Test token counting for an OpenAI model
-    gpt_model_name_for_token_test = "gpt-4o-mini"
-    sample_text = "This is a test sentence for token counting."
-    tokens = count_tokens_openai(sample_text, model_name=gpt_model_name_for_token_test)
-    print(f"\nTokens for '{sample_text}' with '{gpt_model_name_for_token_test}': {tokens}")
-    if tokens > 0:
-        print("[SUCCESS] Token counting seems to work for OpenAI model.")
-    else:
-        print("[INFO] Token counting returned 0 (expected if not testing an OpenAI model or if tiktoken failed).")
-
-    memory = get_conversation_memory()
-    print(f"\nConversation memory initialized: {memory.memory_key}")
-    print("--------------------------------------------")

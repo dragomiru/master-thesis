@@ -10,7 +10,6 @@ from langchain_community.graphs.graph_document import (
     Relationship as LangchainBaseRelationship
 )
 
-
 # --- Driver Management ---
 def get_neo4j_driver(uri: str, user: str, password: str) -> Optional[Driver]:
     """
@@ -207,52 +206,3 @@ def process_and_store_graph(
         print("[INFO] Graph data processing and attempt to store in Neo4j completed.")
     else:
         print("[WARNING] Graph document creation failed. Nothing stored in Neo4j.")
-
-
-# if __name__ == '__main__':
-#     print("--- Testing storage/neo4j_handler.py ---")
-    
-#     # Load from a .env file if present (for NEO4J_TEST_PASSWORD)
-#     from dotenv import load_dotenv
-#     load_dotenv() # Looks for .env in the current directory or parent directories
-
-#     NEO4J_URI_TEST = os.getenv("NEO4J_URI", "bolt://localhost:7687") # Use config default if test not set
-#     NEO4J_USER_TEST = os.getenv("NEO4J_USER", "neo4j")
-#     NEO4J_PASSWORD_TEST = os.getenv("NEO4J_PASSWORD", "password") # Ensure this is in your .env or set directly
-#     NEO4J_DATABASE_TEST = os.getenv("NEO4J_DATABASE_TEST", "neo4jtest") # Use a dedicated test database
-
-#     print(f"Attempting to connect to Neo4j for testing: URI='{NEO4J_URI_TEST}', User='{NEO4J_USER_TEST}', DB='{NEO4J_DATABASE_TEST}'")
-    
-#     test_driver = get_neo4j_driver(NEO4J_URI_TEST, NEO4J_USER_TEST, NEO4J_PASSWORD_TEST)
-
-#     if test_driver:
-#         print("\n[STEP 1] Clearing test database (if it exists)...")
-#         clear_neo4j_database(test_driver, NEO4J_DATABASE_TEST)
-
-#         print("\n[STEP 2] Testing graph mapping and storage...")
-#         sample_llm_output = {
-#             "nodes": [
-#                 {"id": "Accident_XYZ", "type": "UniqueAccident", "description": "Major collision event", "year": 2025},
-#                 {"id": "2025-05-09", "type": "Date", "day_of_week": "Friday"},
-#                 {"id": "Human Error Factor", "type": "ContributingFactor", "details": "Operator fatigue"}
-#             ],
-#             "rels": [
-#                 {"source": "Accident_XYZ", "target": "2025-05-09", "type": "HAS_DATE", "certainty": "high"},
-#                 {"source": "Accident_XYZ", "target": "Human Error Factor", "type": "CAUSED_BY_FACTOR"}
-#             ]
-#         }
-#         sample_source_text = "A major collision (Accident_XYZ) occurred on 2025-05-09 due to Human Error Factor."
-
-#         process_and_store_graph(test_driver, sample_llm_output, sample_source_text, NEO4J_DATABASE_TEST)
-        
-#         print("\n[INFO] Test data processing complete. Check your Neo4j browser for the '{}' database.".format(NEO4J_DATABASE_TEST))
-#         print("   Sample Cypher to check nodes: MATCH (n) RETURN n LIMIT 5")
-#         print("   Sample Cypher to check relationships: MATCH ()-[r]->() RETURN r LIMIT 5")
-        
-#         close_neo4j_driver(test_driver)
-#     else:
-#         print("[FAIL] Could not connect to Neo4j. Aborting Neo4j handler tests.")
-#         print("   Ensure Neo4j is running and credentials are correct in your environment or .env file:")
-#         print(f"   NEO4J_URI='{NEO4J_URI_TEST}', NEO4J_USER='{NEO4J_USER_TEST}', NEO4J_PASSWORD='<your_password>', NEO4J_DATABASE_TEST='{NEO4J_DATABASE_TEST}'")
-    
-#     print("-------------------------------------")

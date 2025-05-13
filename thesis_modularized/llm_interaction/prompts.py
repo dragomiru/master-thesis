@@ -144,33 +144,3 @@ def create_refinement_prompt(relevant_events_text: str, true_contr_fact_str: str
         }
     )
     return refinement_chat_prompt
-
-
-if __name__ == '__main__':
-    print("--- Testing llm_interaction/prompts.py ---")
-    
-    # Test extraction prompt creation
-    extraction_prompt = create_extraction_prompt()
-    print("\nExtraction Prompt Template Variables:", extraction_prompt.input_variables)
-    print("Extraction Prompt Partial Variables:", extraction_prompt.partial_variables)
-    # print("Sample Extraction Prompt (first message):")
-    # print(extraction_prompt.messages[0].prompt.template[:200] + "...") # Print start of system message
-    # print("Sample Extraction Prompt (human message part):")
-    # print(extraction_prompt.messages[-1].prompt.template[:300] + "...")
-    assert "relevant_report_text" in extraction_prompt.input_variables
-
-    # Test refinement prompt creation
-    sample_events = "AccidentType: Collision of train with obstacle; Definition: Something hit a train.\nAccidentType: Derailment; Definition: Train left tracks."
-    sample_contr = "{'Old Factor 1': 'Standardized Factor A', 'Old Factor 2': 'Standardized Factor B'}"
-    sample_sys = "{'Old Systemic 1': 'Standardized Systemic X'}"
-    
-    refinement_prompt = create_refinement_prompt(sample_events, sample_contr, sample_sys)
-    print("\nRefinement Prompt Template Variables:", refinement_prompt.input_variables)
-    print("Refinement Prompt Partial Variables (first few items):")
-    for k, v in list(refinement_prompt.partial_variables.items())[:1]:
-        print(f"  {k}: {str(v)[:100]}...")
-    # print("Sample Refinement Prompt (human message part):")
-    # print(refinement_prompt.messages[-1].prompt.template[:300] + "...")
-    assert "extraction_result_str" in refinement_prompt.input_variables
-    
-    print("-----------------------------------------")

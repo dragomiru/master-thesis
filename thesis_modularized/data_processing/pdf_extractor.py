@@ -4,7 +4,7 @@ from collections import Counter
 from typing import List
 
 # Defining regex patterns for detecting the start of the summary section and section headings
-SUMMARY_START_PATTERN = re.compile(r"^(report\s+summary|summary| I. Summary)[:\s]*$", re.IGNORECASE)
+SUMMARY_START_PATTERN = re.compile(r"^(report\s+summary|summary|I. Summary)[:\s]*$", re.IGNORECASE)
 SECTION_HEADING_PATTERN = re.compile(
     r"^(table of contents|contents|RAIU investigation|description of the occurrence|analysis|conclusions|measures taken|safety recommendations|additional information|list of abbreviations|glossary|references)",
     re.IGNORECASE
@@ -114,18 +114,3 @@ def extract_summary_section(pdf_path: str, header_detection_pages: int = 10) -> 
         return full_text_capture.strip()
 
     return summary_text.strip()
-
-if __name__ == '__main__':
-
-    test_pdf_path = "../../reports_ie/IE-10375 - 210827 Collision with track equipment.pdf"
-    
-    # Check if the test PDF exists
-    import os
-    if os.path.exists(test_pdf_path):
-        print(f"Testing with: {test_pdf_path}")
-        extracted_text = extract_summary_section(test_pdf_path)
-        print("\n--- Extracted Text Sample ---")
-        print(extracted_text[:1000])
-        print("\n---------------------------")
-    else:
-        print(f"Test PDF not found at: {test_pdf_path}. Please adjust the path for testing.")

@@ -10,11 +10,7 @@ GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
 
 # --- LLM Configuration ---
 # Default model to use. Can be overridden by user selection in Streamlit
-DEFAULT_LLM_MODEL = "gemini-2.5-flash-preview-04-17"
-
-# Token limits
-# GPT_TOKEN_LIMIT_EXTRACTION = 4000
-# GPT_TOKEN_LIMIT_REFINEMENT = 5000
+DEFAULT_LLM_MODEL = "gpt-4o-mini"
 
 # --- Neo4j Connection Details ---
 NEO4J_URI = os.getenv("NEO4J_URI")
@@ -73,16 +69,3 @@ def check_api_keys():
         print("Please set the GOOGLE_API_KEY environment variable.")
         return False
     return True
-
-# if __name__ == "__main__":
-#     print("--- Configuration Loaded ---")
-#     print(f"Default LLM Model: {DEFAULT_LLM_MODEL}")
-#     print(f"OpenAI API Key Set: {'Yes' if OPENAI_API_KEY else 'No'}")
-#     print(f"Google API Key Set: {'Yes' if GOOGLE_API_KEY else 'No'}")
-#     print(f"Neo4j URI: {NEO4J_URI}")
-#     print(f"Neo4j User: {NEO4J_USER}")
-#     print(f"Neo4j Password Set: {'Yes' if NEO4J_PASSWORD else 'No'}")
-#     print(f"Results CSV Path: {PDF_PROCESSING_RESULTS_CSV}")
-#     print(f"Enable Neo4j: {ENABLE_NEO4J_STORAGE}")
-
-#     check_api_keys()

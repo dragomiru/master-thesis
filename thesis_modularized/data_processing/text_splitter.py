@@ -75,23 +75,3 @@ def split_factors_into_chunks(data: List[Dict], chunk_size: int = CHUNK_SIZE, ch
             _split_single_text_for_events_factors(text_string, chunk_size, chunk_overlap)
         )
     return all_split_chunks
-
-if __name__ == '__main__':
-    # Example Usage (for testing this module directly)
-    sample_report_text = "This is a long sample report text that needs to be split into several chunks. " * 200
-    chunks = split_report_into_chunks(sample_report_text, chunk_size=500, chunk_overlap=50)
-    print(f"Report Chunks ({len(chunks)}):")
-
-    sample_events_data = [
-        {"Name": "Collision", "Definition": "Event where two objects impact."},
-        {"Name": "Derailment", "Definition": "Event where a train leaves the tracks."},
-    ] * 50
-    event_chunks = split_events_into_chunks(sample_events_data, chunk_size=100, chunk_overlap=20)
-    print(f"\nEvent Chunks ({len(event_chunks)} groups):")
-
-    sample_factors_data = [
-        {"Name": "Human Error", "Definition": "Mistake made by a person."},
-        {"Name": "Mechanical Failure", "Definition": "A component breaks down."},
-    ] * 50
-    factor_chunks = split_factors_into_chunks(sample_factors_data, chunk_size=100, chunk_overlap=20)
-    print(f"\nFactor Chunks ({len(factor_chunks)} groups):")

@@ -24,7 +24,7 @@ st.set_page_config(
     layout="wide"
 )
 
-# --- Caching Functions ---
+# --- Functions ---
 @st.cache_resource
 def load_embeddings_model(model_name):
     print(f"Cache miss: Loading embeddings model ({model_name})...")
@@ -47,10 +47,9 @@ def load_static_data():
     
     return categories_dicts, contr_fact_dicts, sys_fact_dicts
 
-@st.cache_resource
-def initialize_llm(_model_type, _openai_key, _google_key): # Arguments must be hashable for cache
-    print(f"Cache miss: Initializing LLM ({_model_type})...") # For debugging cache
-    return llm_models.init_llm(_model_type, openai_api_key=_openai_key, google_api_key=_google_key)
+def initialize_llm(_model_identifier): # Arguments must be hashable for cache
+    print(f"Cache miss: Initializing LLM ({_model_identifier})...") # For debugging cache
+    return llm_models.init_llm(model_identifier=_model_identifier)
 
 @st.cache_resource
 def get_neo4j_db_driver():
@@ -62,7 +61,7 @@ def get_neo4j_db_driver():
         return driver
     return None
 
-# --- New cached functions for static vector stores ---
+# --- Functions for static vector stores ---
 @st.cache_resource
 def get_cached_vectorstore_categories(_static_categories_data, _embeddings_model):
     print("Cache miss: Creating categories vector store...")
@@ -168,7 +167,7 @@ if process_button and uploaded_files:
         st.error("Embeddings model not loaded. Cannot process.")
         st.stop()
 
-    llm = initialize_llm(selected_llm_model, config.OPENAI_API_KEY, config.GOOGLE_API_KEY)
+    llm = initialize_llm(selected_llm_model)
     if not llm:
         st.error(f"Failed to initialize LLM: {selected_llm_model}. Check API keys and model name.")
         st.stop()
