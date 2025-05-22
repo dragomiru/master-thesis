@@ -1,5 +1,5 @@
 from langchain.chains import LLMChain
-from langchain.prompts import ChatPromptTemplate, MessagesPlaceholder, SystemMessagePromptTemplate, HumanMessagePromptTemplate
+from langchain.prompts import ChatPromptTemplate
 from langchain.memory import ConversationBufferMemory
 from typing import Dict, Any, Optional
 

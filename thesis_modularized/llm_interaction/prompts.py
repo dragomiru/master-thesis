@@ -74,7 +74,7 @@ def create_extraction_prompt(entities_of_interest: List[str] = ENTITY_TYPES_OF_I
                 - Do NOT map entities like (node Date is_date to node Time) or (node AccidentType is_type to node Country). This is INCORRECT.
                 - The `type` field in `rels` should be a verb phrase (e.g., "occurred_in", "investigated_by").
                 - The `id` field in `nodes` should be the exact text of the entity, not a description or a summary.
-                - Pay attention to date and type formats (e.g., EU date format, 24-hour time).
+                - Pay attention to date and time formats (e.g., HH:MM, and DD/MM/YY).
                 - The `UniqueAccident` entity should be a unique identifier for the accident.
                 - The `AccidentType` entity should be the type of accident.
                 - The `TrackSection` entity should be the track section where the accident occurred.

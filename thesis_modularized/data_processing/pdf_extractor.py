@@ -6,7 +6,7 @@ from typing import List
 # Defining regex patterns for detecting the start of the summary section and section headings
 SUMMARY_START_PATTERN = re.compile(r"^(report\s+summary|summary|I. Summary)[:\s]*$", re.IGNORECASE)
 SECTION_HEADING_PATTERN = re.compile(
-    r"^(table of contents|contents|RAIU investigation|description of the occurrence|analysis|conclusions|measures taken|safety recommendations|additional information|list of abbreviations|glossary|references)",
+    r"^(table of contents|contents|RAIU investigation|description of the occurrence|analysis|conclusions|measures taken|safety recommendations|additional information|list of abbreviations|glossary|references|II. THE INVESTIGATION AND ITS CONTEXT|II. INVESTIGATION AND ITS CONTEXT)",
     re.IGNORECASE
 )
 

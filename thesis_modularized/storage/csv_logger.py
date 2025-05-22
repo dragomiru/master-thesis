@@ -3,7 +3,8 @@ import os
 import json
 from typing import Dict, Optional
 
-def append_pdf_json_result(csv_file_path: str, pdf_name: str, model_type: str, llm_response_json: Dict) -> Optional[pd.DataFrame]:
+def append_pdf_json_result(csv_file_path: str, pdf_name: str, model_type: str, extraction_json: Dict,
+                           refined_json: Dict) -> Optional[pd.DataFrame]:
     """
     Appends the JSON output of an LLM response to a CSV file.
     - If the PDF has been processed before by the same model, it appends a new row
@@ -15,14 +16,16 @@ def append_pdf_json_result(csv_file_path: str, pdf_name: str, model_type: str, l
         csv_file_path (str): Path to the CSV file for storing results.
         pdf_name (str): Name of the processed PDF file.
         model_type (str): Identifier for the LLM used (e.g., "gpt-4o-mini").
-        llm_response_json (Dict): JSON response (as a Python dictionary) from the knowledge extraction.
+        extraction_json (Dict): JSON response (as a Python dictionary) from the knowledge extraction.
+        refined_json (Dict): JSON response (as a Python dictionary) from the knowledge extraction.
 
     Returns:
         Optional[pd.DataFrame]: Updated DataFrame with the new result, or None if an error occurs.
     """
     try:
         # Convert JSON response to a formatted string for consistent comparison and storage
-        json_output_str = json.dumps(llm_response_json, indent=2, sort_keys=True)
+        extraction_output_str = json.dumps(extraction_json, indent=2, sort_keys=True)
+        refined_output_str = json.dumps(refined_json, indent=2, sort_keys=True)
 
         # Ensure the directory for the CSV exists
         os.makedirs(os.path.dirname(csv_file_path), exist_ok=True)
@@ -37,9 +40,9 @@ def append_pdf_json_result(csv_file_path: str, pdf_name: str, model_type: str, l
                 else: # If first time and column doesn't exist
                     df["iteration_number"] = 0
             except pd.errors.EmptyDataError: # If CSV is empty
-                df = pd.DataFrame(columns=["pdf_name", "model_type", "iteration_number", "json_output"])
+                df = pd.DataFrame(columns=["pdf_name", "model_type", "iteration_number", "extraction_output", "refined_output"])
         else:
-            df = pd.DataFrame(columns=["pdf_name", "model_type", "iteration_number", "json_output"])
+            df = pd.DataFrame(columns=["pdf_name", "model_type", "iteration_number", "extraction_output", "refined_output"])
 
         # Filter for the current PDF and model's past records
         pdf_model_history = df[(df["pdf_name"] == pdf_name) & (df["model_type"] == model_type)]
@@ -49,7 +52,7 @@ def append_pdf_json_result(csv_file_path: str, pdf_name: str, model_type: str, l
             latest_iteration_data = pdf_model_history[
                 pdf_model_history["iteration_number"] == pdf_model_history["iteration_number"].max()
             ]
-            if not latest_iteration_data.empty and latest_iteration_data.iloc[0]["json_output"] == json_output_str:
+            if not latest_iteration_data.empty and latest_iteration_data.iloc[0]["refined_output"] == refined_output_str:
                 print(f"[INFO] No changes detected in JSON for {pdf_name} by {model_type} (latest iteration), skipping new entry.")
                 return df
 
@@ -64,7 +67,8 @@ def append_pdf_json_result(csv_file_path: str, pdf_name: str, model_type: str, l
             "pdf_name": [pdf_name],
             "model_type": [model_type],
             "iteration_number": [iteration_number],
-            "json_output": [json_output_str]
+            "extraction_output": [extraction_output_str],
+            "refined_output": [refined_output_str]
         }
         new_entry_df = pd.DataFrame(new_entry_data)
 

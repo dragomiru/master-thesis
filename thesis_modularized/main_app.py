@@ -1,21 +1,17 @@
+# --- General modules ---
 import streamlit as st
 import os
 import json
 import tempfile
-import pandas as pd
 import re
 
+# --- Modules from project structure --- 
 import config
-
-# Import modules from our project structure
 from data_processing import pdf_extractor, text_splitter, data_loaders
 from vector_store import faiss_handler
 from llm_interaction import llm_models, prompts, chains
 from validation import schemas as validation_schemas
 from storage import csv_logger, neo4j_handler
-
-import streamlit.components.v1 as components
-from neo4j import exceptions as neo4j_exceptions
 
 # --- Page Configuration ---
 st.set_page_config(
@@ -25,6 +21,13 @@ st.set_page_config(
 )
 
 # --- Functions ---
+def initialize_llm(_model_identifier):
+    """
+    Function not cached, unlike others, to allow for LLM model switch when running the app.
+    """
+    print(f"Cache miss: Initializing LLM ({_model_identifier})...")
+    return llm_models.init_llm(model_identifier=_model_identifier)
+
 @st.cache_resource
 def load_embeddings_model(model_name):
     print(f"Cache miss: Loading embeddings model ({model_name})...")
@@ -46,10 +49,6 @@ def load_static_data():
     sys_fact_dicts = data_loaders.convert_df_to_dicts(systemic_factors_df)
     
     return categories_dicts, contr_fact_dicts, sys_fact_dicts
-
-def initialize_llm(_model_identifier): # Arguments must be hashable for cache
-    print(f"Cache miss: Initializing LLM ({_model_identifier})...") # For debugging cache
-    return llm_models.init_llm(model_identifier=_model_identifier)
 
 @st.cache_resource
 def get_neo4j_db_driver():
@@ -110,6 +109,7 @@ with st.sidebar:
         "Choose PDF files", type="pdf", accept_multiple_files=True
     )
 
+    # Update list as required with newer / different LLM models
     available_llms = ["gemini-2.5-flash-preview-04-17", "gemini-1.5-flash-latest", "gpt-4o-mini"] 
     try:
         default_llm_index = available_llms.index(config.DEFAULT_LLM_MODEL)
@@ -144,7 +144,7 @@ embeddings_model = load_embeddings_model(config.EMBEDDINGS_MODEL_NAME)
 static_categories_dicts, static_contr_factors_dicts, static_sys_factors_dicts = load_static_data()
 
 
-# --- Initialize Static Vector Stores using cached functions ---
+# --- Initialize static vector stores using cached functions ---
 vectorstore_categories = None
 vectorstore_contr_factors = None
 vectorstore_sys_factors = None
@@ -176,7 +176,7 @@ if process_button and uploaded_files:
     if st.session_state.enable_neo4j:
         neo4j_driver = get_neo4j_db_driver()
         if not neo4j_driver:
-            st.warning("Neo4j storage is enabled, but failed to connect. Results will not be stored in Neo4j.")
+            st.warning("Neo4j storage option is enabled, but failed to connect. Results will not be stored in Neo4j.")
 
     for uploaded_file in uploaded_files:
         st.markdown(f"--- \n### Processing: `{uploaded_file.name}`")
@@ -306,17 +306,24 @@ if process_button and uploaded_files:
         
         cleaned_refined_json_str = re.sub(r'^```json\n?|```$', '', refinement_result_raw, flags=re.MULTILINE).strip()
         try:
-            final_llm_json = json.loads(cleaned_refined_json_str)
+            refined_llm_json = json.loads(cleaned_refined_json_str)
             st.success(f"Knowledge extraction and refinement complete for `{uploaded_file.name}`.")
-            with st.expander("View Final Extracted Knowledge (JSON)"):
-                st.json(final_llm_json)
+            
+            # Added initial extraction result for visualization and comparison
+            extraction_llm_json = json.loads(cleaned_extraction_json_str)
+            with st.expander("View Initial Extracted Knowledge (JSON)"):
+                st.json(extraction_llm_json)
+            
+            # Continuing with the refined result
+            with st.expander("View Final Refined Knowledge (JSON)"):
+                st.json(refined_llm_json)
         except json.JSONDecodeError as e:
             st.error(f"Failed to parse refined LLM JSON output for {uploaded_file.name}: {e}")
             st.text_area("Problematic Refined JSON Output:", value=cleaned_refined_json_str, height=200)
             os.remove(tmp_pdf_path)
             continue
 
-        validated_graph_model = validation_schemas.validate_llm_output(final_llm_json)
+        validated_graph_model = validation_schemas.validate_llm_output(refined_llm_json)
         if not validated_graph_model:
             st.warning(f"Validation of the final JSON failed for {uploaded_file.name}.")
         
@@ -326,7 +333,8 @@ if process_button and uploaded_files:
                     config.PDF_PROCESSING_RESULTS_CSV,
                     uploaded_file.name,
                     selected_llm_model,
-                    final_llm_json
+                    extraction_llm_json,
+                    refined_llm_json
                 )
                 st.info(f"Results for `{uploaded_file.name}` appended to CSV.")
 
@@ -334,7 +342,7 @@ if process_button and uploaded_files:
                     try:
                         neo4j_handler.process_and_store_graph(
                             neo4j_driver,
-                            final_llm_json,
+                            refined_llm_json,
                             pdf_text, 
                             config.NEO4J_DATABASE
                         )
