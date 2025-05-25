@@ -209,6 +209,8 @@ if process_button and uploaded_llm_results_file:
         {"llm_col": "LLM_Country", "erail_col": "Country", "match_col": "Country_Match", "display_name": "Country"},
         {"llm_col": "LLM_AccidentType", "erail_col": "Occurrence type", "match_col": "AccidentType_Match", "display_name": "Accident Type"},
         {"llm_col": "LLM_RegulatoryBody", "erail_col": "Reporting Body", "match_col": "RegulatoryBody_Match", "display_name": "Regulatory Body"},
+        {"llm_col": "LLM_ContributingFactor", "erail_col": "Direct cause description (including causal and contributing factors, excluding those of systemic nature)", "match_col": "ContributingFactors_Match", "display_name": "Contributing Factors"},
+        {"llm_col": "LLM_SystemicFactor", "erail_col": "Underlying and root causes description (i.e. systemic factors, if any)", "match_col": "SystemicFactors_Match", "display_name": "Systemic Factors"}
     ]
     base_display_columns = ["ERAIL Occurrence", "model_type", "iteration_number"]
 
