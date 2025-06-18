@@ -123,6 +123,17 @@ with st.sidebar:
         help="Choose the language model for extraction."
     )
 
+    if 'process_summary_only' not in st.session_state:
+        # Use hasattr to check if the attribute exists in config, otherwise default to True
+        st.session_state.process_summary_only = getattr(config, 'PROCESS_SUMMARY_ONLY', True)
+
+    # The checkbox updates the session state value directly
+    st.session_state.process_summary_only = st.checkbox(
+        "Process report summary only", 
+        value=st.session_state.process_summary_only, # The current value in memory
+        help="If checked, attempts to process only the summary. If unchecked, or if summary is not found, processes the full document."
+    )
+
     if 'enable_neo4j' not in st.session_state:
         st.session_state.enable_neo4j = config.ENABLE_NEO4J_STORAGE
 
@@ -186,11 +197,9 @@ if process_button and uploaded_files:
             tmp_pdf_path = tmp_file.name
         
         with st.spinner(f"Extracting text from `{uploaded_file.name}`..."):
-            pdf_text = pdf_extractor.extract_summary_section(tmp_pdf_path)
-            if not pdf_text:
-                st.error(f"Could not extract text from `{uploaded_file.name}`.")
-                os.remove(tmp_pdf_path)
-                continue
+            pdf_text = pdf_extractor.get_pdf_text(
+                pdf_path=tmp_pdf_path,
+                summary_only=st.session_state.process_summary_only)
 
         with st.spinner("Chunking report text..."):
             report_chunks = text_splitter.split_report_into_chunks(

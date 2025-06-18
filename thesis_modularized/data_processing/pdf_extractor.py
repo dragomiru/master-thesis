@@ -3,114 +3,93 @@ import pdfplumber
 from collections import Counter
 from typing import List
 
-# Defining regex patterns for detecting the start of the summary section and section headings
-SUMMARY_START_PATTERN = re.compile(r"^(report\s+summary|summary|I. Summary)[:\s]*$", re.IGNORECASE)
+# These patterns are the same as your provided code
+SUMMARY_START_PATTERN = re.compile(r"^(report\s+summary|summary|I\.\s+Summary)[:\s]*$", re.IGNORECASE)
 SECTION_HEADING_PATTERN = re.compile(
-    r"^(table of contents|contents|RAIU investigation|description of the occurrence|analysis|conclusions|measures taken|safety recommendations|additional information|list of abbreviations|glossary|references|II. THE INVESTIGATION AND ITS CONTEXT|II. INVESTIGATION AND ITS CONTEXT)",
+    r"^(table of contents|introduction|contents|RAIU investigation|description of the occurrence|analysis|conclusions|measures taken|safety recommendations|additional information|list of abbreviations|glossary|references|II\. THE INVESTIGATION AND ITS CONTEXT|II\. INVESTIGATION AND ITS CONTEXT)",
     re.IGNORECASE
 )
 
-def extract_summary_section(pdf_path: str, header_detection_pages: int = 10) -> str:
+def get_pdf_text(
+    pdf_path: str,
+    summary_only: bool = True, # New flag to control behavior
+    header_detection_pages: int = 10
+) -> str:
     """
-    Extracts the summary section from a PDF document.
-    It tries to identify and remove repeating headers first.
-    If no summary section is found, it returns the full text.
-
-    Args:
-        pdf_path (str): The path to the PDF file.
-        header_detection_pages (int): Number of initial pages to scan for repeating headers.
-
-    Returns:
-        str: The extracted summary text or full text if summary is not found.
+    Extracts text from a PDF. If summary_only is True, it attempts to find and return
+    only the summary section, falling back to full text if no summary is found.
+    If summary_only is False, it returns the full text of the document.
     """
     summary_text = ""
     full_text_capture = ""
-    capturing = False
+    capturing_summary = False
     detected_header = None
-    first_lines_for_header_detection: List[str] = []
+    first_lines = []
 
     try:
         with pdfplumber.open(pdf_path) as pdf:
             num_pages = len(pdf.pages)
-            pages_to_check_for_header = min(header_detection_pages, num_pages)
+            pages_to_check = min(header_detection_pages, num_pages)
 
-            # Step 1: Detect a repeating header line across the first few pages
-            for i in range(pages_to_check_for_header):
-                page_text = pdf.pages[i].extract_text()
-                if not page_text:
-                    continue
-                lines = page_text.split("\n")
-                if lines:
-                    first_lines_for_header_detection.append(lines[0].strip())
-
-            # Step 2: Determine most common first line (if repeated)
-            if first_lines_for_header_detection:
-                first_line_counts = Counter(first_lines_for_header_detection)
-                if first_line_counts: # Ensure there's at least one line
-                    most_common_line, count = first_line_counts.most_common(1)[0]
-                    # Header appears on a significant percentage of sampled pages
-                    if count >= pages_to_check_for_header * 0.7 and count > 1: # Ensure it's actually repeating
-                        detected_header = most_common_line
+            # Step 1 & 2: Detect and determine repeating header (same logic as before)
+            if pages_to_check > 0:
+                for i in range(pages_to_check):
+                    page_text = pdf.pages[i].extract_text()
+                    if page_text and page_text.split("\n")[0].strip():
+                        first_lines.append(page_text.split("\n")[0].strip())
+            
+            if first_lines:
+                counts = Counter(first_lines)
+                if counts:
+                    most_common, num_most_common = counts.most_common(1)[0]
+                    if num_most_common > 1 and num_most_common >= pages_to_check * 0.7:
+                        detected_header = most_common
                         print(f"[INFO] Detected consistent header: '{detected_header}'")
 
-            # Step 3: Process all pages and remove header if matched
-            for i, page in enumerate(pdf.pages):
+            # Step 3: Process all pages
+            for page in pdf.pages:
                 page_text = page.extract_text()
                 if not page_text:
                     continue
 
-                page_lines = page_text.split("\n")
-                current_page_content_lines = []
+                lines = page_text.split("\n")
+                if detected_header and lines and lines[0].strip() == detected_header:
+                    lines = lines[1:]  # Remove header
 
-                if detected_header and page_lines and page_lines[0].strip() == detected_header:
-                    current_page_content_lines = page_lines[1:]  # Remove header
-                else:
-                    current_page_content_lines = page_lines
+                # Always capture the full text (post-header removal)
+                full_text_capture += "\n".join(lines) + "\n"
 
-                # Append to full text capture
-                full_text_capture += f"[Page {page.page_number}]\n" + "\n".join(current_page_content_lines) + "\n\n"
-
-                # Logic for capturing summary
-                for line_num, line in enumerate(current_page_content_lines):
-                    stripped_line = line.strip()
-                    if not capturing and SUMMARY_START_PATTERN.match(stripped_line):
-                        print(f"[INFO] Found summary start on Page {page.page_number}: '{stripped_line}'")
-                        capturing = True
-                        # Potentially skip the heading line itself from being added to summary_text
-                        if SUMMARY_START_PATTERN.match(stripped_line).group(0) == stripped_line:
-                            if ":" in stripped_line:
-                                summary_text += stripped_line.split(":", 1)[1].strip() + "\n"
-                            continue # Skip the heading line itself if it was just the heading
-                        else: # Content on the same line as the heading
-                            summary_text += stripped_line[len(SUMMARY_START_PATTERN.match(stripped_line).group(0)):].strip() + "\n"
+                # If we only want the summary, perform the summary capture logic
+                if summary_only:
+                    for line in lines:
+                        stripped = line.strip()
+                        if not capturing_summary and SUMMARY_START_PATTERN.match(stripped):
+                            capturing_summary = True
                             continue
 
+                        if capturing_summary and SECTION_HEADING_PATTERN.match(stripped):
+                            capturing_summary = False
+                            break # Stop processing this page's lines
 
-                    if capturing and SECTION_HEADING_PATTERN.match(stripped_line):
-                        # Check if this heading is very close to the start of a page,
-                        # it might be a false positive for ending the summary if the summary is short.
-                        is_false_positive_section_heading = (line_num < 2 and len(summary_text.split()) < 50)
-
-                        if not is_false_positive_section_heading:
-                            print(f"[INFO] Stopping capture at heading on Page {page.page_number}: '{stripped_line}'")
-                            capturing = False
-                            break # Stop processing lines on this page for the summary
-                        else:
-                            print(f"[INFO] Ignored potential section heading '{stripped_line}' on Page {page.page_number} as likely part of summary.")
-
-
-                    if capturing:
-                        summary_text += line + "\n"
-                
-                if not capturing and summary_text: # If summary capture ended on this page
-                    break # Stop processing further pages for summary
+                        if capturing_summary:
+                            summary_text += line + "\n"
+                    
+                    # If we found a summary and are no longer capturing, we can stop processing pages
+                    if not capturing_summary and summary_text:
+                        break
 
     except Exception as e:
         print(f"[ERROR] Failed to process PDF {pdf_path}: {e}")
-        return full_text_capture.strip()
+        return full_text_capture.strip() # Return what we have in case of error
 
-    if not summary_text:
-        print(f"[INFO] No specific summary section found in {pdf_path} using patterns. Returning full text.")
+    # --- Return logic ---
+    if summary_only:
+        if summary_text:
+            print("[INFO] Returning extracted summary text.")
+            return summary_text.strip()
+        else:
+            print("[INFO] No summary found. Falling back to full text.")
+            return full_text_capture.strip()
+    else: # If summary_only was False from the start
+        print("[INFO] Returning full document text as requested.")
         return full_text_capture.strip()
-
-    return summary_text.strip()

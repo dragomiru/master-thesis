@@ -52,6 +52,7 @@ EMBEDDINGS_MODEL_NAME = "all-mpnet-base-v2"
 ENABLE_NEO4J_STORAGE = True
 ENABLE_ERAIL_COMPARISON = True
 AUTO_PROCEED_LLM_CALLS = False
+PROCESS_SUMMARY_ONLY = True
 
 # --- Streamlit UI Configuration ---
 APP_TITLE = "Railway Accident Report Analyzer"
