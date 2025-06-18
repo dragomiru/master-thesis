@@ -1,8 +1,10 @@
+# --- General modules ---
 from langchain_community.vectorstores import FAISS
 from langchain_huggingface import HuggingFaceEmbeddings
 from typing import List, Dict, Optional, Any
 from config import EMBEDDINGS_MODEL_NAME
 
+# --- Function for loading the embeddings model ---
 def get_embeddings_model(model_name: str) -> Optional[Any]:
     """
     Initializes and returns a HuggingFace embeddings model.
@@ -22,6 +24,7 @@ def get_embeddings_model(model_name: str) -> Optional[Any]:
         print(f"[ERROR] Failed to initialize embeddings model '{model_name}': {e}")
         return None
 
+# --- Functions for creating FAISS stores from texts ---
 def create_faiss_store_from_texts(
     texts: List[str],
     embeddings_model: Any
@@ -81,7 +84,7 @@ def create_faiss_store_from_document_lists(
     
     return create_faiss_store_from_texts(flat_chunks, embeddings_model)
 
-
+# --- Function to identify relevant report chunks ---
 def find_most_relevant_report_chunks(
     vectorstore_reports: FAISS,
     entity_queries: Dict[str, str],
@@ -122,7 +125,7 @@ def find_most_relevant_report_chunks(
     print(f"\n[INFO] Found {len(retrieved_chunks_content)} unique relevant chunks from the report.")
     return combined_text
 
-
+# --- General function used to retrieve generic chunks for accidents cats. + contr. + sys. factors ---
 def find_most_relevant_generic_chunks(
     vectorstore: FAISS,
     query_input: str,
@@ -150,7 +153,6 @@ def find_most_relevant_generic_chunks(
     print(f"[INFO] Querying generic vector store with: '{query_input[:50]}...' (top_k={top_k})")
     try:
         found_documents = vectorstore.similarity_search(query_input, k=top_k)
-        # Extract the page_content from each Document object
         chunk_contents = [doc.page_content for doc in found_documents if doc.page_content]
         
         if not chunk_contents:

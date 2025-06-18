@@ -1,7 +1,9 @@
+# --- General modules ---
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from typing import List, Dict
 from config import CHUNK_SIZE, CHUNK_OVERLAP
 
+# --- Functions for chunk splitting ---
 def split_report_into_chunks(text: str, chunk_size: int = CHUNK_SIZE, chunk_overlap: int = CHUNK_OVERLAP) -> List[str]:
     """
     Splits text into smaller overlapping chunks using LangChain's text splitter.

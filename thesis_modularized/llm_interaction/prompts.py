@@ -1,3 +1,4 @@
+# --- General modules ---
 from langchain.prompts import (
     ChatPromptTemplate,
     MessagesPlaceholder,
@@ -6,7 +7,7 @@ from langchain.prompts import (
 )
 from typing import List
 
-# JSON schema example for few-shot learning
+# --- JSON schema example for few-shot learning ---
 SCHEMA_EXAMPLE = """{
     "nodes": [
         {"id": "Dublin-Cork Accident", "type": "UniqueAccident"},
@@ -44,6 +45,7 @@ ENTITY_TYPES_OF_INTEREST = [
     "Country", "RegulatoryBody", "ContributingFactor", "SystemicFactor"
 ]
 
+# --- Function for initial extraction prompt ---
 def create_extraction_prompt(entities_of_interest: List[str] = ENTITY_TYPES_OF_INTEREST, 
                              schema_example: str = SCHEMA_EXAMPLE) -> ChatPromptTemplate:
     """
@@ -102,7 +104,7 @@ def create_extraction_prompt(entities_of_interest: List[str] = ENTITY_TYPES_OF_I
     )
     return extraction_chat_prompt
 
-
+# --- Function for secondary refinement prompt ---
 def create_refinement_prompt(relevant_events_text: str, true_contr_fact_str: str,  true_sys_fact_str: str) -> ChatPromptTemplate:
     runtime_input_variables = ["extraction_result_str"]
 

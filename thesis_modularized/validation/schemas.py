@@ -1,8 +1,8 @@
+# --- General modules ---
 from pydantic import BaseModel, Field, ValidationError
 from typing import List, Optional, Dict, Any
 
 # --- Models for Validating LLM's JSON Output ---
-
 class NodeModel(BaseModel):
     """
     Represents a single node in the knowledge graph as extracted by the LLM.

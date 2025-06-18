@@ -1,8 +1,10 @@
+# --- General modules ---
 import pandas as pd
 import os
 import json
 from typing import Dict, Optional
 
+# --- Function to append extraction & refinement results to CSV ---
 def append_pdf_json_result(csv_file_path: str, pdf_name: str, model_type: str, extraction_json: Dict,
                            refined_json: Dict) -> Optional[pd.DataFrame]:
     """

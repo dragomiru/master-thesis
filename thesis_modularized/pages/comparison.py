@@ -1,3 +1,4 @@
+# --- General modules ---
 import streamlit as st
 import pandas as pd
 import numpy as np
@@ -5,6 +6,7 @@ import json
 import re
 import os
 from typing import Dict, Optional, Any
+import config
 
 # --- Add project root to sys.path ---
 import sys
@@ -13,8 +15,6 @@ current_file_path = pathlib.Path(__file__).resolve()
 project_root = current_file_path.parent.parent 
 if str(project_root) not in sys.path:
     sys.path.insert(0, str(project_root))
-
-import config
 
 # --- Page Configuration ---
 st.set_page_config(
@@ -34,7 +34,7 @@ with st.sidebar:
     )
     process_button = st.button("Run Comparison on Uploaded CSV", type="primary", disabled=not uploaded_llm_results_file)
 
-# --- Helper function for field comparison (remains the same) ---
+# --- Helper function for field comparison ---
 def perform_field_comparison(
     df: pd.DataFrame, 
     llm_col: str, 
@@ -82,7 +82,7 @@ def merge_data_for_comparison(llm_df: pd.DataFrame, erail_df: pd.DataFrame) -> O
         st.error(f"Error during DataFrame merge: {e}")
         return None
 
-# --- MODIFIED Helper to extract entities from a specific JSON column ---
+# --- Helper to extract entities from a specific JSON column ---
 def _extract_entities_from_json_nodes(json_data: Dict) -> Dict[str, Any]:
     """Helper to extract specific entities from LLM JSON nodes."""
     target_node_types = { # Define the entities you want to pull out for columns
@@ -95,7 +95,7 @@ def _extract_entities_from_json_nodes(json_data: Dict) -> Dict[str, Any]:
         return {k: ([] if isinstance(v, list) else None) for k, v in target_node_types.items()}
 
     for node in json_data.get("nodes", []):
-        node_type, node_id_val = node.get("type"), node.get("id") # Renamed node_id to node_id_val
+        node_type, node_id_val = node.get("type"), node.get("id")
         if node_type in target_node_types:
             if isinstance(target_node_types[node_type], list):
                 if node_id_val is not None: target_node_types[node_type].append(str(node_id_val))
@@ -109,7 +109,7 @@ def _extract_entities_from_json_nodes(json_data: Dict) -> Dict[str, Any]:
             target_node_types[factor_type] = None 
     return target_node_types
 
-# --- MODIFIED: Function to prepare LLM data, now takes json_column_name ---
+# --- Function to prepare LLM data, takes json_column_name ---
 def prepare_llm_data_for_comparison(
     results_df: pd.DataFrame, 
     json_column_name: str # "extraction_output" or "refined_output"
@@ -132,7 +132,8 @@ def prepare_llm_data_for_comparison(
             llm_json_data = json.loads(json_string)
             extracted_entities = _extract_entities_from_json_nodes(llm_json_data)
             
-            erail_id_match = re.search(r'(IE-\d+|PL-\d+)', str(row["pdf_name"])) # Ensure pdf_name is string
+            # Add country's two-letter code when scanning docs from other MSs
+            erail_id_match = re.search(r'(IE-\d+|PL-\d+)', str(row["pdf_name"]))
             erail_occurrence_id = erail_id_match.group(1) if erail_id_match else None
             
             entry = {
@@ -157,8 +158,8 @@ def prepare_llm_data_for_comparison(
         return pd.DataFrame() # Return empty DataFrame if nothing was processed
     return pd.DataFrame(comparison_list)
 
-# --- ERAIL DB Loading and Preprocessing (remains mostly the same) ---
-@st.cache_data # Cache ERAIL DB loading
+# --- ERAIL DB Loading and Preprocessing ---
+@st.cache_data
 def load_and_preprocess_erail_db_cached(file_path: str) -> Optional[pd.DataFrame]:
     try:
         erail_df = pd.read_excel(file_path)
@@ -250,7 +251,7 @@ if process_button and uploaded_llm_results_file:
     else:
         st.warning("Column 'extraction_output' not found in the uploaded CSV.")
 
-    st.markdown("---") # Separator
+    st.markdown("---")
 
     # --- Process and Display for "refined_output" ---
     st.subheader("Comparison: Refined Output vs. ERAIL DB")

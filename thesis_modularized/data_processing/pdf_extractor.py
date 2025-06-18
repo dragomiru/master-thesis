@@ -1,18 +1,20 @@
+# --- General modules ---
 import re
 import pdfplumber
 from collections import Counter
 from typing import List
 
-# These patterns are the same as your provided code
+# --- Patterns for summary identification ---
 SUMMARY_START_PATTERN = re.compile(r"^(report\s+summary|summary|I\.\s+Summary)[:\s]*$", re.IGNORECASE)
 SECTION_HEADING_PATTERN = re.compile(
     r"^(table of contents|introduction|contents|RAIU investigation|description of the occurrence|analysis|conclusions|measures taken|safety recommendations|additional information|list of abbreviations|glossary|references|II\. THE INVESTIGATION AND ITS CONTEXT|II\. INVESTIGATION AND ITS CONTEXT)",
     re.IGNORECASE
 )
 
+# --- Function for extracting the text from PDF ---
 def get_pdf_text(
     pdf_path: str,
-    summary_only: bool = True, # New flag to control behavior
+    summary_only: bool = True,
     header_detection_pages: int = 10
 ) -> str:
     """
@@ -31,7 +33,7 @@ def get_pdf_text(
             num_pages = len(pdf.pages)
             pages_to_check = min(header_detection_pages, num_pages)
 
-            # Step 1 & 2: Detect and determine repeating header (same logic as before)
+            # Step 1 & 2: Detect and determine repeating header
             if pages_to_check > 0:
                 for i in range(pages_to_check):
                     page_text = pdf.pages[i].extract_text()
@@ -54,7 +56,7 @@ def get_pdf_text(
 
                 lines = page_text.split("\n")
                 if detected_header and lines and lines[0].strip() == detected_header:
-                    lines = lines[1:]  # Remove header
+                    lines = lines[1:]
 
                 # Always capture the full text (post-header removal)
                 full_text_capture += "\n".join(lines) + "\n"
@@ -80,7 +82,7 @@ def get_pdf_text(
 
     except Exception as e:
         print(f"[ERROR] Failed to process PDF {pdf_path}: {e}")
-        return full_text_capture.strip() # Return what we have in case of error
+        return full_text_capture.strip()
 
     # --- Return logic ---
     if summary_only:

@@ -1,18 +1,17 @@
+# --- General modules ---
 import os
 import getpass
 import tiktoken
 from typing import Optional, Any
 import certifi
 import httpx 
-
-# Langchain imports
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_openai import ChatOpenAI
 from langchain.memory import ConversationBufferMemory
-
 from dotenv import load_dotenv
 load_dotenv()
 
+# --- Helper function for getting the API key from env ---
 def _get_api_key_from_env_or_prompt(env_var_name: str, prompt_message: str) -> Optional[str]:
     """
     Tries to get an API key from environment variables.
@@ -34,7 +33,8 @@ def _get_api_key_from_env_or_prompt(env_var_name: str, prompt_message: str) -> O
         print(f"[ERROR_API_KEY] Could not prompt for API key '{env_var_name}': {e}")
         return None
 
-def init_llm(model_identifier: str) -> Optional[Any]: # Simplified signature
+# --- Function for initializing the LLM model ---
+def init_llm(model_identifier: str) -> Optional[Any]:
     """
     Initializes and returns a Langchain chat model (OpenAI or Google).
     """
@@ -92,18 +92,14 @@ def init_llm(model_identifier: str) -> Optional[Any]: # Simplified signature
                 if original_requests_ca_bundle is not None: os.environ['REQUESTS_CA_BUNDLE'] = original_requests_ca_bundle
                 return None
             
-            # print(f"[DEBUG_INIT_LLM_GEMINI] Using Google API Key: {'Present' if google_key else 'Not Present'}")
-            
-            # print(f"[DEBUG_INIT_LLM_GEMINI] Instantiating ChatGoogleGenerativeAI with model='{model_identifier}' and explicit api_key.")
             chat_model = ChatGoogleGenerativeAI(
                 model=model_identifier, 
                 google_api_key=google_key
-                # Not passing generation_config to keep it minimal
             )
             print(f"[INFO_INIT_LLM] Gemini model '{model_identifier}' initialized successfully.")
         else:
             print(f"[ERROR_INIT_LLM] Unsupported model identifier prefix: '{model_identifier}'.")
-            return None # Env vars will be restored in finally
+            return None
         
         return chat_model
         
@@ -117,6 +113,7 @@ def init_llm(model_identifier: str) -> Optional[Any]: # Simplified signature
         if original_requests_ca_bundle is not None:
             os.environ['REQUESTS_CA_BUNDLE'] = original_requests_ca_bundle
 
+# --- Function for counting GPT tokens (not implemented, can be used though) ---
 def count_tokens_openai(text: str, model_name: str) -> int:
     if not model_name or not model_name.startswith("gpt"): 
         return 0
@@ -133,5 +130,6 @@ def count_tokens_openai(text: str, model_name: str) -> int:
         print(f"[ERROR_TOKEN_COUNT] Could not count tokens for model '{model_name}': {e}")
         return 0
 
+# --- Function to retrieve previous LLM prompts ---
 def get_conversation_memory() -> ConversationBufferMemory:
     return ConversationBufferMemory(memory_key="chat_history", return_messages=True)

@@ -1,6 +1,8 @@
+# --- General modules ---
 import pandas as pd
 from typing import List, Dict, Optional
 
+# --- Functions for loading the data ---
 def load_accident_categories(cat_a_path: str, cat_b_path: str, cat_c_path: str) -> Optional[pd.DataFrame]:
     """
     Loads and merges accident category event CSV files from the ISS ontology.

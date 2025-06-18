@@ -1,9 +1,10 @@
+# --- General modules ---
 from langchain.chains import LLMChain
 from langchain.prompts import ChatPromptTemplate
 from langchain.memory import ConversationBufferMemory
 from typing import Dict, Any, Optional
 
-
+# --- Functions for creating & running the LLM chains ---
 def create_llm_chain(llm: Any, prompt: ChatPromptTemplate, memory: ConversationBufferMemory = None, 
                      verbose: bool = False) -> LLMChain:
     """

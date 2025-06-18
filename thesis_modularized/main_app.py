@@ -124,13 +124,11 @@ with st.sidebar:
     )
 
     if 'process_summary_only' not in st.session_state:
-        # Use hasattr to check if the attribute exists in config, otherwise default to True
-        st.session_state.process_summary_only = getattr(config, 'PROCESS_SUMMARY_ONLY', True)
+        st.session_state.process_summary_only = config.PROCESS_SUMMARY_ONLY
 
-    # The checkbox updates the session state value directly
     st.session_state.process_summary_only = st.checkbox(
         "Process report summary only", 
-        value=st.session_state.process_summary_only, # The current value in memory
+        value=st.session_state.process_summary_only,
         help="If checked, attempts to process only the summary. If unchecked, or if summary is not found, processes the full document."
     )
 
@@ -138,7 +136,8 @@ with st.sidebar:
         st.session_state.enable_neo4j = config.ENABLE_NEO4J_STORAGE
 
     st.session_state.enable_neo4j = st.checkbox(
-        "Store results in Neo4j", value=st.session_state.enable_neo4j
+        "Store results in Neo4j", value=st.session_state.enable_neo4j,
+        help="If checked, loads data in Neo4j if the instance is on. Otherwise, will fall back to not storing."
     )
 
     process_button = st.button("Process Uploaded PDF(s)", type="primary", disabled=not uploaded_files)
@@ -147,6 +146,7 @@ with st.sidebar:
     st.info(f"""
     **Current Settings:**
     - LLM: `{selected_llm_model}`
+    - Summary Only: `{'Yes' if st.session_state.process_summary_only else 'No'}`
     - Neo4j Storage: `{'Enabled' if st.session_state.enable_neo4j else 'Disabled'}`
     """)
 
@@ -210,7 +210,7 @@ if process_button and uploaded_files:
                 os.remove(tmp_pdf_path)
                 continue
         
-        with st.spinner("Creating report vector store..."): # This one is per-PDF, so no global cache
+        with st.spinner("Creating report vector store..."):
             vectorstore_report = faiss_handler.create_faiss_store_from_texts(report_chunks, embeddings_model)
             if not vectorstore_report:
                 st.error(f"Failed to create report vector store for {uploaded_file.name}.")
