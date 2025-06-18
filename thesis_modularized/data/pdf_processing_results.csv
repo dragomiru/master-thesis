@@ -1,0 +1,2443 @@
+pdf_name,model_type,iteration_number,extraction_output,refined_output
+UK-6293 - R042021_210726_Chalfont___Latimer.pdf,gemini-2.5-flash-preview-04-17,1,"{
+  ""nodes"": [
+    {
+      ""id"": ""Chalfont & Latimer Near Miss 21/06/2020"",
+      ""type"": ""UniqueAccident""
+    },
+    {
+      ""id"": ""Near Miss"",
+      ""type"": ""AccidentType""
+    },
+    {
+      ""id"": ""SPAD"",
+      ""type"": ""AccidentType""
+    },
+    {
+      ""id"": ""Chalfont & Latimer station, Metropolitan line"",
+      ""type"": ""TrackSection""
+    },
+    {
+      ""id"": ""21/06/2020"",
+      ""type"": ""Date""
+    },
+    {
+      ""id"": ""21:43"",
+      ""type"": ""Time""
+    },
+    {
+      ""id"": ""UK"",
+      ""type"": ""Country""
+    },
+    {
+      ""id"": ""RAIB"",
+      ""type"": ""RegulatoryBody""
+    },
+    {
+      ""id"": ""Fatigue"",
+      ""type"": ""ContributingFactor""
+    },
+    {
+      ""id"": ""Unauthorized action"",
+      ""type"": ""ContributingFactor""
+    },
+    {
+      ""id"": ""Ineffective training processes"",
+      ""type"": ""SystemicFactor""
+    },
+    {
+      ""id"": ""Ineffective driver management processes"",
+      ""type"": ""SystemicFactor""
+    },
+    {
+      ""id"": ""Insufficient driver managers"",
+      ""type"": ""SystemicFactor""
+    },
+    {
+      ""id"": ""High driver manager workload"",
+      ""type"": ""SystemicFactor""
+    },
+    {
+      ""id"": ""Ineffective interface risk management"",
+      ""type"": ""SystemicFactor""
+    }
+  ],
+  ""rels"": [
+    {
+      ""source"": ""Chalfont & Latimer Near Miss 21/06/2020"",
+      ""target"": ""UK"",
+      ""type"": ""occurred_in""
+    },
+    {
+      ""source"": ""Chalfont & Latimer Near Miss 21/06/2020"",
+      ""target"": ""Near Miss"",
+      ""type"": ""is_type""
+    },
+    {
+      ""source"": ""Chalfont & Latimer Near Miss 21/06/2020"",
+      ""target"": ""SPAD"",
+      ""type"": ""is_type""
+    },
+    {
+      ""source"": ""Chalfont & Latimer Near Miss 21/06/2020"",
+      ""target"": ""Chalfont & Latimer station, Metropolitan line"",
+      ""type"": ""is_track_section""
+    },
+    {
+      ""source"": ""Chalfont & Latimer Near Miss 21/06/2020"",
+      ""target"": ""RAIB"",
+      ""type"": ""investigated_by""
+    },
+    {
+      ""source"": ""Chalfont & Latimer Near Miss 21/06/2020"",
+      ""target"": ""21/06/2020"",
+      ""type"": ""has_date""
+    },
+    {
+      ""source"": ""Chalfont & Latimer Near Miss 21/06/2020"",
+      ""target"": ""21:43"",
+      ""type"": ""has_time""
+    },
+    {
+      ""source"": ""Chalfont & Latimer Near Miss 21/06/2020"",
+      ""target"": ""Fatigue"",
+      ""type"": ""contributing_factor""
+    },
+    {
+      ""source"": ""Chalfont & Latimer Near Miss 21/06/2020"",
+      ""target"": ""Unauthorized action"",
+      ""type"": ""contributing_factor""
+    },
+    {
+      ""source"": ""Chalfont & Latimer Near Miss 21/06/2020"",
+      ""target"": ""Ineffective training processes"",
+      ""type"": ""systemic_factor""
+    },
+    {
+      ""source"": ""Chalfont & Latimer Near Miss 21/06/2020"",
+      ""target"": ""Ineffective driver management processes"",
+      ""type"": ""systemic_factor""
+    },
+    {
+      ""source"": ""Chalfont & Latimer Near Miss 21/06/2020"",
+      ""target"": ""Insufficient driver managers"",
+      ""type"": ""systemic_factor""
+    },
+    {
+      ""source"": ""Chalfont & Latimer Near Miss 21/06/2020"",
+      ""target"": ""High driver manager workload"",
+      ""type"": ""systemic_factor""
+    },
+    {
+      ""source"": ""Chalfont & Latimer Near Miss 21/06/2020"",
+      ""target"": ""Ineffective interface risk management"",
+      ""type"": ""systemic_factor""
+    }
+  ]
+}","{
+  ""nodes"": [
+    {
+      ""id"": ""Chalfont & Latimer Near Miss 21/06/2020"",
+      ""type"": ""UniqueAccident""
+    },
+    {
+      ""id"": ""Cyber attack"",
+      ""type"": ""AccidentType""
+    },
+    {
+      ""id"": ""Chalfont & Latimer station, Metropolitan line"",
+      ""type"": ""TrackSection""
+    },
+    {
+      ""id"": ""21/06/2020"",
+      ""type"": ""Date""
+    },
+    {
+      ""id"": ""21:43"",
+      ""type"": ""Time""
+    },
+    {
+      ""id"": ""UK"",
+      ""type"": ""Country""
+    },
+    {
+      ""id"": ""RAIB"",
+      ""type"": ""RegulatoryBody""
+    },
+    {
+      ""id"": ""Fatigue"",
+      ""type"": ""ContributingFactor""
+    },
+    {
+      ""id"": ""Intentions"",
+      ""type"": ""ContributingFactor""
+    },
+    {
+      ""id"": ""Learning from accidents and incidents"",
+      ""type"": ""SystemicFactor""
+    },
+    {
+      ""id"": ""Continual improvement"",
+      ""type"": ""SystemicFactor""
+    },
+    {
+      ""id"": ""Leadership and commitment"",
+      ""type"": ""SystemicFactor""
+    },
+    {
+      ""id"": ""Actions to address risks"",
+      ""type"": ""SystemicFactor""
+    }
+  ],
+  ""rels"": [
+    {
+      ""source"": ""Chalfont & Latimer Near Miss 21/06/2020"",
+      ""target"": ""UK"",
+      ""type"": ""occurred_in""
+    },
+    {
+      ""source"": ""Chalfont & Latimer Near Miss 21/06/2020"",
+      ""target"": ""Cyber attack"",
+      ""type"": ""is_type""
+    },
+    {
+      ""source"": ""Chalfont & Latimer Near Miss 21/06/2020"",
+      ""target"": ""Chalfont & Latimer station, Metropolitan line"",
+      ""type"": ""is_track_section""
+    },
+    {
+      ""source"": ""Chalfont & Latimer Near Miss 21/06/2020"",
+      ""target"": ""RAIB"",
+      ""type"": ""investigated_by""
+    },
+    {
+      ""source"": ""Chalfont & Latimer Near Miss 21/06/2020"",
+      ""target"": ""21/06/2020"",
+      ""type"": ""has_date""
+    },
+    {
+      ""source"": ""Chalfont & Latimer Near Miss 21/06/2020"",
+      ""target"": ""21:43"",
+      ""type"": ""has_time""
+    },
+    {
+      ""source"": ""Chalfont & Latimer Near Miss 21/06/2020"",
+      ""target"": ""Fatigue"",
+      ""type"": ""contributing_factor""
+    },
+    {
+      ""source"": ""Chalfont & Latimer Near Miss 21/06/2020"",
+      ""target"": ""Intentions"",
+      ""type"": ""contributing_factor""
+    },
+    {
+      ""source"": ""Chalfont & Latimer Near Miss 21/06/2020"",
+      ""target"": ""Learning from accidents and incidents"",
+      ""type"": ""systemic_factor""
+    },
+    {
+      ""source"": ""Chalfont & Latimer Near Miss 21/06/2020"",
+      ""target"": ""Continual improvement"",
+      ""type"": ""systemic_factor""
+    },
+    {
+      ""source"": ""Chalfont & Latimer Near Miss 21/06/2020"",
+      ""target"": ""Leadership and commitment"",
+      ""type"": ""systemic_factor""
+    },
+    {
+      ""source"": ""Chalfont & Latimer Near Miss 21/06/2020"",
+      ""target"": ""Actions to address risks"",
+      ""type"": ""systemic_factor""
+    }
+  ]
+}"
+UK-6289 - R052021_210907_Waterloo_LUL.pdf,gemini-2.5-flash-preview-04-17,1,"{
+  ""nodes"": [
+    {
+      ""id"": ""Waterloo LUL accident 26/05/2020"",
+      ""type"": ""UniqueAccident""
+    },
+    {
+      ""id"": ""Platform-Train Interface Accident"",
+      ""type"": ""AccidentType""
+    },
+    {
+      ""id"": ""Waterloo Underground station"",
+      ""type"": ""TrackSection""
+    },
+    {
+      ""id"": ""26/05/2020"",
+      ""type"": ""Date""
+    },
+    {
+      ""id"": ""10:10"",
+      ""type"": ""Time""
+    },
+    {
+      ""id"": ""United Kingdom"",
+      ""type"": ""Country""
+    },
+    {
+      ""id"": ""Rail Accident Investigation Branch (RAIB)"",
+      ""type"": ""RegulatoryBody""
+    },
+    {
+      ""id"": ""Track curvature causing large platform-train gap"",
+      ""type"": ""ContributingFactor""
+    },
+    {
+      ""id"": ""Passenger fell into gap"",
+      ""type"": ""ContributingFactor""
+    },
+    {
+      ""id"": ""Passenger difficult to detect on CCTV monitors"",
+      ""type"": ""ContributingFactor""
+    },
+    {
+      ""id"": ""Train operator did not see passenger"",
+      ""type"": ""ContributingFactor""
+    },
+    {
+      ""id"": ""No staff or public nearby to assist"",
+      ""type"": ""ContributingFactor""
+    },
+    {
+      ""id"": ""Following train operator unaware"",
+      ""type"": ""ContributingFactor""
+    },
+    {
+      ""id"": ""Inadequate risk assessment processes (location-specific)"",
+      ""type"": ""SystemicFactor""
+    },
+    {
+      ""id"": ""Failure to fully quantify risk from curved platforms"",
+      ""type"": ""SystemicFactor""
+    },
+    {
+      ""id"": ""Incomplete system risk model (excludes non-fatal injuries)"",
+      ""type"": ""SystemicFactor""
+    },
+    {
+      ""id"": ""Inadequate Safety Management Processes"",
+      ""type"": ""SystemicFactor""
+    },
+    {
+      ""id"": ""Ineffective implementation of internal recommendations"",
+      ""type"": ""SystemicFactor""
+    }
+  ],
+  ""rels"": [
+    {
+      ""source"": ""Waterloo LUL accident 26/05/2020"",
+      ""target"": ""Platform-Train Interface Accident"",
+      ""type"": ""is_type""
+    },
+    {
+      ""source"": ""Waterloo LUL accident 26/05/2020"",
+      ""target"": ""Waterloo Underground station"",
+      ""type"": ""is_track_section""
+    },
+    {
+      ""source"": ""Waterloo LUL accident 26/05/2020"",
+      ""target"": ""26/05/2020"",
+      ""type"": ""has_date""
+    },
+    {
+      ""source"": ""Waterloo LUL accident 26/05/2020"",
+      ""target"": ""10:10"",
+      ""type"": ""has_time""
+    },
+    {
+      ""source"": ""Waterloo LUL accident 26/05/2020"",
+      ""target"": ""United Kingdom"",
+      ""type"": ""occurred_in""
+    },
+    {
+      ""source"": ""Waterloo LUL accident 26/05/2020"",
+      ""target"": ""Rail Accident Investigation Branch (RAIB)"",
+      ""type"": ""investigated_by""
+    },
+    {
+      ""source"": ""Waterloo LUL accident 26/05/2020"",
+      ""target"": ""Track curvature causing large platform-train gap"",
+      ""type"": ""contributing_factor""
+    },
+    {
+      ""source"": ""Waterloo LUL accident 26/05/2020"",
+      ""target"": ""Passenger fell into gap"",
+      ""type"": ""contributing_factor""
+    },
+    {
+      ""source"": ""Waterloo LUL accident 26/05/2020"",
+      ""target"": ""Passenger difficult to detect on CCTV monitors"",
+      ""type"": ""contributing_factor""
+    },
+    {
+      ""source"": ""Waterloo LUL accident 26/05/2020"",
+      ""target"": ""Train operator did not see passenger"",
+      ""type"": ""contributing_factor""
+    },
+    {
+      ""source"": ""Waterloo LUL accident 26/05/2020"",
+      ""target"": ""No staff or public nearby to assist"",
+      ""type"": ""contributing_factor""
+    },
+    {
+      ""source"": ""Waterloo LUL accident 26/05/2020"",
+      ""target"": ""Following train operator unaware"",
+      ""type"": ""contributing_factor""
+    },
+    {
+      ""source"": ""Wateroo LUL accident 26/05/2020"",
+      ""target"": ""Inadequate risk assessment processes (location-specific)"",
+      ""type"": ""systemic_factor""
+    },
+    {
+      ""source"": ""Waterloo LUL accident 26/05/2020"",
+      ""target"": ""Failure to fully quantify risk from curved platforms"",
+      ""type"": ""systemic_factor""
+    },
+    {
+      ""source"": ""Waterloo LUL accident 26/05/2020"",
+      ""target"": ""Incomplete system risk model (excludes non-fatal injuries)"",
+      ""type"": ""systemic_factor""
+    },
+    {
+      ""source"": ""Waterloo LUL accident 26/05/2020"",
+      ""target"": ""Inadequate Safety Management Processes"",
+      ""type"": ""systemic_factor""
+    },
+    {
+      ""source"": ""Waterloo LUL accident 26/05/2020"",
+      ""target"": ""Ineffective implementation of internal recommendations"",
+      ""type"": ""systemic_factor""
+    }
+  ]
+}","{
+  ""nodes"": [
+    {
+      ""id"": ""Waterloo LUL accident 26/05/2020"",
+      ""type"": ""UniqueAccident""
+    },
+    {
+      ""id"": ""Train available for boarding or alignment outside platform"",
+      ""type"": ""AccidentType""
+    },
+    {
+      ""id"": ""Waterloo Underground station"",
+      ""type"": ""TrackSection""
+    },
+    {
+      ""id"": ""26/05/2020"",
+      ""type"": ""Date""
+    },
+    {
+      ""id"": ""10:10"",
+      ""type"": ""Time""
+    },
+    {
+      ""id"": ""United Kingdom"",
+      ""type"": ""Country""
+    },
+    {
+      ""id"": ""Rail Accident Investigation Branch (RAIB)"",
+      ""type"": ""RegulatoryBody""
+    },
+    {
+      ""id"": ""Environment"",
+      ""type"": ""ContributingFactor""
+    },
+    {
+      ""id"": ""Reinforcement"",
+      ""type"": ""ContributingFactor""
+    },
+    {
+      ""id"": ""Awareness"",
+      ""type"": ""ContributingFactor""
+    },
+    {
+      ""id"": ""Competencies"",
+      ""type"": ""ContributingFactor""
+    },
+    {
+      ""id"": ""Actions to address risks"",
+      ""type"": ""SystemicFactor""
+    },
+    {
+      ""id"": ""Continual improvement"",
+      ""type"": ""SystemicFactor""
+    },
+    {
+      ""id"": ""Internal auditing"",
+      ""type"": ""SystemicFactor""
+    }
+  ],
+  ""rels"": [
+    {
+      ""source"": ""Waterloo LUL accident 26/05/2020"",
+      ""target"": ""Train available for boarding or alignment outside platform"",
+      ""type"": ""is_type""
+    },
+    {
+      ""source"": ""Waterloo LUL accident 26/05/2020"",
+      ""target"": ""Waterloo Underground station"",
+      ""type"": ""is_track_section""
+    },
+    {
+      ""source"": ""Waterloo LUL accident 26/05/2020"",
+      ""target"": ""26/05/2020"",
+      ""type"": ""has_date""
+    },
+    {
+      ""source"": ""Waterloo LUL accident 26/05/2020"",
+      ""target"": ""10:10"",
+      ""type"": ""has_time""
+    },
+    {
+      ""source"": ""Waterloo LUL accident 26/05/2020"",
+      ""target"": ""United Kingdom"",
+      ""type"": ""occurred_in""
+    },
+    {
+      ""source"": ""Waterloo LUL accident 26/05/2020"",
+      ""target"": ""Rail Accident Investigation Branch (RAIB)"",
+      ""type"": ""investigated_by""
+    },
+    {
+      ""source"": ""Waterloo LUL accident 26/05/2020"",
+      ""target"": ""Environment"",
+      ""type"": ""contributing_factor""
+    },
+    {
+      ""source"": ""Waterloo LUL accident 26/05/2020"",
+      ""target"": ""Reinforcement"",
+      ""type"": ""contributing_factor""
+    },
+    {
+      ""source"": ""Waterloo LUL accident 26/05/2020"",
+      ""target"": ""Awareness"",
+      ""type"": ""contributing_factor""
+    },
+    {
+      ""source"": ""Waterloo LUL accident 26/05/2020"",
+      ""target"": ""Competencies"",
+      ""type"": ""contributing_factor""
+    },
+    {
+      ""source"": ""Waterloo LUL accident 26/05/2020"",
+      ""target"": ""Actions to address risks"",
+      ""type"": ""systemic_factor""
+    },
+    {
+      ""source"": ""Waterloo LUL accident 26/05/2020"",
+      ""target"": ""Continual improvement"",
+      ""type"": ""systemic_factor""
+    },
+    {
+      ""source"": ""Waterloo LUL accident 26/05/2020"",
+      ""target"": ""Internal auditing"",
+      ""type"": ""systemic_factor""
+    }
+  ]
+}"
+UK-6256 - R032021_210609_Roade.pdf,gemini-2.5-flash-preview-04-17,1,"{
+  ""nodes"": [
+    {
+      ""id"": ""Roade Track Worker Fatality"",
+      ""type"": ""UniqueAccident""
+    },
+    {
+      ""id"": ""Struck by Train"",
+      ""type"": ""AccidentType""
+    },
+    {
+      ""id"": ""West Coast main line near Roade"",
+      ""type"": ""TrackSection""
+    },
+    {
+      ""id"": ""08/04/20"",
+      ""type"": ""Date""
+    },
+    {
+      ""id"": ""10:52"",
+      ""type"": ""Time""
+    },
+    {
+      ""id"": ""United Kingdom"",
+      ""type"": ""Country""
+    },
+    {
+      ""id"": ""RAIB"",
+      ""type"": ""RegulatoryBody""
+    },
+    {
+      ""id"": ""Walking on line open to traffic"",
+      ""type"": ""ContributingFactor""
+    },
+    {
+      ""id"": ""Failure to look for train"",
+      ""type"": ""ContributingFactor""
+    },
+    {
+      ""id"": ""Habituation to warnings"",
+      ""type"": ""ContributingFactor""
+    },
+    {
+      ""id"": ""Inadequate system of work"",
+      ""type"": ""ContributingFactor""
+    },
+    {
+      ""id"": ""Inadequate arrangements for compliance"",
+      ""type"": ""ContributingFactor""
+    },
+    {
+      ""id"": ""Inadequate performance monitoring and appraisal"",
+      ""type"": ""SystemicFactor""
+    },
+    {
+      ""id"": ""Failure to identify compliance issues"",
+      ""type"": ""SystemicFactor""
+    },
+    {
+      ""id"": ""Failure of assurance arrangements"",
+      ""type"": ""SystemicFactor""
+    }
+  ],
+  ""rels"": [
+    {
+      ""source"": ""Roade Track Worker Fatality"",
+      ""target"": ""United Kingdom"",
+      ""type"": ""occurred_in""
+    },
+    {
+      ""source"": ""Roade Track Worker Fatality"",
+      ""target"": ""Struck by Train"",
+      ""type"": ""is_type""
+    },
+    {
+      ""source"": ""Roade Track Worker Fatality"",
+      ""target"": ""West Coast main line near Roade"",
+      ""type"": ""is_track_section""
+    },
+    {
+      ""source"": ""Roade Track Worker Fatality"",
+      ""target"": ""RAIB"",
+      ""type"": ""investigated_by""
+    },
+    {
+      ""source"": ""Roade Track Worker Fatality"",
+      ""target"": ""08/04/20"",
+      ""type"": ""has_date""
+    },
+    {
+      ""source"": ""Roade Track Worker Fatality"",
+      ""target"": ""10:52"",
+      ""type"": ""has_time""
+    },
+    {
+      ""source"": ""Roade Track Worker Fatality"",
+      ""target"": ""Walking on line open to traffic"",
+      ""type"": ""contributing_factor""
+    },
+    {
+      ""source"": ""Roade Track Worker Fatality"",
+      ""target"": ""Failure to look for train"",
+      ""type"": ""contributing_factor""
+    },
+    {
+      ""source"": ""Roade Track Worker Fatality"",
+      ""target"": ""Habituation to warnings"",
+      ""type"": ""contributing_factor""
+    },
+    {
+      ""source"": ""Roade Track Worker Fatality"",
+      ""target"": ""Inadequate system of work"",
+      ""type"": ""contributing_factor""
+    },
+    {
+      ""source"": ""Roade Track Worker Fatality"",
+      ""target"": ""Inadequate arrangements for compliance"",
+      ""type"": ""contributing_factor""
+    },
+    {
+      ""source"": ""Roade Track Worker Fatality"",
+      ""target"": ""Inadequate performance monitoring and appraisal"",
+      ""type"": ""systemic_factor""
+    },
+    {
+      ""source"": ""Roade Track Worker Fatality"",
+      ""target"": ""Failure to identify compliance issues"",
+      ""type"": ""systemic_factor""
+    },
+    {
+      ""source"": ""Roade Track Worker Fatality"",
+      ""target"": ""Failure of assurance arrangements"",
+      ""type"": ""systemic_factor""
+    }
+  ]
+}","{
+  ""nodes"": [
+    {
+      ""id"": ""Roade Track Worker Fatality"",
+      ""type"": ""UniqueAccident""
+    },
+    {
+      ""id"": ""Accidents to persons involving a train in motion"",
+      ""type"": ""AccidentType""
+    },
+    {
+      ""id"": ""West Coast main line near Roade"",
+      ""type"": ""TrackSection""
+    },
+    {
+      ""id"": ""08/04/20"",
+      ""type"": ""Date""
+    },
+    {
+      ""id"": ""10:52"",
+      ""type"": ""Time""
+    },
+    {
+      ""id"": ""United Kingdom"",
+      ""type"": ""Country""
+    },
+    {
+      ""id"": ""RAIB"",
+      ""type"": ""RegulatoryBody""
+    },
+    {
+      ""id"": ""Intentions"",
+      ""type"": ""ContributingFactor""
+    },
+    {
+      ""id"": ""Performance relevant factor"",
+      ""type"": ""ContributingFactor""
+    },
+    {
+      ""id"": ""Reinforcement"",
+      ""type"": ""ContributingFactor""
+    },
+    {
+      ""id"": ""Work-rhythms"",
+      ""type"": ""ContributingFactor""
+    },
+    {
+      ""id"": ""Instructions"",
+      ""type"": ""ContributingFactor""
+    },
+    {
+      ""id"": ""Performance evaluation"",
+      ""type"": ""SystemicFactor""
+    },
+    {
+      ""id"": ""Actions to address risks"",
+      ""type"": ""SystemicFactor""
+    }
+  ],
+  ""rels"": [
+    {
+      ""source"": ""Roade Track Worker Fatality"",
+      ""target"": ""United Kingdom"",
+      ""type"": ""occurred_in""
+    },
+    {
+      ""source"": ""Roade Track Worker Fatality"",
+      ""target"": ""Accidents to persons involving a train in motion"",
+      ""type"": ""is_type""
+    },
+    {
+      ""source"": ""Roade Track Worker Fatality"",
+      ""target"": ""West Coast main line near Roade"",
+      ""type"": ""is_track_section""
+    },
+    {
+      ""source"": ""Roade Track Worker Fatality"",
+      ""target"": ""RAIB"",
+      ""type"": ""investigated_by""
+    },
+    {
+      ""source"": ""Roade Track Worker Fatality"",
+      ""target"": ""08/04/20"",
+      ""type"": ""has_date""
+    },
+    {
+      ""source"": ""Roade Track Worker Fatality"",
+      ""target"": ""10:52"",
+      ""type"": ""has_time""
+    },
+    {
+      ""source"": ""Roade Track Worker Fatality"",
+      ""target"": ""Intentions"",
+      ""type"": ""contributing_factor""
+    },
+    {
+      ""source"": ""Roade Track Worker Fatality"",
+      ""target"": ""Performance relevant factor"",
+      ""type"": ""contributing_factor""
+    },
+    {
+      ""source"": ""Roade Track Worker Fatality"",
+      ""target"": ""Reinforcement"",
+      ""type"": ""contributing_factor""
+    },
+    {
+      ""source"": ""Roade Track Worker Fatality"",
+      ""target"": ""Work-rhythms"",
+      ""type"": ""contributing_factor""
+    },
+    {
+      ""source"": ""Roade Track Worker Fatality"",
+      ""target"": ""Instructions"",
+      ""type"": ""contributing_factor""
+    },
+    {
+      ""source"": ""Roade Track Worker Fatality"",
+      ""target"": ""Performance evaluation"",
+      ""type"": ""systemic_factor""
+    },
+    {
+      ""source"": ""Roade Track Worker Fatality"",
+      ""target"": ""Actions to address risks"",
+      ""type"": ""systemic_factor""
+    }
+  ]
+}"
+IE-6305 - 200707_locomotive_224.pdf,gpt-4o-mini,1,"{
+  ""nodes"": [
+    {
+      ""id"": ""Locomotive 224 Incident"",
+      ""type"": ""UniqueAccident""
+    },
+    {
+      ""id"": ""Mechanical Failure"",
+      ""type"": ""AccidentType""
+    },
+    {
+      ""id"": ""Cork Kent to Dublin Heuston"",
+      ""type"": ""TrackSection""
+    },
+    {
+      ""id"": ""06/07/2020"",
+      ""type"": ""Date""
+    },
+    {
+      ""id"": ""14:25"",
+      ""type"": ""Time""
+    },
+    {
+      ""id"": ""Ireland"",
+      ""type"": ""Country""
+    },
+    {
+      ""id"": ""Railway Accident Investigation Unit"",
+      ""type"": ""RegulatoryBody""
+    },
+    {
+      ""id"": ""Over-reliance on welder's knowledge"",
+      ""type"": ""SystemicFactor""
+    },
+    {
+      ""id"": ""Non-adoption of EN 15085 standard"",
+      ""type"": ""ContributingFactor""
+    },
+    {
+      ""id"": ""Discussion implications of modifications not held"",
+      ""type"": ""ContributingFactor""
+    },
+    {
+      ""id"": ""Failure to replace Bed Plates"",
+      ""type"": ""CausalFactor""
+    },
+    {
+      ""id"": ""Unnecessary welding to Chassis Plate"",
+      ""type"": ""CausalFactor""
+    },
+    {
+      ""id"": ""Unsupervised repair procedures"",
+      ""type"": ""SystemicFactor""
+    }
+  ],
+  ""rels"": [
+    {
+      ""source"": ""Locomotive 224 Incident"",
+      ""target"": ""Ireland"",
+      ""type"": ""occurred_in""
+    },
+    {
+      ""source"": ""Locomotive 224 Incident"",
+      ""target"": ""Mechanical Failure"",
+      ""type"": ""is_type""
+    },
+    {
+      ""source"": ""Locomotive 224 Incident"",
+      ""target"": ""Cork Kent to Dublin Heuston"",
+      ""type"": ""is_track_section""
+    },
+    {
+      ""source"": ""Locomotive 224 Incident"",
+      ""target"": ""Railway Accident Investigation Unit"",
+      ""type"": ""investigated_by""
+    },
+    {
+      ""source"": ""Locomotive 224 Incident"",
+      ""target"": ""06/07/2020"",
+      ""type"": ""has_date""
+    },
+    {
+      ""source"": ""Locomotive 224 Incident"",
+      ""target"": ""14:25"",
+      ""type"": ""has_time""
+    },
+    {
+      ""source"": ""Locomotive 224 Incident"",
+      ""target"": ""Over-reliance on welder's knowledge"",
+      ""type"": ""systemic_factor""
+    },
+    {
+      ""source"": ""Locomotive 224 Incident"",
+      ""target"": ""Non-adoption of EN 15085 standard"",
+      ""type"": ""contributing_factor""
+    },
+    {
+      ""source"": ""Locomotive 224 Incident"",
+      ""target"": ""Discussion implications of modifications not held"",
+      ""type"": ""contributing_factor""
+    },
+    {
+      ""source"": ""Locomotive 224 Incident"",
+      ""target"": ""Failure to replace Bed Plates"",
+      ""type"": ""causal_factor""
+    },
+    {
+      ""source"": ""Locomotive 224 Incident"",
+      ""target"": ""Unnecessary welding to Chassis Plate"",
+      ""type"": ""causal_factor""
+    },
+    {
+      ""source"": ""Locomotive 224 Incident"",
+      ""target"": ""Unsupervised repair procedures"",
+      ""type"": ""systemic_factor""
+    }
+  ]
+}","{
+  ""nodes"": [
+    {
+      ""id"": ""Locomotive 224 Incident"",
+      ""type"": ""UniqueAccident""
+    },
+    {
+      ""id"": ""Technical Failure of the rolling stock"",
+      ""type"": ""AccidentType""
+    },
+    {
+      ""id"": ""Cork Kent to Dublin Heuston"",
+      ""type"": ""TrackSection""
+    },
+    {
+      ""id"": ""06/07/2020"",
+      ""type"": ""Date""
+    },
+    {
+      ""id"": ""14:25"",
+      ""type"": ""Time""
+    },
+    {
+      ""id"": ""Ireland"",
+      ""type"": ""Country""
+    },
+    {
+      ""id"": ""Railway Accident Investigation Unit"",
+      ""type"": ""RegulatoryBody""
+    },
+    {
+      ""id"": ""Over-reliance on welder's knowledge"",
+      ""type"": ""SystemicFactor""
+    },
+    {
+      ""id"": ""Design"",
+      ""type"": ""ContributingFactor""
+    },
+    {
+      ""id"": ""Unsupervised repair procedures"",
+      ""type"": ""SystemicFactor""
+    },
+    {
+      ""id"": ""Discussion implications of modifications not held"",
+      ""type"": ""ContributingFactor""
+    },
+    {
+      ""id"": ""Failure to replace Bed Plates"",
+      ""type"": ""CausalFactor""
+    },
+    {
+      ""id"": ""Unnecessary welding to Chassis Plate"",
+      ""type"": ""CausalFactor""
+    }
+  ],
+  ""rels"": [
+    {
+      ""source"": ""Locomotive 224 Incident"",
+      ""target"": ""Ireland"",
+      ""type"": ""occurred_in""
+    },
+    {
+      ""source"": ""Locomotive 224 Incident"",
+      ""target"": ""Technical Failure of the rolling stock"",
+      ""type"": ""is_type""
+    },
+    {
+      ""source"": ""Locomotive 224 Incident"",
+      ""target"": ""Cork Kent to Dublin Heuston"",
+      ""type"": ""is_track_section""
+    },
+    {
+      ""source"": ""Locomotive 224 Incident"",
+      ""target"": ""Railway Accident Investigation Unit"",
+      ""type"": ""investigated_by""
+    },
+    {
+      ""source"": ""Locomotive 224 Incident"",
+      ""target"": ""06/07/2020"",
+      ""type"": ""has_date""
+    },
+    {
+      ""source"": ""Locomotive 224 Incident"",
+      ""target"": ""14:25"",
+      ""type"": ""has_time""
+    },
+    {
+      ""source"": ""Locomotive 224 Incident"",
+      ""target"": ""Over-reliance on welder's knowledge"",
+      ""type"": ""systemic_factor""
+    },
+    {
+      ""source"": ""Locomotive 224 Incident"",
+      ""target"": ""Design"",
+      ""type"": ""contributing_factor""
+    },
+    {
+      ""source"": ""Locomotive 224 Incident"",
+      ""target"": ""Discussion implications of modifications not held"",
+      ""type"": ""contributing_factor""
+    },
+    {
+      ""source"": ""Locomotive 224 Incident"",
+      ""target"": ""Failure to replace Bed Plates"",
+      ""type"": ""causal_factor""
+    },
+    {
+      ""source"": ""Locomotive 224 Incident"",
+      ""target"": ""Unnecessary welding to Chassis Plate"",
+      ""type"": ""causal_factor""
+    },
+    {
+      ""source"": ""Locomotive 224 Incident"",
+      ""target"": ""Unsupervised repair procedures"",
+      ""type"": ""systemic_factor""
+    }
+  ]
+}"
+IE-6305 - 200707_locomotive_224.pdf,gpt-4o-mini,2,"{
+  ""nodes"": [
+    {
+      ""id"": ""Structural Failure of Locomotive 224"",
+      ""type"": ""UniqueAccident""
+    },
+    {
+      ""id"": ""Equipment Failure"",
+      ""type"": ""AccidentType""
+    },
+    {
+      ""id"": ""Cork to Dublin Route"",
+      ""type"": ""TrackSection""
+    },
+    {
+      ""id"": ""09/07/2020"",
+      ""type"": ""Date""
+    },
+    {
+      ""id"": ""14:25"",
+      ""type"": ""Time""
+    },
+    {
+      ""id"": ""Ireland"",
+      ""type"": ""Country""
+    },
+    {
+      ""id"": ""Iarnr\u00f3d \u00c9ireann"",
+      ""type"": ""RegulatoryBody""
+    },
+    {
+      ""id"": ""Design and Maintenance Issues"",
+      ""type"": ""ContributingFactor""
+    },
+    {
+      ""id"": ""Inadequate Safety Management"",
+      ""type"": ""SystemicFactor""
+    }
+  ],
+  ""rels"": [
+    {
+      ""source"": ""Structural Failure of Locomotive 224"",
+      ""target"": ""Ireland"",
+      ""type"": ""occurred_in""
+    },
+    {
+      ""source"": ""Structural Failure of Locomotive 224"",
+      ""target"": ""Equipment Failure"",
+      ""type"": ""is_type""
+    },
+    {
+      ""source"": ""Structural Failure of Locomotive 224"",
+      ""target"": ""Cork to Dublin Route"",
+      ""type"": ""is_track_section""
+    },
+    {
+      ""source"": ""Structural Failure of Locomotive 224"",
+      ""target"": ""Iarnr\u00f3d \u00c9ireann"",
+      ""type"": ""investigated_by""
+    },
+    {
+      ""source"": ""Structural Failure of Locomotive 224"",
+      ""target"": ""09/07/2020"",
+      ""type"": ""has_date""
+    },
+    {
+      ""source"": ""Structural Failure of Locomotive 224"",
+      ""target"": ""14:25"",
+      ""type"": ""has_time""
+    },
+    {
+      ""source"": ""Structural Failure of Locomotive 224"",
+      ""target"": ""Design and Maintenance Issues"",
+      ""type"": ""contributing_factor""
+    },
+    {
+      ""source"": ""Structural Failure of Locomotive 224"",
+      ""target"": ""Inadequate Safety Management"",
+      ""type"": ""systemic_factor""
+    }
+  ]
+}","{
+  ""nodes"": [
+    {
+      ""id"": ""Structural Failure of Locomotive 224"",
+      ""type"": ""UniqueAccident""
+    },
+    {
+      ""id"": ""Power supply equipment failure"",
+      ""type"": ""AccidentType""
+    },
+    {
+      ""id"": ""Cork to Dublin Route"",
+      ""type"": ""TrackSection""
+    },
+    {
+      ""id"": ""09/07/2020"",
+      ""type"": ""Date""
+    },
+    {
+      ""id"": ""14:25"",
+      ""type"": ""Time""
+    },
+    {
+      ""id"": ""Ireland"",
+      ""type"": ""Country""
+    },
+    {
+      ""id"": ""Iarnr\u00f3d \u00c9ireann"",
+      ""type"": ""RegulatoryBody""
+    },
+    {
+      ""id"": ""Design"",
+      ""type"": ""ContributingFactor""
+    },
+    {
+      ""id"": ""Continual improvement"",
+      ""type"": ""SystemicFactor""
+    }
+  ],
+  ""rels"": [
+    {
+      ""source"": ""Structural Failure of Locomotive 224"",
+      ""target"": ""Ireland"",
+      ""type"": ""occurred_in""
+    },
+    {
+      ""source"": ""Structural Failure of Locomotive 224"",
+      ""target"": ""Power supply equipment failure"",
+      ""type"": ""is_type""
+    },
+    {
+      ""source"": ""Structural Failure of Locomotive 224"",
+      ""target"": ""Cork to Dublin Route"",
+      ""type"": ""is_track_section""
+    },
+    {
+      ""source"": ""Structural Failure of Locomotive 224"",
+      ""target"": ""Iarnr\u00f3d \u00c9ireann"",
+      ""type"": ""investigated_by""
+    },
+    {
+      ""source"": ""Structural Failure of Locomotive 224"",
+      ""target"": ""09/07/2020"",
+      ""type"": ""has_date""
+    },
+    {
+      ""source"": ""Structural Failure of Locomotive 224"",
+      ""target"": ""14:25"",
+      ""type"": ""has_time""
+    },
+    {
+      ""source"": ""Structural Failure of Locomotive 224"",
+      ""target"": ""Design"",
+      ""type"": ""contributing_factor""
+    },
+    {
+      ""source"": ""Structural Failure of Locomotive 224"",
+      ""target"": ""Continual improvement"",
+      ""type"": ""systemic_factor""
+    }
+  ]
+}"
+IE-6305 - 200707_locomotive_224.pdf,gemini-2.5-flash-preview-04-17,1,"{
+  ""nodes"": [
+    {
+      ""id"": ""Locomotive 224 Structural Failure"",
+      ""type"": ""UniqueAccident""
+    },
+    {
+      ""id"": ""Structural Failure"",
+      ""type"": ""AccidentType""
+    },
+    {
+      ""id"": ""Cork Kent to Dublin Heuston Line (Approach to Limerick Junction)"",
+      ""type"": ""TrackSection""
+    },
+    {
+      ""id"": ""06/07/2020"",
+      ""type"": ""Date""
+    },
+    {
+      ""id"": ""14:25"",
+      ""type"": ""Time""
+    },
+    {
+      ""id"": ""Ireland"",
+      ""type"": ""Country""
+    },
+    {
+      ""id"": ""Railway Accident Investigation Unit (RAIU)"",
+      ""type"": ""RegulatoryBody""
+    },
+    {
+      ""id"": ""Non-adoption of EN 15085 standard"",
+      ""type"": ""ContributingFactor""
+    },
+    {
+      ""id"": ""Service Advisory implications not discussed, material not procured"",
+      ""type"": ""ContributingFactor""
+    },
+    {
+      ""id"": ""Over-reliance on welder knowledge without instruction/supervision"",
+      ""type"": ""SystemicFactor""
+    }
+  ],
+  ""rels"": [
+    {
+      ""source"": ""Locomotive 224 Structural Failure"",
+      ""target"": ""Ireland"",
+      ""type"": ""occurred_in""
+    },
+    {
+      ""source"": ""Locomotive 224 Structural Failure"",
+      ""target"": ""Structural Failure"",
+      ""type"": ""is_type""
+    },
+    {
+      ""source"": ""Locomotive 224 Structural Failure"",
+      ""target"": ""Cork Kent to Dublin Heuston Line (Approach to Limerick Junction)"",
+      ""type"": ""occurred_at""
+    },
+    {
+      ""source"": ""Locomotive 224 Structural Failure"",
+      ""target"": ""Railway Accident Investigation Unit (RAIU)"",
+      ""type"": ""investigated_by""
+    },
+    {
+      ""source"": ""Locomotive 224 Structural Failure"",
+      ""target"": ""06/07/2020"",
+      ""type"": ""has_date""
+    },
+    {
+      ""source"": ""Locomotive 224 Structural Failure"",
+      ""target"": ""14:25"",
+      ""type"": ""has_time""
+    },
+    {
+      ""source"": ""Locomotive 224 Structural Failure"",
+      ""target"": ""Non-adoption of EN 15085 standard"",
+      ""type"": ""contributing_factor""
+    },
+    {
+      ""source"": ""Locomotive 224 Structural Failure"",
+      ""target"": ""Service Advisory implications not discussed, material not procured"",
+      ""type"": ""contributing_factor""
+    },
+    {
+      ""source"": ""Locomotive 224 Structural Failure"",
+      ""target"": ""Over-reliance on welder knowledge without instruction/supervision"",
+      ""type"": ""systemic_factor""
+    }
+  ]
+}","{
+  ""nodes"": [
+    {
+      ""id"": ""Locomotive 224 Structural Failure"",
+      ""type"": ""UniqueAccident""
+    },
+    {
+      ""id"": ""Structures failure"",
+      ""type"": ""AccidentType""
+    },
+    {
+      ""id"": ""Cork Kent to Dublin Heuston Line (Approach to Limerick Junction)"",
+      ""type"": ""TrackSection""
+    },
+    {
+      ""id"": ""06/07/2020"",
+      ""type"": ""Date""
+    },
+    {
+      ""id"": ""14:25"",
+      ""type"": ""Time""
+    },
+    {
+      ""id"": ""Ireland"",
+      ""type"": ""Country""
+    },
+    {
+      ""id"": ""Railway Accident Investigation Unit (RAIU)"",
+      ""type"": ""RegulatoryBody""
+    },
+    {
+      ""id"": ""Design"",
+      ""type"": ""ContributingFactor""
+    },
+    {
+      ""id"": ""Performance relevant factor"",
+      ""type"": ""ContributingFactor""
+    },
+    {
+      ""id"": ""Competence"",
+      ""type"": ""SystemicFactor""
+    }
+  ],
+  ""rels"": [
+    {
+      ""source"": ""Locomotive 224 Structural Failure"",
+      ""target"": ""Ireland"",
+      ""type"": ""occurred_in""
+    },
+    {
+      ""source"": ""Locomotive 224 Structural Failure"",
+      ""target"": ""Structures failure"",
+      ""type"": ""is_type""
+    },
+    {
+      ""source"": ""Locomotive 224 Structural Failure"",
+      ""target"": ""Cork Kent to Dublin Heuston Line (Approach to Limerick Junction)"",
+      ""type"": ""occurred_at""
+    },
+    {
+      ""source"": ""Locomotive 224 Structural Failure"",
+      ""target"": ""Railway Accident Investigation Unit (RAIU)"",
+      ""type"": ""investigated_by""
+    },
+    {
+      ""source"": ""Locomotive 224 Structural Failure"",
+      ""target"": ""06/07/2020"",
+      ""type"": ""has_date""
+    },
+    {
+      ""source"": ""Locomotive 224 Structural Failure"",
+      ""target"": ""14:25"",
+      ""type"": ""has_time""
+    },
+    {
+      ""source"": ""Locomotive 224 Structural Failure"",
+      ""target"": ""Design"",
+      ""type"": ""contributing_factor""
+    },
+    {
+      ""source"": ""Locomotive 224 Structural Failure"",
+      ""target"": ""Performance relevant factor"",
+      ""type"": ""contributing_factor""
+    },
+    {
+      ""source"": ""Locomotive 224 Structural Failure"",
+      ""target"": ""Competence"",
+      ""type"": ""systemic_factor""
+    }
+  ]
+}"
+IE-6305 - 200707_locomotive_224.pdf,gemini-2.5-flash-preview-04-17,2,"{
+  ""nodes"": [
+    {
+      ""id"": ""Locomotive 224 Chassis Plate Failure"",
+      ""type"": ""UniqueAccident""
+    },
+    {
+      ""id"": ""Chassis Plate Failure"",
+      ""type"": ""AccidentType""
+    },
+    {
+      ""id"": ""Cork Kent to Dublin Heuston route near Limerick Junction"",
+      ""type"": ""TrackSection""
+    },
+    {
+      ""id"": ""06/07/2020"",
+      ""type"": ""Date""
+    },
+    {
+      ""id"": ""Ireland"",
+      ""type"": ""Country""
+    },
+    {
+      ""id"": ""Railway Accident Investigation Unit"",
+      ""type"": ""RegulatoryBody""
+    },
+    {
+      ""id"": ""Flat Bed Plates were not replaced with cupped Bed Plates"",
+      ""type"": ""ContributingFactor""
+    },
+    {
+      ""id"": ""During a weld repair of the Bed Plate, the Bed Plate was unnecessarily welded to the Chassis Plate"",
+      ""type"": ""ContributingFactor""
+    },
+    {
+      ""id"": ""I\u00c9-RU had not adopted the EN 15085 standard series"",
+      ""type"": ""ContributingFactor""
+    },
+    {
+      ""id"": ""Implications of Service Advisory not discussed and material for the modification was not procured"",
+      ""type"": ""ContributingFactor""
+    },
+    {
+      ""id"": ""Over-reliance on the knowledge of the welder to develop and carry out a repair procedure without any formal instruction or supervision"",
+      ""type"": ""SystemicFactor""
+    }
+  ],
+  ""rels"": [
+    {
+      ""source"": ""Locomotive 224 Chassis Plate Failure"",
+      ""target"": ""Ireland"",
+      ""type"": ""occurred_in""
+    },
+    {
+      ""source"": ""Locomotive 224 Chassis Plate Failure"",
+      ""target"": ""Chassis Plate Failure"",
+      ""type"": ""is_type""
+    },
+    {
+      ""source"": ""Locomotive 224 Chassis Plate Failure"",
+      ""target"": ""Cork Kent to Dublin Heuston route near Limerick Junction"",
+      ""type"": ""is_track_section""
+    },
+    {
+      ""source"": ""Locomotive 224 Chassis Plate Failure"",
+      ""target"": ""Railway Accident Investigation Unit"",
+      ""type"": ""investigated_by""
+    },
+    {
+      ""source"": ""Locomotive 224 Chassis Plate Failure"",
+      ""target"": ""06/07/2020"",
+      ""type"": ""has_date""
+    },
+    {
+      ""source"": ""Locomotive 224 Chassis Plate Failure"",
+      ""target"": ""Flat Bed Plates were not replaced with cupped Bed Plates"",
+      ""type"": ""contributing_factor""
+    },
+    {
+      ""source"": ""Locomotive 224 Chassis Plate Failure"",
+      ""target"": ""During a weld repair of the Bed Plate, the Bed Plate was unnecessarily welded to the Chassis Plate"",
+      ""type"": ""contributing_factor""
+    },
+    {
+      ""source"": ""Locomotive 224 Chassis Plate Failure"",
+      ""target"": ""I\u00c9-RU had not adopted the EN 15085 standard series"",
+      ""type"": ""contributing_factor""
+    },
+    {
+      ""source"": ""Locomotive 224 Chassis Plate Failure"",
+      ""target"": ""Implications of Service Advisory not discussed and material for the modification was not procured"",
+      ""type"": ""contributing_factor""
+    },
+    {
+      ""source"": ""Locomotive 224 Chassis Plate Failure"",
+      ""target"": ""Over-reliance on the knowledge of the welder to develop and carry out a repair procedure without any formal instruction or supervision"",
+      ""type"": ""systemic_factor""
+    }
+  ]
+}","{
+  ""nodes"": [
+    {
+      ""id"": ""Locomotive 224 Chassis Plate Failure"",
+      ""type"": ""UniqueAccident""
+    },
+    {
+      ""id"": ""Structures failure"",
+      ""type"": ""AccidentType""
+    },
+    {
+      ""id"": ""Cork Kent to Dublin Heuston route near Limerick Junction"",
+      ""type"": ""TrackSection""
+    },
+    {
+      ""id"": ""06/07/2020"",
+      ""type"": ""Date""
+    },
+    {
+      ""id"": ""Ireland"",
+      ""type"": ""Country""
+    },
+    {
+      ""id"": ""Railway Accident Investigation Unit"",
+      ""type"": ""RegulatoryBody""
+    },
+    {
+      ""id"": ""Fatigue"",
+      ""type"": ""ContributingFactor""
+    },
+    {
+      ""id"": ""Performance relevant factor"",
+      ""type"": ""ContributingFactor""
+    },
+    {
+      ""id"": ""Instructions"",
+      ""type"": ""ContributingFactor""
+    },
+    {
+      ""id"": ""Learning from accidents and incidents"",
+      ""type"": ""SystemicFactor""
+    }
+  ],
+  ""rels"": [
+    {
+      ""source"": ""Locomotive 224 Chassis Plate Failure"",
+      ""target"": ""Ireland"",
+      ""type"": ""occurred_in""
+    },
+    {
+      ""source"": ""Locomotive 224 Chassis Plate Failure"",
+      ""target"": ""Structures failure"",
+      ""type"": ""is_type""
+    },
+    {
+      ""source"": ""Locomotive 224 Chassis Plate Failure"",
+      ""target"": ""Cork Kent to Dublin Heuston route near Limerick Junction"",
+      ""type"": ""is_track_section""
+    },
+    {
+      ""source"": ""Locomotive 224 Chassis Plate Failure"",
+      ""target"": ""Railway Accident Investigation Unit"",
+      ""type"": ""investigated_by""
+    },
+    {
+      ""source"": ""Locomotive 224 Chassis Plate Failure"",
+      ""target"": ""06/07/2020"",
+      ""type"": ""has_date""
+    },
+    {
+      ""source"": ""Locomotive 224 Chassis Plate Failure"",
+      ""target"": ""Fatigue"",
+      ""type"": ""contributing_factor""
+    },
+    {
+      ""source"": ""Locomotive 224 Chassis Plate Failure"",
+      ""target"": ""Performance relevant factor"",
+      ""type"": ""contributing_factor""
+    },
+    {
+      ""source"": ""Locomotive 224 Chassis Plate Failure"",
+      ""target"": ""Instructions"",
+      ""type"": ""contributing_factor""
+    },
+    {
+      ""source"": ""Locomotive 224 Chassis Plate Failure"",
+      ""target"": ""Learning from accidents and incidents"",
+      ""type"": ""systemic_factor""
+    }
+  ]
+}"
+IE-6305 - 200707_locomotive_224.pdf,gemini-2.5-flash-preview-04-17,3,"{
+  ""nodes"": [
+    {
+      ""id"": ""Locomotive 224 Structural Failure"",
+      ""type"": ""UniqueAccident""
+    },
+    {
+      ""id"": ""Structural Failure"",
+      ""type"": ""AccidentType""
+    },
+    {
+      ""id"": ""Approx. 160m Up line from Ballybrophy Station (165 \u00bc MP)"",
+      ""type"": ""TrackSection""
+    },
+    {
+      ""id"": ""Ireland"",
+      ""type"": ""Country""
+    },
+    {
+      ""id"": ""Railway Accident Investigation Unit (RAIU)"",
+      ""type"": ""RegulatoryBody""
+    }
+  ],
+  ""rels"": [
+    {
+      ""source"": ""Locomotive 224 Structural Failure"",
+      ""target"": ""Structural Failure"",
+      ""type"": ""is_type""
+    },
+    {
+      ""source"": ""Locomotive 224 Structural Failure"",
+      ""target"": ""Approx. 160m Up line from Ballybrophy Station (165 \u00bc MP)"",
+      ""type"": ""is_track_section""
+    },
+    {
+      ""source"": ""Locomotive 224 Structural Failure"",
+      ""target"": ""Ireland"",
+      ""type"": ""occurred_in""
+    },
+    {
+      ""source"": ""Locomotive 224 Structural Failure"",
+      ""target"": ""Railway Accident Investigation Unit (RAIU)"",
+      ""type"": ""investigated_by""
+    }
+  ]
+}","{
+  ""nodes"": [
+    {
+      ""id"": ""Locomotive 224 Structural Failure"",
+      ""type"": ""UniqueAccident""
+    },
+    {
+      ""id"": ""Structures failure"",
+      ""type"": ""AccidentType""
+    },
+    {
+      ""id"": ""Approx. 160m Up line from Ballybrophy Station (165 \u00bc MP)"",
+      ""type"": ""TrackSection""
+    },
+    {
+      ""id"": ""Ireland"",
+      ""type"": ""Country""
+    },
+    {
+      ""id"": ""Railway Accident Investigation Unit (RAIU)"",
+      ""type"": ""RegulatoryBody""
+    }
+  ],
+  ""rels"": [
+    {
+      ""source"": ""Locomotive 224 Structural Failure"",
+      ""target"": ""Structures failure"",
+      ""type"": ""is_type""
+    },
+    {
+      ""source"": ""Locomotive 224 Structural Failure"",
+      ""target"": ""Approx. 160m Up line from Ballybrophy Station (165 \u00bc MP)"",
+      ""type"": ""is_track_section""
+    },
+    {
+      ""source"": ""Locomotive 224 Structural Failure"",
+      ""target"": ""Ireland"",
+      ""type"": ""occurred_in""
+    },
+    {
+      ""source"": ""Locomotive 224 Structural Failure"",
+      ""target"": ""Railway Accident Investigation Unit (RAIU)"",
+      ""type"": ""investigated_by""
+    }
+  ]
+}"
+IE-200608 BnM Collision LC Offaly.pdf,gemini-2.5-flash-preview-04-17,1,"{
+  ""nodes"": [
+    {
+      ""id"": ""Kilcolgan Level Crossing Accident on 08/06/20"",
+      ""type"": ""UniqueAccident""
+    },
+    {
+      ""id"": ""Collision"",
+      ""type"": ""AccidentType""
+    },
+    {
+      ""id"": ""Kilcolgan Level Crossing"",
+      ""type"": ""TrackSection""
+    },
+    {
+      ""id"": ""08/06/20"",
+      ""type"": ""Date""
+    },
+    {
+      ""id"": ""13:15"",
+      ""type"": ""Time""
+    },
+    {
+      ""id"": ""Ireland"",
+      ""type"": ""Country""
+    },
+    {
+      ""id"": ""Derailing points in closed position"",
+      ""type"": ""ContributingFactor""
+    },
+    {
+      ""id"": ""Flat Wagon not secured after rerailing"",
+      ""type"": ""ContributingFactor""
+    },
+    {
+      ""id"": ""Inadequate training and assessment for rerailing"",
+      ""type"": ""SystemicFactor""
+    },
+    {
+      ""id"": ""Inadequate risk assessment and mitigation planning"",
+      ""type"": ""SystemicFactor""
+    },
+    {
+      ""id"": ""Railway Accident Investigation Unit"",
+      ""type"": ""RegulatoryBody""
+    }
+  ],
+  ""rels"": [
+    {
+      ""source"": ""Kilcolgan Level Crossing Accident on 08/06/20"",
+      ""target"": ""Ireland"",
+      ""type"": ""occurred_in""
+    },
+    {
+      ""source"": ""Kilcolgan Level Crossing Accident on 08/06/20"",
+      ""target"": ""Collision"",
+      ""type"": ""is_type""
+    },
+    {
+      ""source"": ""Kilcolgan Level Crossing Accident on 08/06/20"",
+      ""target"": ""Kilcolgan Level Crossing"",
+      ""type"": ""is_track_section""
+    },
+    {
+      ""source"": ""Kilcolgan Level Crossing Accident on 08/06/20"",
+      ""target"": ""Railway Accident Investigation Unit"",
+      ""type"": ""investigated_by""
+    },
+    {
+      ""source"": ""Kilcolgan Level Crossing Accident on 08/06/20"",
+      ""target"": ""08/06/20"",
+      ""type"": ""has_date""
+    },
+    {
+      ""source"": ""Kilcolgan Level Crossing Accident on 08/06/20"",
+      ""target"": ""13:15"",
+      ""type"": ""has_time""
+    },
+    {
+      ""source"": ""Kilcolgan Level Crossing Accident on 08/06/20"",
+      ""target"": ""Derailing points in closed position"",
+      ""type"": ""contributing_factor""
+    },
+    {
+      ""source"": ""Kilcolgan Level Crossing Accident on 08/06/20"",
+      ""target"": ""Flat Wagon not secured after rerailing"",
+      ""type"": ""contributing_factor""
+    },
+    {
+      ""source"": ""Kilcolgan Level Crossing Accident on 08/06/20"",
+      ""target"": ""Inadequate training and assessment for rerailing"",
+      ""type"": ""systemic_factor""
+    },
+    {
+      ""source"": ""Kilcolgan Level Crossing Accident on 08/06/20"",
+      ""target"": ""Inadequate risk assessment and mitigation planning"",
+      ""type"": ""systemic_factor""
+    }
+  ]
+}","{
+  ""nodes"": [
+    {
+      ""id"": ""Kilcolgan Level Crossing Accident on 08/06/20"",
+      ""type"": ""UniqueAccident""
+    },
+    {
+      ""id"": ""Collisions"",
+      ""type"": ""AccidentType""
+    },
+    {
+      ""id"": ""Kilcolgan Level Crossing"",
+      ""type"": ""TrackSection""
+    },
+    {
+      ""id"": ""08/06/20"",
+      ""type"": ""Date""
+    },
+    {
+      ""id"": ""13:15"",
+      ""type"": ""Time""
+    },
+    {
+      ""id"": ""Ireland"",
+      ""type"": ""Country""
+    },
+    {
+      ""id"": ""Tools"",
+      ""type"": ""ContributingFactor""
+    },
+    {
+      ""id"": ""Static staff factors"",
+      ""type"": ""ContributingFactor""
+    },
+    {
+      ""id"": ""Learning from accidents and incidents"",
+      ""type"": ""SystemicFactor""
+    },
+    {
+      ""id"": ""Actions to address risks"",
+      ""type"": ""SystemicFactor""
+    },
+    {
+      ""id"": ""Railway Accident Investigation Unit"",
+      ""type"": ""RegulatoryBody""
+    }
+  ],
+  ""rels"": [
+    {
+      ""source"": ""Kilcolgan Level Crossing Accident on 08/06/20"",
+      ""target"": ""Ireland"",
+      ""type"": ""occurred_in""
+    },
+    {
+      ""source"": ""Kilcolgan Level Crossing Accident on 08/06/20"",
+      ""target"": ""Collisions"",
+      ""type"": ""is_type""
+    },
+    {
+      ""source"": ""Kilcolgan Level Crossing Accident on 08/06/20"",
+      ""target"": ""Kilcolgan Level Crossing"",
+      ""type"": ""is_track_section""
+    },
+    {
+      ""source"": ""Kilcolgan Level Crossing Accident on 08/06/20"",
+      ""target"": ""Railway Accident Investigation Unit"",
+      ""type"": ""investigated_by""
+    },
+    {
+      ""source"": ""Kilcolgan Level Crossing Accident on 08/06/20"",
+      ""target"": ""08/06/20"",
+      ""type"": ""has_date""
+    },
+    {
+      ""source"": ""Kilcolgan Level Crossing Accident on 08/06/20"",
+      ""target"": ""13:15"",
+      ""type"": ""has_time""
+    },
+    {
+      ""source"": ""Kilcolgan Level Crossing Accident on 08/06/20"",
+      ""target"": ""Tools"",
+      ""type"": ""contributing_factor""
+    },
+    {
+      ""source"": ""Kilcolgan Level Crossing Accident on 08/06/20"",
+      ""target"": ""Static staff factors"",
+      ""type"": ""contributing_factor""
+    },
+    {
+      ""source"": ""Kilcolgan Level Crossing Accident on 08/06/20"",
+      ""target"": ""Learning from accidents and incidents"",
+      ""type"": ""systemic_factor""
+    },
+    {
+      ""source"": ""Kilcolgan Level Crossing Accident on 08/06/20"",
+      ""target"": ""Actions to address risks"",
+      ""type"": ""systemic_factor""
+    }
+  ]
+}"
+IE-200608 BnM Collision LC Offaly.pdf,gemini-2.5-flash-preview-04-17,2,"{
+  ""nodes"": [
+    {
+      ""id"": ""Kilcolgan Level Crossing Collision"",
+      ""type"": ""UniqueAccident""
+    },
+    {
+      ""id"": ""Level Crossing (Collision) - Accident"",
+      ""type"": ""AccidentType""
+    },
+    {
+      ""id"": ""Kilcolgan Level Crossing"",
+      ""type"": ""TrackSection""
+    },
+    {
+      ""id"": ""08/06/20"",
+      ""type"": ""Date""
+    },
+    {
+      ""id"": ""13:15"",
+      ""type"": ""Time""
+    },
+    {
+      ""id"": ""Ireland"",
+      ""type"": ""Country""
+    },
+    {
+      ""id"": ""RAIU"",
+      ""type"": ""RegulatoryBody""
+    },
+    {
+      ""id"": ""Flat Wagon rolled away uncontrolled"",
+      ""type"": ""ContributingFactor""
+    },
+    {
+      ""id"": ""Derailing points in closed position"",
+      ""type"": ""ContributingFactor""
+    }
+  ],
+  ""rels"": [
+    {
+      ""source"": ""Kilcolgan Level Crossing Collision"",
+      ""target"": ""Ireland"",
+      ""type"": ""occurred_in""
+    },
+    {
+      ""source"": ""Kilcolgan Level Crossing Collision"",
+      ""target"": ""Level Crossing (Collision) - Accident"",
+      ""type"": ""is_type""
+    },
+    {
+      ""source"": ""Kilcolgan Level Crossing Collision"",
+      ""target"": ""Kilcolgan Level Crossing"",
+      ""type"": ""is_track_section""
+    },
+    {
+      ""source"": ""Kilcolgan Level Crossing Collision"",
+      ""target"": ""RAIU"",
+      ""type"": ""investigated_by""
+    },
+    {
+      ""source"": ""Kilcolgan Level Crossing Collision"",
+      ""target"": ""08/06/20"",
+      ""type"": ""has_date""
+    },
+    {
+      ""source"": ""Kilcolgan Level Crossing Collision"",
+      ""target"": ""13:15"",
+      ""type"": ""has_time""
+    },
+    {
+      ""source"": ""Kilcolgan Level Crossing Collision"",
+      ""target"": ""Flat Wagon rolled away uncontrolled"",
+      ""type"": ""contributing_factor""
+    },
+    {
+      ""source"": ""Kilcolgan Level Crossing Collision"",
+      ""target"": ""Derailing points in closed position"",
+      ""type"": ""contributing_factor""
+    }
+  ]
+}","{
+  ""nodes"": [
+    {
+      ""id"": ""Kilcolgan Level Crossing Collision"",
+      ""type"": ""UniqueAccident""
+    },
+    {
+      ""id"": ""Level Crossing Accident"",
+      ""type"": ""AccidentType""
+    },
+    {
+      ""id"": ""Kilcolgan Level Crossing"",
+      ""type"": ""TrackSection""
+    },
+    {
+      ""id"": ""08/06/20"",
+      ""type"": ""Date""
+    },
+    {
+      ""id"": ""13:15"",
+      ""type"": ""Time""
+    },
+    {
+      ""id"": ""Ireland"",
+      ""type"": ""Country""
+    },
+    {
+      ""id"": ""RAIU"",
+      ""type"": ""RegulatoryBody""
+    },
+    {
+      ""id"": ""Other contributing factors"",
+      ""type"": ""ContributingFactor""
+    },
+    {
+      ""id"": ""Tools"",
+      ""type"": ""ContributingFactor""
+    }
+  ],
+  ""rels"": [
+    {
+      ""source"": ""Kilcolgan Level Crossing Collision"",
+      ""target"": ""Ireland"",
+      ""type"": ""occurred_in""
+    },
+    {
+      ""source"": ""Kilcolgan Level Crossing Collision"",
+      ""target"": ""Level Crossing Accident"",
+      ""type"": ""is_type""
+    },
+    {
+      ""source"": ""Kilcolgan Level Crossing Collision"",
+      ""target"": ""Kilcolgan Level Crossing"",
+      ""type"": ""is_track_section""
+    },
+    {
+      ""source"": ""Kilcolgan Level Crossing Collision"",
+      ""target"": ""RAIU"",
+      ""type"": ""investigated_by""
+    },
+    {
+      ""source"": ""Kilcolgan Level Crossing Collision"",
+      ""target"": ""08/06/20"",
+      ""type"": ""has_date""
+    },
+    {
+      ""source"": ""Kilcolgan Level Crossing Collision"",
+      ""target"": ""13:15"",
+      ""type"": ""has_time""
+    },
+    {
+      ""source"": ""Kilcolgan Level Crossing Collision"",
+      ""target"": ""Other contributing factors"",
+      ""type"": ""contributing_factor""
+    },
+    {
+      ""source"": ""Kilcolgan Level Crossing Collision"",
+      ""target"": ""Tools"",
+      ""type"": ""contributing_factor""
+    }
+  ]
+}"
+IE-10397 - 211207 Clontarf.pdf,gpt-4o-mini,1,"{
+  ""nodes"": [
+    {
+      ""id"": ""SPAD Incident at Clontarf Road"",
+      ""type"": ""UniqueAccident""
+    },
+    {
+      ""id"": ""Signal Passed at Danger (SPAD)"",
+      ""type"": ""AccidentType""
+    },
+    {
+      ""id"": ""Dublin to Belfast Line"",
+      ""type"": ""TrackSection""
+    },
+    {
+      ""id"": ""07/12/2021"",
+      ""type"": ""Date""
+    },
+    {
+      ""id"": ""15:59"",
+      ""type"": ""Time""
+    },
+    {
+      ""id"": ""Ireland"",
+      ""type"": ""Country""
+    },
+    {
+      ""id"": ""Driver Error"",
+      ""type"": ""ContributingFactor""
+    },
+    {
+      ""id"": ""Low Rail Adhesion"",
+      ""type"": ""ContributingFactor""
+    },
+    {
+      ""id"": ""Over-reliance on ATP System"",
+      ""type"": ""ContributingFactor""
+    },
+    {
+      ""id"": ""Inadequate Driver Training"",
+      ""type"": ""SystemicFactor""
+    },
+    {
+      ""id"": ""Insufficient Safety Management Oversight"",
+      ""type"": ""SystemicFactor""
+    },
+    {
+      ""id"": ""Commission for Railway Regulation"",
+      ""type"": ""RegulatoryBody""
+    }
+  ],
+  ""rels"": [
+    {
+      ""source"": ""SPAD Incident at Clontarf Road"",
+      ""target"": ""Ireland"",
+      ""type"": ""occurred_in""
+    },
+    {
+      ""source"": ""SPAD Incident at Clontarf Road"",
+      ""target"": ""Signal Passed at Danger (SPAD)"",
+      ""type"": ""is_type""
+    },
+    {
+      ""source"": ""SPAD Incident at Clontarf Road"",
+      ""target"": ""Dublin to Belfast Line"",
+      ""type"": ""is_track_section""
+    },
+    {
+      ""source"": ""SPAD Incident at Clontarf Road"",
+      ""target"": ""Commission for Railway Regulation"",
+      ""type"": ""investigated_by""
+    },
+    {
+      ""source"": ""SPAD Incident at Clontarf Road"",
+      ""target"": ""07/12/2021"",
+      ""type"": ""has_date""
+    },
+    {
+      ""source"": ""SPAD Incident at Clontarf Road"",
+      ""target"": ""15:59"",
+      ""type"": ""has_time""
+    },
+    {
+      ""source"": ""SPAD Incident at Clontarf Road"",
+      ""target"": ""Driver Error"",
+      ""type"": ""contributing_factor""
+    },
+    {
+      ""source"": ""SPAD Incident at Clontarf Road"",
+      ""target"": ""Low Rail Adhesion"",
+      ""type"": ""contributing_factor""
+    },
+    {
+      ""source"": ""SPAD Incident at Clontarf Road"",
+      ""target"": ""Over-reliance on ATP System"",
+      ""type"": ""contributing_factor""
+    },
+    {
+      ""source"": ""SPAD Incident at Clontarf Road"",
+      ""target"": ""Inadequate Driver Training"",
+      ""type"": ""systemic_factor""
+    },
+    {
+      ""source"": ""SPAD Incident at Clontarf Road"",
+      ""target"": ""Insufficient Safety Management Oversight"",
+      ""type"": ""systemic_factor""
+    }
+  ]
+}","{
+  ""nodes"": [
+    {
+      ""id"": ""SPAD Incident at Clontarf Road"",
+      ""type"": ""UniqueAccident""
+    },
+    {
+      ""id"": ""Signal passed at danger without passing a danger point"",
+      ""type"": ""AccidentType""
+    },
+    {
+      ""id"": ""Dublin to Belfast Line"",
+      ""type"": ""TrackSection""
+    },
+    {
+      ""id"": ""07/12/2021"",
+      ""type"": ""Date""
+    },
+    {
+      ""id"": ""15:59"",
+      ""type"": ""Time""
+    },
+    {
+      ""id"": ""Ireland"",
+      ""type"": ""Country""
+    },
+    {
+      ""id"": ""Performance relevant factor"",
+      ""type"": ""ContributingFactor""
+    },
+    {
+      ""id"": ""Other static staff factors"",
+      ""type"": ""ContributingFactor""
+    },
+    {
+      ""id"": ""Fatigue"",
+      ""type"": ""ContributingFactor""
+    },
+    {
+      ""id"": ""Learning from accidents and incidents"",
+      ""type"": ""SystemicFactor""
+    },
+    {
+      ""id"": ""Management review"",
+      ""type"": ""SystemicFactor""
+    },
+    {
+      ""id"": ""Commission for Railway Regulation"",
+      ""type"": ""RegulatoryBody""
+    }
+  ],
+  ""rels"": [
+    {
+      ""source"": ""SPAD Incident at Clontarf Road"",
+      ""target"": ""Ireland"",
+      ""type"": ""occurred_in""
+    },
+    {
+      ""source"": ""SPAD Incident at Clontarf Road"",
+      ""target"": ""Signal passed at danger without passing a danger point"",
+      ""type"": ""is_type""
+    },
+    {
+      ""source"": ""SPAD Incident at Clontarf Road"",
+      ""target"": ""Dublin to Belfast Line"",
+      ""type"": ""is_track_section""
+    },
+    {
+      ""source"": ""SPAD Incident at Clontarf Road"",
+      ""target"": ""Commission for Railway Regulation"",
+      ""type"": ""investigated_by""
+    },
+    {
+      ""source"": ""SPAD Incident at Clontarf Road"",
+      ""target"": ""07/12/2021"",
+      ""type"": ""has_date""
+    },
+    {
+      ""source"": ""SPAD Incident at Clontarf Road"",
+      ""target"": ""15:59"",
+      ""type"": ""has_time""
+    },
+    {
+      ""source"": ""SPAD Incident at Clontarf Road"",
+      ""target"": ""Performance relevant factor"",
+      ""type"": ""contributing_factor""
+    },
+    {
+      ""source"": ""SPAD Incident at Clontarf Road"",
+      ""target"": ""Other static staff factors"",
+      ""type"": ""contributing_factor""
+    },
+    {
+      ""source"": ""SPAD Incident at Clontarf Road"",
+      ""target"": ""Fatigue"",
+      ""type"": ""contributing_factor""
+    },
+    {
+      ""source"": ""SPAD Incident at Clontarf Road"",
+      ""target"": ""Learning from accidents and incidents"",
+      ""type"": ""systemic_factor""
+    },
+    {
+      ""source"": ""SPAD Incident at Clontarf Road"",
+      ""target"": ""Management review"",
+      ""type"": ""systemic_factor""
+    }
+  ]
+}"
+PL-10379 - Report 2 2024_EN.pdf,gpt-4o-mini,1,"{
+  ""nodes"": [
+    {
+      ""id"": ""Freight Train Accident No. 654027"",
+      ""type"": ""UniqueAccident""
+    },
+    {
+      ""id"": ""Derailed Wagon Incident"",
+      ""type"": ""AccidentType""
+    },
+    {
+      ""id"": ""Railway line no. 349, km 1.701, track no. 1N"",
+      ""type"": ""TrackSection""
+    },
+    {
+      ""id"": ""07/02/2023"",
+      ""type"": ""Date""
+    },
+    {
+      ""id"": ""02:00"",
+      ""type"": ""Time""
+    },
+    {
+      ""id"": ""Poland"",
+      ""type"": ""Country""
+    },
+    {
+      ""id"": ""Inappropriate machining"",
+      ""type"": ""ContributingFactor""
+    },
+    {
+      ""id"": ""Formation of microcracks"",
+      ""type"": ""ContributingFactor""
+    },
+    {
+      ""id"": ""Decreased axle strength"",
+      ""type"": ""ContributingFactor""
+    },
+    {
+      ""id"": ""Reuse of unproven wheelset"",
+      ""type"": ""ContributingFactor""
+    },
+    {
+      ""id"": ""Lack of traceability obligation"",
+      ""type"": ""SystemicFactor""
+    },
+    {
+      ""id"": ""State Commission on Railway Accident Investigation"",
+      ""type"": ""RegulatoryBody""
+    }
+  ],
+  ""rels"": [
+    {
+      ""source"": ""Freight Train Accident No. 654027"",
+      ""target"": ""Poland"",
+      ""type"": ""occurred_in""
+    },
+    {
+      ""source"": ""Freight Train Accident No. 654027"",
+      ""target"": ""Derailed Wagon Incident"",
+      ""type"": ""is_type""
+    },
+    {
+      ""source"": ""Freight Train Accident No. 654027"",
+      ""target"": ""Railway line no. 349, km 1.701, track no. 1N"",
+      ""type"": ""is_track_section""
+    },
+    {
+      ""source"": ""Freight Train Accident No. 654027"",
+      ""target"": ""State Commission on Railway Accident Investigation"",
+      ""type"": ""investigated_by""
+    },
+    {
+      ""source"": ""Freight Train Accident No. 654027"",
+      ""target"": ""07/02/2023"",
+      ""type"": ""has_date""
+    },
+    {
+      ""source"": ""Freight Train Accident No. 654027"",
+      ""target"": ""02:00"",
+      ""type"": ""has_time""
+    },
+    {
+      ""source"": ""Freight Train Accident No. 654027"",
+      ""target"": ""Inappropriate machining"",
+      ""type"": ""contributing_factor""
+    },
+    {
+      ""source"": ""Freight Train Accident No. 654027"",
+      ""target"": ""Formation of microcracks"",
+      ""type"": ""contributing_factor""
+    },
+    {
+      ""source"": ""Freight Train Accident No. 654027"",
+      ""target"": ""Decreased axle strength"",
+      ""type"": ""contributing_factor""
+    },
+    {
+      ""source"": ""Freight Train Accident No. 654027"",
+      ""target"": ""Reuse of unproven wheelset"",
+      ""type"": ""contributing_factor""
+    },
+    {
+      ""source"": ""Freight Train Accident No. 654027"",
+      ""target"": ""Lack of traceability obligation"",
+      ""type"": ""systemic_factor""
+    }
+  ]
+}","{
+  ""nodes"": [
+    {
+      ""id"": ""Freight Train Accident No. 654027"",
+      ""type"": ""UniqueAccident""
+    },
+    {
+      ""id"": ""Derailment of one or more rail vehicles"",
+      ""type"": ""AccidentType""
+    },
+    {
+      ""id"": ""Railway line no. 349, km 1.701, track no. 1N"",
+      ""type"": ""TrackSection""
+    },
+    {
+      ""id"": ""07/02/2023"",
+      ""type"": ""Date""
+    },
+    {
+      ""id"": ""02:00"",
+      ""type"": ""Time""
+    },
+    {
+      ""id"": ""Poland"",
+      ""type"": ""Country""
+    },
+    {
+      ""id"": ""Tools"",
+      ""type"": ""ContributingFactor""
+    },
+    {
+      ""id"": ""Decreased axle strength"",
+      ""type"": ""ContributingFactor""
+    },
+    {
+      ""id"": ""Documented information"",
+      ""type"": ""SystemicFactor""
+    },
+    {
+      ""id"": ""State Commission on Railway Accident Investigation"",
+      ""type"": ""RegulatoryBody""
+    }
+  ],
+  ""rels"": [
+    {
+      ""source"": ""Freight Train Accident No. 654027"",
+      ""target"": ""Poland"",
+      ""type"": ""occurred_in""
+    },
+    {
+      ""source"": ""Freight Train Accident No. 654027"",
+      ""target"": ""Derailment of one or more rail vehicles"",
+      ""type"": ""is_type""
+    },
+    {
+      ""source"": ""Freight Train Accident No. 654027"",
+      ""target"": ""Railway line no. 349, km 1.701, track no. 1N"",
+      ""type"": ""is_track_section""
+    },
+    {
+      ""source"": ""Freight Train Accident No. 654027"",
+      ""target"": ""State Commission on Railway Accident Investigation"",
+      ""type"": ""investigated_by""
+    },
+    {
+      ""source"": ""Freight Train Accident No. 654027"",
+      ""target"": ""07/02/2023"",
+      ""type"": ""has_date""
+    },
+    {
+      ""source"": ""Freight Train Accident No. 654027"",
+      ""target"": ""02:00"",
+      ""type"": ""has_time""
+    },
+    {
+      ""source"": ""Freight Train Accident No. 654027"",
+      ""target"": ""Tools"",
+      ""type"": ""contributing_factor""
+    },
+    {
+      ""source"": ""Freight Train Accident No. 654027"",
+      ""target"": ""Decreased axle strength"",
+      ""type"": ""contributing_factor""
+    },
+    {
+      ""source"": ""Freight Train Accident No. 654027"",
+      ""target"": ""Documented information"",
+      ""type"": ""systemic_factor""
+    }
+  ]
+}"
