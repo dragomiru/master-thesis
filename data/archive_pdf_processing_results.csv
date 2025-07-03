@@ -1,0 +1,441 @@
+pdf_name,iteration_number,json_output
+IE-10375 - 210827 Collision with track equipment.pdf,1,"{
+  ""nodes"": [
+    {
+      ""id"": ""Train J283 Collision"",
+      ""type"": ""UniqueAccident""
+    },
+    {
+      ""id"": ""Collision with Equipment"",
+      ""type"": ""AccidentType""
+    },
+    {
+      ""id"": ""27/08/2021"",
+      ""type"": ""Date""
+    },
+    {
+      ""id"": ""00:18"",
+      ""type"": ""Time""
+    },
+    {
+      ""id"": ""Ireland"",
+      ""type"": ""Country""
+    },
+    {
+      ""id"": ""Commission for Railway Regulation"",
+      ""type"": ""RegulatoryBody""
+    }
+  ],
+  ""rels"": [
+    {
+      ""source"": ""Train J283 Collision"",
+      ""target"": ""Ireland"",
+      ""type"": ""occurred_in""
+    },
+    {
+      ""source"": ""Train J283 Collision"",
+      ""target"": ""Collision with Equipment"",
+      ""type"": ""is_type""
+    },
+    {
+      ""source"": ""Train J283 Collision"",
+      ""target"": ""Commission for Railway Regulation"",
+      ""type"": ""investigated_by""
+    },
+    {
+      ""source"": ""Train J283 Collision"",
+      ""target"": ""27/08/2021"",
+      ""type"": ""has_date""
+    },
+    {
+      ""source"": ""Train J283 Collision"",
+      ""target"": ""00:18"",
+      ""type"": ""has_time""
+    }
+  ]
+}"
+IE-10397 - 211207 Clontarf.pdf,1,"{
+  ""nodes"": [
+    {
+      ""id"": ""Train E240 Double SPAD"",
+      ""type"": ""UniqueAccident""
+    },
+    {
+      ""id"": ""Double SPAD"",
+      ""type"": ""AccidentType""
+    },
+    {
+      ""id"": ""07/12/2021"",
+      ""type"": ""Date""
+    },
+    {
+      ""id"": ""15:59"",
+      ""type"": ""Time""
+    },
+    {
+      ""id"": ""Ireland"",
+      ""type"": ""Country""
+    },
+    {
+      ""id"": ""Commission for Railway Regulation"",
+      ""type"": ""RegulatoryBody""
+    }
+  ],
+  ""rels"": [
+    {
+      ""source"": ""Train E240 Double SPAD"",
+      ""target"": ""Ireland"",
+      ""type"": ""occurred_in""
+    },
+    {
+      ""source"": ""Train E240 Double SPAD"",
+      ""target"": ""Double SPAD"",
+      ""type"": ""is_type""
+    },
+    {
+      ""source"": ""Train E240 Double SPAD"",
+      ""target"": ""Commission for Railway Regulation"",
+      ""type"": ""investigated_by""
+    },
+    {
+      ""source"": ""Train E240 Double SPAD"",
+      ""target"": ""07/12/2021"",
+      ""type"": ""has_date""
+    },
+    {
+      ""source"": ""Train E240 Double SPAD"",
+      ""target"": ""15:59"",
+      ""type"": ""has_time""
+    }
+  ]
+}"
+IE-10404 - 230222 Broken Rail Emly.pdf,1,"{
+  ""nodes"": [
+    {
+      ""id"": ""Broken Rail Incident"",
+      ""type"": ""UniqueAccident""
+    },
+    {
+      ""id"": ""Incident - Infrastructure"",
+      ""type"": ""AccidentType""
+    },
+    {
+      ""id"": ""22/02/2023"",
+      ""type"": ""Date""
+    },
+    {
+      ""id"": ""07:56"",
+      ""type"": ""Time""
+    },
+    {
+      ""id"": ""Ireland"",
+      ""type"": ""Country""
+    },
+    {
+      ""id"": ""Commission for Railway Regulation"",
+      ""type"": ""RegulatoryBody""
+    }
+  ],
+  ""rels"": [
+    {
+      ""source"": ""Broken Rail Incident"",
+      ""target"": ""Ireland"",
+      ""type"": ""occurred_in""
+    },
+    {
+      ""source"": ""Broken Rail Incident"",
+      ""target"": ""Incident - Infrastructure"",
+      ""type"": ""is_type""
+    },
+    {
+      ""source"": ""Broken Rail Incident"",
+      ""target"": ""Commission for Railway Regulation"",
+      ""type"": ""investigated_by""
+    },
+    {
+      ""source"": ""Broken Rail Incident"",
+      ""target"": ""22/02/2023"",
+      ""type"": ""has_date""
+    },
+    {
+      ""source"": ""Broken Rail Incident"",
+      ""target"": ""07:56"",
+      ""type"": ""has_time""
+    }
+  ]
+}"
+IE-200608 BnM Collision LC Offaly.pdf,1,"{
+  ""nodes"": [
+    {
+      ""id"": ""BnM Flat Wagon Incident"",
+      ""type"": ""UniqueAccident""
+    },
+    {
+      ""id"": ""Collision with Gates"",
+      ""type"": ""AccidentType""
+    },
+    {
+      ""id"": ""08/06/2020"",
+      ""type"": ""Date""
+    },
+    {
+      ""id"": ""13:15"",
+      ""type"": ""Time""
+    },
+    {
+      ""id"": ""Ireland"",
+      ""type"": ""Country""
+    },
+    {
+      ""id"": ""Railway Accident Investigation Unit"",
+      ""type"": ""RegulatoryBody""
+    }
+  ],
+  ""rels"": [
+    {
+      ""source"": ""BnM Flat Wagon Incident"",
+      ""target"": ""Ireland"",
+      ""type"": ""occurred_in""
+    },
+    {
+      ""source"": ""BnM Flat Wagon Incident"",
+      ""target"": ""Collision with Gates"",
+      ""type"": ""is_type""
+    },
+    {
+      ""source"": ""BnM Flat Wagon Incident"",
+      ""target"": ""Railway Accident Investigation Unit"",
+      ""type"": ""investigated_by""
+    },
+    {
+      ""source"": ""BnM Flat Wagon Incident"",
+      ""target"": ""08/06/2020"",
+      ""type"": ""has_date""
+    },
+    {
+      ""source"": ""BnM Flat Wagon Incident"",
+      ""target"": ""13:15"",
+      ""type"": ""has_time""
+    }
+  ]
+}"
+IE-6218-200111 Collision RRME Rosslare.pdf,1,"{
+  ""nodes"": [
+    {
+      ""id"": ""Collision of Train A602 with RMME"",
+      ""type"": ""UniqueAccident""
+    },
+    {
+      ""id"": ""Train Collision"",
+      ""type"": ""AccidentType""
+    },
+    {
+      ""id"": ""11/01/2020"",
+      ""type"": ""Date""
+    },
+    {
+      ""id"": ""10:52"",
+      ""type"": ""Time""
+    },
+    {
+      ""id"": ""Ireland"",
+      ""type"": ""Country""
+    },
+    {
+      ""id"": ""Railway Accident Investigation Unit"",
+      ""type"": ""RegulatoryBody""
+    }
+  ],
+  ""rels"": [
+    {
+      ""source"": ""Collision of Train A602 with RMME"",
+      ""target"": ""Ireland"",
+      ""type"": ""occurred_in""
+    },
+    {
+      ""source"": ""Collision of Train A602 with RMME"",
+      ""target"": ""Train Collision"",
+      ""type"": ""is_type""
+    },
+    {
+      ""source"": ""Collision of Train A602 with RMME"",
+      ""target"": ""Railway Accident Investigation Unit"",
+      ""type"": ""investigated_by""
+    },
+    {
+      ""source"": ""Collision of Train A602 with RMME"",
+      ""target"": ""11/01/2020"",
+      ""type"": ""has_date""
+    },
+    {
+      ""source"": ""Collision of Train A602 with RMME"",
+      ""target"": ""10:52"",
+      ""type"": ""has_time""
+    }
+  ]
+}"
+IE-6262-200429 LC Collision XM240.pdf,1,"{
+  ""nodes"": [
+    {
+      ""id"": ""Kilnageer Level Crossing Accident"",
+      ""type"": ""UniqueAccident""
+    },
+    {
+      ""id"": ""Train Collision"",
+      ""type"": ""AccidentType""
+    },
+    {
+      ""id"": ""29/04/2020"",
+      ""type"": ""Date""
+    },
+    {
+      ""id"": ""13:40"",
+      ""type"": ""Time""
+    },
+    {
+      ""id"": ""Ireland"",
+      ""type"": ""Country""
+    },
+    {
+      ""id"": ""Railway Accident Investigation Unit"",
+      ""type"": ""RegulatoryBody""
+    }
+  ],
+  ""rels"": [
+    {
+      ""source"": ""Kilnageer Level Crossing Accident"",
+      ""target"": ""Ireland"",
+      ""type"": ""occurred_in""
+    },
+    {
+      ""source"": ""Kilnageer Level Crossing Accident"",
+      ""target"": ""Train Collision"",
+      ""type"": ""is_type""
+    },
+    {
+      ""source"": ""Kilnageer Level Crossing Accident"",
+      ""target"": ""Railway Accident Investigation Unit"",
+      ""type"": ""investigated_by""
+    },
+    {
+      ""source"": ""Kilnageer Level Crossing Accident"",
+      ""target"": ""29/04/2020"",
+      ""type"": ""has_date""
+    },
+    {
+      ""source"": ""Kilnageer Level Crossing Accident"",
+      ""target"": ""13:40"",
+      ""type"": ""has_time""
+    }
+  ]
+}"
+IE-6291-200524 LC XA068 Ashfield.pdf,1,"{
+  ""nodes"": [
+    {
+      ""id"": ""Athlone Level Crossing Incident"",
+      ""type"": ""UniqueAccident""
+    },
+    {
+      ""id"": ""Level Crossing Incident"",
+      ""type"": ""AccidentType""
+    },
+    {
+      ""id"": ""24/05/2020"",
+      ""type"": ""Date""
+    },
+    {
+      ""id"": ""12:13"",
+      ""type"": ""Time""
+    },
+    {
+      ""id"": ""Ireland"",
+      ""type"": ""Country""
+    },
+    {
+      ""id"": ""Railway Accident Investigation Unit"",
+      ""type"": ""RegulatoryBody""
+    }
+  ],
+  ""rels"": [
+    {
+      ""source"": ""Athlone Level Crossing Incident"",
+      ""target"": ""Ireland"",
+      ""type"": ""occurred_in""
+    },
+    {
+      ""source"": ""Athlone Level Crossing Incident"",
+      ""target"": ""Level Crossing Incident"",
+      ""type"": ""is_type""
+    },
+    {
+      ""source"": ""Athlone Level Crossing Incident"",
+      ""target"": ""Railway Accident Investigation Unit"",
+      ""type"": ""investigated_by""
+    },
+    {
+      ""source"": ""Athlone Level Crossing Incident"",
+      ""target"": ""24/05/2020"",
+      ""type"": ""has_date""
+    },
+    {
+      ""source"": ""Athlone Level Crossing Incident"",
+      ""target"": ""12:13"",
+      ""type"": ""has_time""
+    }
+  ]
+}"
+IE-6305 - 200707_locomotive_224.pdf,1,"{
+  ""nodes"": [
+    {
+      ""id"": ""Cork Kent to Dublin Heuston Incident"",
+      ""type"": ""UniqueAccident""
+    },
+    {
+      ""id"": ""Train Mechanical Failure"",
+      ""type"": ""AccidentType""
+    },
+    {
+      ""id"": ""06/07/2020"",
+      ""type"": ""Date""
+    },
+    {
+      ""id"": ""14:25"",
+      ""type"": ""Time""
+    },
+    {
+      ""id"": ""Ireland"",
+      ""type"": ""Country""
+    },
+    {
+      ""id"": ""Railway Accident Investigation Unit"",
+      ""type"": ""RegulatoryBody""
+    }
+  ],
+  ""rels"": [
+    {
+      ""source"": ""Cork Kent to Dublin Heuston Incident"",
+      ""target"": ""Ireland"",
+      ""type"": ""occurred_in""
+    },
+    {
+      ""source"": ""Cork Kent to Dublin Heuston Incident"",
+      ""target"": ""Train Mechanical Failure"",
+      ""type"": ""is_type""
+    },
+    {
+      ""source"": ""Cork Kent to Dublin Heuston Incident"",
+      ""target"": ""Railway Accident Investigation Unit"",
+      ""type"": ""investigated_by""
+    },
+    {
+      ""source"": ""Cork Kent to Dublin Heuston Incident"",
+      ""target"": ""06/07/2020"",
+      ""type"": ""has_date""
+    },
+    {
+      ""source"": ""Cork Kent to Dublin Heuston Incident"",
+      ""target"": ""14:25"",
+      ""type"": ""has_time""
+    }
+  ]
+}"

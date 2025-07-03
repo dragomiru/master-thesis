@@ -5,7 +5,6 @@ personal-keys.txt
 .ipynb_checkpoints/
 
 # Ignore large datasets if not needed
-*.csv
 *.json
 *.xml
 *.parquet

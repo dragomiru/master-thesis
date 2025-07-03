@@ -1,0 +1,65 @@
+pdf_name,model_type,iteration_number,json_output
+IE-6218-200111 Collision RRME Rosslare.pdf,gpt-4o-mini,1,"{
+  ""nodes"": [
+    {
+      ""id"": ""Train A602 Collision"",
+      ""type"": ""UniqueAccident""
+    },
+    {
+      ""id"": ""Collision of one or more rail vehicles with obstacle within the clearance gauge"",
+      ""type"": ""AccidentType""
+    },
+    {
+      ""id"": ""112 MP 880 yards to 112 MP 1320 yards"",
+      ""type"": ""TrackSection""
+    },
+    {
+      ""id"": ""11/01/2020"",
+      ""type"": ""Date""
+    },
+    {
+      ""id"": ""10:52"",
+      ""type"": ""Time""
+    },
+    {
+      ""id"": ""Ireland"",
+      ""type"": ""Country""
+    },
+    {
+      ""id"": ""Railway Accident Investigation Unit"",
+      ""type"": ""RegulatoryBody""
+    }
+  ],
+  ""rels"": [
+    {
+      ""source"": ""Train A602 Collision"",
+      ""target"": ""Ireland"",
+      ""type"": ""occurred_in""
+    },
+    {
+      ""source"": ""Train A602 Collision"",
+      ""target"": ""Collision of one or more rail vehicles with obstacle within the clearance gauge"",
+      ""type"": ""is_type""
+    },
+    {
+      ""source"": ""Train A602 Collision"",
+      ""target"": ""112 MP 880 yards to 112 MP 1320 yards"",
+      ""type"": ""is_track_section""
+    },
+    {
+      ""source"": ""Train A602 Collision"",
+      ""target"": ""Railway Accident Investigation Unit"",
+      ""type"": ""investigated_by""
+    },
+    {
+      ""source"": ""Train A602 Collision"",
+      ""target"": ""11/01/2020"",
+      ""type"": ""has_date""
+    },
+    {
+      ""source"": ""Train A602 Collision"",
+      ""target"": ""10:52"",
+      ""type"": ""has_time""
+    }
+  ]
+}"

@@ -4,6 +4,7 @@ import os
 import json
 import tempfile
 import re
+import base64
 
 # --- Modules from project structure --- 
 import config
@@ -19,6 +20,44 @@ st.set_page_config(
     page_icon=config.APP_FAVICON,
     layout="wide"
 )
+
+@st.cache_data
+def get_base64_of_bin_file(bin_file):
+    with open(bin_file, 'rb') as f:
+        data = f.read()
+    return base64.b64encode(data).decode()
+
+def set_png_as_centered_bg(png_file):
+    bin_str = get_base64_of_bin_file(png_file)
+    page_bg_img = f"""
+    <style>
+    .custom-watermark {{
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: 0;
+        pointer-events: none;
+        overflow: hidden;
+    }}
+    .custom-watermark img {{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        max-width: 500px;
+        opacity: 0.5;
+        filter: grayscale(100%);
+    }}
+    </style>
+    <div class="custom-watermark">
+        <img src="data:image/png;base64,{bin_str}">
+    </div>
+    """
+    st.markdown(page_bg_img, unsafe_allow_html=True)
+
+set_png_as_centered_bg('data/wu_logo.png')
 
 # --- Functions ---
 def initialize_llm(_model_identifier):

@@ -36,6 +36,9 @@ PDF_PROCESSING_RESULTS_CSV = os.path.join(DATA_DIR, "pdf_processing_results.csv"
 # ERAIL Database Excel
 ERAIL_DB_EXCEL = os.path.join(DATA_DIR, "erail database.xlsx")
 
+# List of Countries in Reports
+COUNTRY_LIST = ["IE", "PL", "BE", "AT"]
+
 # --- Text Processing Parameters ---
 CHUNK_SIZE = 2000
 CHUNK_OVERLAP = 300

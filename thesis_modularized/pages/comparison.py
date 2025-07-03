@@ -1,14 +1,14 @@
-# --- General modules ---
+# pages/Evaluation.py
+
 import streamlit as st
 import pandas as pd
 import numpy as np
 import json
 import re
 import os
-from typing import Dict, Optional, Any
-import config
+from typing import Optional, Dict, Any
 
-# --- Add project root to sys.path ---
+# --- Add project root to sys.path for sibling module imports ---
 import sys
 import pathlib
 current_file_path = pathlib.Path(__file__).resolve()
@@ -16,151 +16,23 @@ project_root = current_file_path.parent.parent
 if str(project_root) not in sys.path:
     sys.path.insert(0, str(project_root))
 
+import config # Your main configuration file
+
 # --- Page Configuration ---
 st.set_page_config(
-    page_title="ERAIL DB Comparison",
-    page_icon="📊",
+    page_title="LLM Evaluation Dashboard",
+    page_icon="🧪",
     layout="wide"
 )
 
-st.title("📊 ERAIL Database Comparison")
-st.markdown("Compare LLM's initial extraction and refined output against the ERAIL database.")
-st.markdown("---")
+st.title("🧪 LLM Performance Evaluation")
+st.markdown("Analyze the accuracy, consistency, and completeness of LLM outputs by uploading your results CSV file.")
 
-with st.sidebar:
-    st.header("⚙️ Comparison Controls")
-    uploaded_llm_results_file = st.file_uploader(
-        "Upload LLM Results CSV", type="csv", accept_multiple_files=False
-    )
-    process_button = st.button("Run Comparison on Uploaded CSV", type="primary", disabled=not uploaded_llm_results_file)
+# --- CORE HELPER FUNCTIONS (Adapted from your notebook) ---
 
-# --- Helper function for field comparison ---
-def perform_field_comparison(
-    df: pd.DataFrame, 
-    llm_col: str, 
-    erail_col: str, 
-    comparison_col_name: str
-) -> pd.DataFrame:
-    if llm_col not in df.columns:
-        # st.warning(f"LLM column '{llm_col}' not found. Skipping '{comparison_col_name}'.")
-        df[comparison_col_name] = "LLM_Column_Missing"
-        return df
-    if erail_col not in df.columns:
-        # st.warning(f"ERAIL column '{erail_col}' not found. Skipping '{comparison_col_name}'.")
-        df[comparison_col_name] = "ERAIL_Column_Missing"
-        return df
-
-    llm_series = df[llm_col].fillna("###NAN_PLACEHOLDER###").astype(str).str.strip()
-    erail_series = df[erail_col].fillna("###NAN_PLACEHOLDER###").astype(str).str.strip()
-
-    conditions = [
-        (llm_series == "###NAN_PLACEHOLDER###") & (erail_series == "###NAN_PLACEHOLDER###"),
-        (llm_series == "###NAN_PLACEHOLDER###"),
-        (erail_series == "###NAN_PLACEHOLDER###"),
-        (llm_series == erail_series)
-    ]
-    choices = ["Match (Both Missing)", "LLM_Data_Missing", "ERAIL_Data_Missing", "Match"]
-    df[comparison_col_name] = np.select(conditions, choices, default="Mismatch")
-    return df
-
-# --- Merge Data for Comparison Function ---
-def merge_data_for_comparison(llm_df: pd.DataFrame, erail_df: pd.DataFrame) -> Optional[pd.DataFrame]:
-    """Merges LLM data with ERAIL data on 'ERAIL Occurrence'."""
-    if llm_df.empty or erail_df.empty:
-        # st.warning("One or both DataFrames for merging are empty.") # Handled by caller
-        return None
-    if not all(key in df.columns for df in [llm_df, erail_df] for key in ["ERAIL Occurrence"]):
-        st.error("'ERAIL Occurrence' key missing in one of the DataFrames for merge.")
-        return None
-    try:
-        merged = pd.merge(llm_df, erail_df, on="ERAIL Occurrence", how="inner")
-        if merged.empty:
-            # st.warning("Merge resulted in an empty DataFrame (no common IDs).") # Handled by caller
-            pass
-        return merged
-    except Exception as e:
-        st.error(f"Error during DataFrame merge: {e}")
-        return None
-
-# --- Helper to extract entities from a specific JSON column ---
-def _extract_entities_from_json_nodes(json_data: Dict) -> Dict[str, Any]:
-    """Helper to extract specific entities from LLM JSON nodes."""
-    target_node_types = { # Define the entities you want to pull out for columns
-        "UniqueAccident": None, "AccidentType": None, "TrackSection": None,
-        "Date": None, "Time": None, "Country": None, "RegulatoryBody": None,
-        "ContributingFactor": [], "SystemicFactor": []
-    }
-    if not isinstance(json_data, dict) or "nodes" not in json_data:
-        # Return empty structure if json_data is not as expected
-        return {k: ([] if isinstance(v, list) else None) for k, v in target_node_types.items()}
-
-    for node in json_data.get("nodes", []):
-        node_type, node_id_val = node.get("type"), node.get("id")
-        if node_type in target_node_types:
-            if isinstance(target_node_types[node_type], list):
-                if node_id_val is not None: target_node_types[node_type].append(str(node_id_val))
-            elif target_node_types[node_type] is None and node_id_val is not None:
-                 target_node_types[node_type] = str(node_id_val)
-    
-    for factor_type in ["ContributingFactor", "SystemicFactor"]:
-        if target_node_types[factor_type]:
-            target_node_types[factor_type] = ", ".join(sorted(list(set(target_node_types[factor_type]))))
-        else: # If list is empty after processing
-            target_node_types[factor_type] = None 
-    return target_node_types
-
-# --- Function to prepare LLM data, takes json_column_name ---
-def prepare_llm_data_for_comparison(
-    results_df: pd.DataFrame, 
-    json_column_name: str # "extraction_output" or "refined_output"
-) -> Optional[pd.DataFrame]:
-    """Prepares LLM results by extracting entities from the specified JSON column."""
-    if json_column_name not in results_df.columns:
-        st.error(f"JSON column '{json_column_name}' not found in uploaded CSV.")
-        return None
-    if "pdf_name" not in results_df.columns:
-        st.error("'pdf_name' column missing in uploaded CSV.")
-        return None
-    
-    comparison_list = []
-    for index, row in results_df.iterrows():
-        try:
-            json_string = row[json_column_name]
-            if pd.isna(json_string): # Handle potential empty cells for this column
-                # st.warning(f"Empty JSON data in '{json_column_name}' for PDF: {row['pdf_name']} at index {index}. Skipping.")
-                continue
-            llm_json_data = json.loads(json_string)
-            extracted_entities = _extract_entities_from_json_nodes(llm_json_data)
-            
-            # Add country's two-letter code when scanning docs from other MSs
-            erail_id_match = re.search(r'(IE-\d+|PL-\d+)', str(row["pdf_name"]))
-            erail_occurrence_id = erail_id_match.group(1) if erail_id_match else None
-            
-            entry = {
-                "pdf_name": row["pdf_name"], 
-                "model_type": row.get("model_type"), 
-                "ERAIL Occurrence": erail_occurrence_id,
-                "iteration_number": row.get("iteration_number") # Keep iteration number if present
-            }
-            for entity_type, entity_value in extracted_entities.items():
-                entry[f"LLM_{entity_type}"] = entity_value # These will be the columns compared
-            comparison_list.append(entry)
-
-        except json.JSONDecodeError:
-            print(f"[WARN_COMP_PAGE] Failed to parse JSON in '{json_column_name}' for PDF: {row.get('pdf_name', 'Unknown PDF')} at index {index}")
-            continue 
-        except Exception as e:
-            print(f"[WARN_COMP_PAGE] Error processing row for PDF: {row.get('pdf_name', 'Unknown PDF')} at index {index}, column '{json_column_name}': {e}")
-            continue
-        
-    if not comparison_list: 
-        st.warning(f"No data extracted from '{json_column_name}' for comparison.")
-        return pd.DataFrame() # Return empty DataFrame if nothing was processed
-    return pd.DataFrame(comparison_list)
-
-# --- ERAIL DB Loading and Preprocessing ---
-@st.cache_data
-def load_and_preprocess_erail_db_cached(file_path: str) -> Optional[pd.DataFrame]:
+@st.cache_data # Cache ERAIL DB loading to speed up reruns
+def load_and_preprocess_erail_db(file_path: str) -> Optional[pd.DataFrame]:
+    """Loads the ERAIL database and preprocesses date/time columns."""
     try:
         erail_df = pd.read_excel(file_path)
         if "Date of occurrence" in erail_df.columns:
@@ -182,110 +54,248 @@ def load_and_preprocess_erail_db_cached(file_path: str) -> Optional[pd.DataFrame
         st.error(f"Error loading or preprocessing ERAIL DB: {e}")
         return None
 
-# --- Main Page Logic ---
-if process_button and uploaded_llm_results_file:
-    st.header("Analysis Results")
-
-    llm_results_df_original = None
-    try:
-        with st.spinner("Loading LLM processing results from uploaded CSV..."):
-            llm_results_df_original = pd.read_csv(uploaded_llm_results_file)
-        if llm_results_df_original.empty:
-            st.warning("Uploaded LLM results CSV is empty. No data to compare.")
-            st.stop()
-        st.success(f"Loaded {len(llm_results_df_original)} rows from the uploaded LLM results CSV.")
-    except Exception as e:
-        st.error(f"Error loading uploaded LLM results CSV: {e}")
-        st.exception(e)
-        st.stop()
-
-    erail_df = load_and_preprocess_erail_db_cached(config.ERAIL_DB_EXCEL)
-    if erail_df is None or erail_df.empty:
-        st.error("Failed to load or preprocess ERAIL database. Cannot proceed with comparison.")
-        st.stop()
+def prepare_llm_data(results_df: pd.DataFrame, json_column_name: str) -> Optional[pd.DataFrame]:
+    """Prepares LLM results by extracting entities from the specified JSON column."""
+    if json_column_name not in results_df.columns or "pdf_name" not in results_df.columns:
+        st.error(f"Required columns ('{json_column_name}', 'pdf_name') not found in uploaded CSV.")
+        return None
     
-    comparison_fields_map = [
-        {"llm_col": "LLM_Date", "erail_col": "Date of occurrence", "match_col": "Date_Match", "display_name": "Date"},
-        {"llm_col": "LLM_Time", "erail_col": "Time of occurrence", "match_col": "Time_Match", "display_name": "Time"},
-        {"llm_col": "LLM_Country", "erail_col": "Country", "match_col": "Country_Match", "display_name": "Country"},
-        {"llm_col": "LLM_AccidentType", "erail_col": "Occurrence type", "match_col": "AccidentType_Match", "display_name": "Accident Type"},
-        {"llm_col": "LLM_RegulatoryBody", "erail_col": "Reporting Body", "match_col": "RegulatoryBody_Match", "display_name": "Regulatory Body"},
-        {"llm_col": "LLM_ContributingFactor", "erail_col": "Direct cause description (including causal and contributing factors, excluding those of systemic nature)", "match_col": "ContributingFactors_Match", "display_name": "Contributing Factors"},
-        {"llm_col": "LLM_SystemicFactor", "erail_col": "Underlying and root causes description (i.e. systemic factors, if any)", "match_col": "SystemicFactors_Match", "display_name": "Systemic Factors"}
-    ]
-    base_display_columns = ["ERAIL Occurrence", "model_type", "iteration_number"]
-
-
-    # --- Process and Display for "extraction_output" ---
-    st.subheader("Comparison: Initial Extraction Output vs. ERAIL DB")
-    if "extraction_output" in llm_results_df_original.columns:
-        with st.spinner("Preparing 'extraction_output' data..."):
-            prepared_extraction_df = prepare_llm_data_for_comparison(llm_results_df_original.copy(), "extraction_output")
-        
-        if prepared_extraction_df is not None and not prepared_extraction_df.empty:
-            with st.spinner("Merging 'extraction_output' data with ERAIL DB..."):
-                merged_extraction_df = merge_data_for_comparison(prepared_extraction_df, erail_df)
+    comparison_list = []
+    for index, row in results_df.iterrows():
+        try:
+            json_string = row[json_column_name]
+            if pd.isna(json_string): continue
+            llm_json_data = json.loads(json_string)
             
-            if merged_extraction_df is not None and not merged_extraction_df.empty:
-                st.info(f"Found {len(merged_extraction_df)} matching records for 'extraction_output' comparison.")
-                current_display_cols = base_display_columns[:]
-                for field_spec in comparison_fields_map:
-                    merged_extraction_df = perform_field_comparison(
-                        merged_extraction_df, field_spec["llm_col"], field_spec["erail_col"], field_spec["match_col"]
-                    )
-                    for col_key in ["llm_col", "erail_col", "match_col"]:
-                        if field_spec[col_key] in merged_extraction_df.columns: current_display_cols.append(field_spec[col_key])
-                
-                final_display_cols_extraction = [col for i, col in enumerate(current_display_cols) if col not in current_display_cols[:i]]
-                st.dataframe(merged_extraction_df[[col for col in final_display_cols_extraction if col in merged_extraction_df.columns]])
+            extracted_entities = {
+                "UniqueAccident": None, "AccidentType": None, "TrackSection": None,
+                "Date": None, "Time": None, "Country": None, "RegulatoryBody": None,
+                "ContributingFactor": [], "SystemicFactor": []
+            }
+            for node in llm_json_data.get("nodes", []):
+                node_type, node_id = node.get("type"), node.get("id")
+                if node_type in extracted_entities:
+                    if isinstance(extracted_entities[node_type], list):
+                        if node_id is not None: extracted_entities[node_type].append(str(node_id))
+                    elif extracted_entities[node_type] is None and node_id is not None:
+                        extracted_entities[node_type] = str(node_id)
+            
+            for factor_type in ["ContributingFactor", "SystemicFactor"]:
+                if extracted_entities[factor_type]:
+                    extracted_entities[factor_type] = ", ".join(sorted(list(set(extracted_entities[factor_type]))))
+                else:
+                    extracted_entities[factor_type] = None
 
-                st.text("Summary Statistics for Initial Extraction:")
-                for field_spec in comparison_fields_map:
-                    if field_spec["match_col"] in merged_extraction_df.columns:
-                        st.text(f"  {field_spec['display_name']} ({field_spec['match_col']}):")
-                        st.dataframe(merged_extraction_df[field_spec["match_col"]].value_counts())
-            else:
-                st.warning("No common records found after merging for 'extraction_output'.")
-        else:
-            st.warning("'extraction_output' data could not be prepared.")
-    else:
-        st.warning("Column 'extraction_output' not found in the uploaded CSV.")
+            erail_id_match = re.search(r'([A-Z]{2}-\d+)', str(row["pdf_name"]))
+            
+            entry = {
+                "pdf_name": row["pdf_name"], "model_type": row.get("model_type"),
+                "iteration_number": row.get("iteration_number"),
+                "ERAIL Occurrence": erail_id_match.group(1) if erail_id_match else None
+            }
+            
+            for entity_type, value in extracted_entities.items():
+                entry[f"LLM_{entity_type}"] = value
+            comparison_list.append(entry)
+        except (json.JSONDecodeError, TypeError):
+            continue
+        except Exception as e:
+            print(f"Error processing row {index}: {e}")
+            continue
+        
+    if not comparison_list: return pd.DataFrame()
+    return pd.DataFrame(comparison_list)
 
-    st.markdown("---")
+def evaluate_metrics(df: pd.DataFrame, llm_col: str, truth_col: str, is_time: bool = False) -> Dict[str, Optional[float]]:
+    """Calculates all evaluation metrics for a given variable and returns a dictionary."""
+    results = {}
+    if df.empty or llm_col not in df.columns or truth_col not in df.columns:
+        return results
 
-    # --- Process and Display for "refined_output" ---
-    st.subheader("Comparison: Refined Output vs. ERAIL DB")
-    if "refined_output" in llm_results_df_original.columns:
-        with st.spinner("Preparing 'refined_output' data..."):
-            prepared_refined_df = prepare_llm_data_for_comparison(llm_results_df_original.copy(), "refined_output")
+    temp_df = df.copy()
+    llm_series = temp_df[llm_col].fillna("###NAN###").astype(str).str.strip().str.lower()
+    truth_series = temp_df[truth_col].fillna("###NAN###").astype(str).str.strip().str.lower()
+    results["Abs. Accuracy"] = (llm_series == truth_series).mean() * 100
 
-        if prepared_refined_df is not None and not prepared_refined_df.empty:
-            with st.spinner("Merging 'refined_output' data with ERAIL DB..."):
-                merged_refined_df = merge_data_for_comparison(prepared_refined_df, erail_df)
+    if 'ERAIL Occurrence' in temp_df.columns and 'model_type' in temp_df.columns:
+        group = temp_df.groupby(['ERAIL Occurrence', 'model_type'])
+        consistency_check = group.apply(lambda g: g[llm_col].nunique() == 1, include_groups=False)
+        if not consistency_check.empty:
+            results["Consistency"] = consistency_check.mean() * 100
 
-            if merged_refined_df is not None and not merged_refined_df.empty:
-                st.info(f"Found {len(merged_refined_df)} matching records for 'refined_output' comparison.")
-                current_display_cols = base_display_columns[:]
-                for field_spec in comparison_fields_map:
-                    merged_refined_df = perform_field_comparison(
-                        merged_refined_df, field_spec["llm_col"], field_spec["erail_col"], field_spec["match_col"]
-                    )
-                    for col_key in ["llm_col", "erail_col", "match_col"]:
-                        if field_spec[col_key] in merged_refined_df.columns: current_display_cols.append(field_spec[col_key])
-                
-                final_display_cols_refined = [col for i, col in enumerate(current_display_cols) if col not in current_display_cols[:i]]
-                st.dataframe(merged_refined_df[[col for col in final_display_cols_refined if col in merged_refined_df.columns]])
-                
-                st.text("Summary Statistics for Refined Output:")
-                for field_spec in comparison_fields_map:
-                    if field_spec["match_col"] in merged_refined_df.columns:
-                        st.text(f"  {field_spec['display_name']} ({field_spec['match_col']}):")
-                        st.dataframe(merged_refined_df[field_spec["match_col"]].value_counts())
-            else:
-                st.warning("No common records found after merging for 'refined_output'.")
-        else:
-            st.warning("'refined_output' data could not be prepared.")
-    else:
-        st.warning("Column 'refined_output' not found in the uploaded CSV.")
+    results["Completeness"] = temp_df[llm_col].apply(lambda x: pd.notna(x) and str(x).strip() != '').mean() * 100
+
+    if is_time:
+        temp_df['llm_time'] = pd.to_datetime(temp_df[llm_col], format='%H:%M', errors='coerce')
+        temp_df['truth_time'] = pd.to_datetime(temp_df[truth_col], format='%H:%M', errors='coerce')
+        valid_times = temp_df['llm_time'].notna() & temp_df['truth_time'].notna()
+        if valid_times.any():
+            time_diff = abs((temp_df.loc[valid_times, 'llm_time'] - temp_df.loc[valid_times, 'truth_time']).dt.total_seconds())
+            results["2min Accuracy"] = (time_diff <= 120).sum() / valid_times.sum() * 100
+            results["5min Accuracy"] = (time_diff <= 300).sum() / valid_times.sum() * 100
+            
+    return results
+
+# --- CORRECTED FUNCTION SIGNATURE ---
+def perform_field_comparison(df: pd.DataFrame, llm_col: str, truth_col: str, comparison_col_name: str) -> pd.DataFrame:
+    """Compares two columns and adds a result column."""
+    if llm_col not in df.columns:
+        df[comparison_col_name] = "LLM_Column_Missing"
+        return df
+    if truth_col not in df.columns: # Changed from erail_col
+        df[comparison_col_name] = "ERAIL_Column_Missing"
+        return df
+
+    llm_series = df[llm_col].fillna("###NAN_PLACEHOLDER###").astype(str).str.strip()
+    erail_series = df[truth_col].fillna("###NAN_PLACEHOLDER###").astype(str).str.strip() # Changed from erail_col
+
+    conditions = [
+        (llm_series == "###NAN_PLACEHOLDER###") & (erail_series == "###NAN_PLACEHOLDER###"),
+        (llm_series == "###NAN_PLACEHOLDER###"),
+        (erail_series == "###NAN_PLACEHOLDER###"),
+        (llm_series == erail_series)
+    ]
+    choices = ["Match (Both Missing)", "LLM_Data_Missing", "ERAIL_Data_Missing", "Match"]
+    df[comparison_col_name] = np.select(conditions, choices, default="Mismatch")
+    return df
+
+def display_metrics(title: str, metrics: Dict[str, Optional[float]]):
+    """Renders only the valid, calculated metrics in an intelligible way."""
+    st.subheader(title)
+    
+    # Define the desired order of metrics
+    metric_keys_ordered = ["Abs. Accuracy", "2min Accuracy", "5min Accuracy", "Consistency", "Completeness"]
+    
+    # Filter out metrics that were not calculated (i.e., are None or NaN)
+    valid_metrics = {key: metrics.get(key) for key in metric_keys_ordered if pd.notna(metrics.get(key))}
+    
+    if not valid_metrics:
+        st.write("No metrics calculated for this variable.")
+        return
+        
+    # Create columns dynamically based on how many valid metrics there are
+    cols = st.columns(len(valid_metrics))
+    
+    # Display each valid metric in its own column
+    for i, (key, val) in enumerate(valid_metrics.items()):
+        with cols[i]:
+            st.metric(label=key, value=f"{val:.1f}%")
+            st.progress(int(val))
+
+# --- UI AND MAIN LOGIC ---
+uploaded_llm_results_file = st.file_uploader("Upload your results CSV file", type="csv")
+
+if uploaded_llm_results_file:
+    with st.sidebar:
+        st.header("⚙️ Evaluation Controls")
+        output_column = st.radio(
+            "Select Output to Analyze:", ("extraction_output", "refined_output"), index=1,
+            help="Choose which LLM output column from your CSV to evaluate."
+        )
+        df_results_original = pd.read_csv(uploaded_llm_results_file)
+        pdf_list = ["All Reports"] + sorted(df_results_original['pdf_name'].unique().tolist())
+        selected_pdf = st.selectbox(
+            "Filter by Report (Optional):", pdf_list,
+            help="Select a single report to analyze or choose 'All Reports' for an overall evaluation."
+        )
+        run_evaluation_button = st.button("Run Evaluation", type="primary")
+
+    if run_evaluation_button:
+        st.header("Evaluation Results")
+        
+        df_to_evaluate = df_results_original[df_results_original['pdf_name'] == selected_pdf].copy() if selected_pdf != "All Reports" else df_results_original.copy()
+        
+        if df_to_evaluate.empty:
+            st.warning("No data available for the selected report. Please choose another.")
+            st.stop()
+
+        st.info(f"Analyzing **{len(df_to_evaluate)} records** for **'{output_column}'** from **'{selected_pdf}'**.")
+        
+        with st.spinner("Preparing data and merging with ERAIL DB..."):
+            prepared_df = prepare_llm_data(df_to_evaluate, output_column)
+            erail_df = load_and_preprocess_erail_db(config.ERAIL_DB_EXCEL)
+            
+            if prepared_df is None or erail_df is None:
+                st.error("Data preparation failed. Cannot proceed.")
+                st.stop()
+            
+            merged_df = pd.merge(prepared_df, erail_df, on="ERAIL Occurrence", how="left")
+            if merged_df.empty:
+                st.warning("Could not merge any records with ERAIL DB. Check 'ERAIL Occurrence' IDs.")
+                st.stop()
+
+        st.success("Data prepared. Calculating and displaying metrics...")
+        
+        variables_to_evaluate = [
+            {"var_name": "Date", "llm_col": "LLM_Date", "truth_col": "Date of occurrence"},
+            {"var_name": "Time", "llm_col": "LLM_Time", "truth_col": "Time of occurrence", "is_time": True},
+            {"var_name": "Country", "llm_col": "LLM_Country", "truth_col": "Country"},
+            {"var_name": "Accident Type", "llm_col": "LLM_AccidentType", "truth_col": "Occurrence type"},
+            {"var_name": "Regulatory Body", "llm_col": "LLM_RegulatoryBody", "truth_col": "Reporting Body"},
+            {"var_name": "Contributing Factors", "llm_col": "LLM_ContributingFactor", "truth_col": "Direct cause description (including causal and contributing factors, excluding those of systemic nature)"},
+            {"var_name": "Systemic Factors", "llm_col": "LLM_SystemicFactor", "truth_col": "Underlying and root causes description (i.e. systemic factors, if any)"},
+        ]
+        
+        tab1, tab2 = st.tabs(["📊 Metrics Dashboard", "📄 Detailed Comparison Data"])
+
+        with tab1:
+            st.subheader("Key Performance Indicators")
+            all_metrics_data = []
+            for var_spec in variables_to_evaluate:
+                metrics = evaluate_metrics(
+                    df=merged_df, llm_col=var_spec['llm_col'], truth_col=var_spec['truth_col'],
+                    is_time=var_spec.get('is_time', False)
+                )
+                all_metrics_data.append({"Variable": var_spec['var_name'], **metrics})
+            
+            summary_df = pd.DataFrame(all_metrics_data).set_index("Variable")
+
+            kpi_cols = st.columns(3)
+            with kpi_cols[0]:
+                abs_acc = summary_df['Abs. Accuracy'].mean()
+                st.metric("Avg. Abs. Accuracy", f"{abs_acc:.1f}%", help="Average of 'Abs. Accuracy' across all variables.")
+            with kpi_cols[1]:
+                consistency = summary_df['Consistency'].mean()
+                st.metric("Avg. Consistency", f"{consistency:.1f}%", help="Average of 'Consistency' across all variables.")
+            with kpi_cols[2]:
+                completeness = summary_df['Completeness'].mean()
+                st.metric("Avg. Completeness", f"{completeness:.1f}%", help="Average of 'Completeness' across all variables.")
+
+            st.markdown("---")
+            st.subheader("Detailed Metrics by Variable")
+            
+            for index, row in summary_df.iterrows():
+                with st.container(border=True):
+                    display_metrics(f"Metrics for: {row.name}", row.to_dict())
+
+        with tab2:
+            st.subheader("Detailed Comparison Table")
+            st.info("This table shows the side-by-side comparison for each entry.")
+            
+            comparison_df_for_display = merged_df.copy()
+            display_cols_ordered = ["ERAIL Occurrence", "model_type"]
+            
+            # --- CORRECTED LOOP ---
+            for field in variables_to_evaluate:
+                match_col_name = f"{field['var_name'].replace(' ', '')}_Match"
+                # Call perform_field_comparison with the correct key: 'truth_col'
+                comparison_df_for_display = perform_field_comparison(
+                    comparison_df_for_display, 
+                    field["llm_col"], 
+                    field["truth_col"], # Use the correct key
+                    match_col_name
+                )
+                # Append columns for display
+                if field["llm_col"] in comparison_df_for_display.columns:
+                    display_cols_ordered.append(field["llm_col"])
+                if field["truth_col"] in comparison_df_for_display.columns:
+                    display_cols_ordered.append(field["truth_col"])
+                if match_col_name in comparison_df_for_display.columns:
+                    display_cols_ordered.append(match_col_name)
+            
+            final_display_cols = [col for i, col in enumerate(display_cols_ordered) if col not in display_cols_ordered[:i] and col in comparison_df_for_display.columns]
+            st.dataframe(comparison_df_for_display[final_display_cols])
+
 else:
-    st.info("Upload your LLM results CSV and click the 'Run Comparison' button to start.")
+    st.info("Upload a CSV file and select your options in the sidebar to begin.")
+

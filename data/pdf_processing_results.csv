@@ -1,0 +1,1520 @@
+pdf_name,model_type,iteration_number,json_output
+IE-10375 - 210827 Collision with track equipment.pdf,gpt-4o-mini,1,"{
+  ""nodes"": [
+    {
+      ""id"": ""Accident 2023002"",
+      ""type"": ""UniqueAccident""
+    },
+    {
+      ""id"": ""Collision with Work Crew"",
+      ""type"": ""AccidentType""
+    },
+    {
+      ""id"": ""Old Curragh Station, County Kildare"",
+      ""type"": ""TrackSection""
+    },
+    {
+      ""id"": ""26/08/2021"",
+      ""type"": ""Date""
+    },
+    {
+      ""id"": ""23:00"",
+      ""type"": ""Time""
+    },
+    {
+      ""id"": ""Ireland"",
+      ""type"": ""Country""
+    },
+    {
+      ""id"": ""Rail Accident Investigation Unit"",
+      ""type"": ""RegulatoryBody""
+    },
+    {
+      ""id"": ""Instructions"",
+      ""type"": ""ContributingFactor""
+    },
+    {
+      ""id"": ""Reinforcement"",
+      ""type"": ""ContributingFactor""
+    },
+    {
+      ""id"": ""Other leadership"",
+      ""type"": ""SystemicFactor""
+    },
+    {
+      ""id"": ""Learning from accidents and incidents"",
+      ""type"": ""SystemicFactor""
+    }
+  ],
+  ""rels"": [
+    {
+      ""source"": ""Accident 2023002"",
+      ""target"": ""Ireland"",
+      ""type"": ""occurred_in""
+    },
+    {
+      ""source"": ""Accident 2023002"",
+      ""target"": ""Collision with Work Crew"",
+      ""type"": ""is_type""
+    },
+    {
+      ""source"": ""Accident 2023002"",
+      ""target"": ""Old Curragh Station, County Kildare"",
+      ""type"": ""is_track_section""
+    },
+    {
+      ""source"": ""Accident 2023002"",
+      ""target"": ""Rail Accident Investigation Unit"",
+      ""type"": ""investigated_by""
+    },
+    {
+      ""source"": ""Accident 2023002"",
+      ""target"": ""26/08/2021"",
+      ""type"": ""has_date""
+    },
+    {
+      ""source"": ""Accident 2023002"",
+      ""target"": ""23:00"",
+      ""type"": ""has_time""
+    },
+    {
+      ""source"": ""Accident 2023002"",
+      ""target"": ""Instructions"",
+      ""type"": ""contributing_factor""
+    },
+    {
+      ""source"": ""Accident 2023002"",
+      ""target"": ""Reinforcement"",
+      ""type"": ""contributing_factor""
+    },
+    {
+      ""source"": ""Accident 2023002"",
+      ""target"": ""Other leadership"",
+      ""type"": ""systemic_factor""
+    },
+    {
+      ""source"": ""Accident 2023002"",
+      ""target"": ""Learning from accidents and incidents"",
+      ""type"": ""systemic_factor""
+    }
+  ]
+}"
+IE-10397 - 211207 Clontarf.pdf,gpt-4o-mini,1,"{
+  ""nodes"": [
+    {
+      ""id"": ""CaF-05 Incident"",
+      ""type"": ""UniqueAccident""
+    },
+    {
+      ""id"": ""Signal passed at danger without passing a danger point"",
+      ""type"": ""AccidentType""
+    },
+    {
+      ""id"": ""Clontarf Road Station"",
+      ""type"": ""TrackSection""
+    },
+    {
+      ""id"": ""07/12/2021"",
+      ""type"": ""Date""
+    },
+    {
+      ""id"": ""15:59"",
+      ""type"": ""Time""
+    },
+    {
+      ""id"": ""Ireland"",
+      ""type"": ""Country""
+    },
+    {
+      ""id"": ""Fatigue"",
+      ""type"": ""ContributingFactor""
+    },
+    {
+      ""id"": ""Other dynamic situational factors"",
+      ""type"": ""ContributingFactor""
+    },
+    {
+      ""id"": ""Reinforcement"",
+      ""type"": ""ContributingFactor""
+    },
+    {
+      ""id"": ""Competence"",
+      ""type"": ""SystemicFactor""
+    },
+    {
+      ""id"": ""Safety objectives and planning"",
+      ""type"": ""SystemicFactor""
+    },
+    {
+      ""id"": ""Iarnr\u00f3d \u00c9ireann Railway Undertaking"",
+      ""type"": ""RegulatoryBody""
+    }
+  ],
+  ""rels"": [
+    {
+      ""source"": ""CaF-05 Incident"",
+      ""target"": ""Ireland"",
+      ""type"": ""occurred_in""
+    },
+    {
+      ""source"": ""CaF-05 Incident"",
+      ""target"": ""Signal passed at danger without passing a danger point"",
+      ""type"": ""is_type""
+    },
+    {
+      ""source"": ""CaF-05 Incident"",
+      ""target"": ""Clontarf Road Station"",
+      ""type"": ""is_track_section""
+    },
+    {
+      ""source"": ""CaF-05 Incident"",
+      ""target"": ""Iarnr\u00f3d \u00c9ireann Railway Undertaking"",
+      ""type"": ""investigated_by""
+    },
+    {
+      ""source"": ""CaF-05 Incident"",
+      ""target"": ""07/12/2021"",
+      ""type"": ""has_date""
+    },
+    {
+      ""source"": ""CaF-05 Incident"",
+      ""target"": ""15:59"",
+      ""type"": ""has_time""
+    },
+    {
+      ""source"": ""CaF-05 Incident"",
+      ""target"": ""Fatigue"",
+      ""type"": ""contributing_factor""
+    },
+    {
+      ""source"": ""CaF-05 Incident"",
+      ""target"": ""Other dynamic situational factors"",
+      ""type"": ""contributing_factor""
+    },
+    {
+      ""source"": ""CaF-05 Incident"",
+      ""target"": ""Reinforcement"",
+      ""type"": ""contributing_factor""
+    },
+    {
+      ""source"": ""CaF-05 Incident"",
+      ""target"": ""Competence"",
+      ""type"": ""systemic_factor""
+    },
+    {
+      ""source"": ""CaF-05 Incident"",
+      ""target"": ""Safety objectives and planning"",
+      ""type"": ""systemic_factor""
+    }
+  ]
+}"
+IE-10404 - 230222 Broken Rail Emly.pdf,gpt-4o-mini,1,"{
+  ""nodes"": [
+    {
+      ""id"": ""Dublin-Cork Mainline Incident"",
+      ""type"": ""UniqueAccident""
+    },
+    {
+      ""id"": ""Broken Rail Incident"",
+      ""type"": ""AccidentType""
+    },
+    {
+      ""id"": ""110 miles 355 yards"",
+      ""type"": ""TrackSection""
+    },
+    {
+      ""id"": ""21/02/2023"",
+      ""type"": ""Date""
+    },
+    {
+      ""id"": ""07:56"",
+      ""type"": ""Time""
+    },
+    {
+      ""id"": ""Ireland"",
+      ""type"": ""Country""
+    },
+    {
+      ""id"": ""Instructions"",
+      ""type"": ""ContributingFactor""
+    },
+    {
+      ""id"": ""Tools"",
+      ""type"": ""ContributingFactor""
+    },
+    {
+      ""id"": ""Performance relevant factor"",
+      ""type"": ""ContributingFactor""
+    },
+    {
+      ""id"": ""Competence"",
+      ""type"": ""SystemicFactor""
+    },
+    {
+      ""id"": ""Asset Management"",
+      ""type"": ""SystemicFactor""
+    },
+    {
+      ""id"": ""Operational planning and control"",
+      ""type"": ""SystemicFactor""
+    },
+    {
+      ""id"": ""Railway Accident Investigation Unit"",
+      ""type"": ""RegulatoryBody""
+    }
+  ],
+  ""rels"": [
+    {
+      ""source"": ""Dublin-Cork Mainline Incident"",
+      ""target"": ""Ireland"",
+      ""type"": ""occurred_in""
+    },
+    {
+      ""source"": ""Dublin-Cork Mainline Incident"",
+      ""target"": ""Broken Rail Incident"",
+      ""type"": ""is_type""
+    },
+    {
+      ""source"": ""Dublin-Cork Mainline Incident"",
+      ""target"": ""110 miles 355 yards"",
+      ""type"": ""is_track_section""
+    },
+    {
+      ""source"": ""Dublin-Cork Mainline Incident"",
+      ""target"": ""Railway Accident Investigation Unit"",
+      ""type"": ""investigated_by""
+    },
+    {
+      ""source"": ""Dublin-Cork Mainline Incident"",
+      ""target"": ""21/02/2023"",
+      ""type"": ""has_date""
+    },
+    {
+      ""source"": ""Dublin-Cork Mainline Incident"",
+      ""target"": ""07:56"",
+      ""type"": ""has_time""
+    },
+    {
+      ""source"": ""Dublin-Cork Mainline Incident"",
+      ""target"": ""Instructions"",
+      ""type"": ""contributing_factor""
+    },
+    {
+      ""source"": ""Dublin-Cork Mainline Incident"",
+      ""target"": ""Tools"",
+      ""type"": ""contributing_factor""
+    },
+    {
+      ""source"": ""Dublin-Cork Mainline Incident"",
+      ""target"": ""Performance relevant factor"",
+      ""type"": ""contributing_factor""
+    },
+    {
+      ""source"": ""Dublin-Cork Mainline Incident"",
+      ""target"": ""Competence"",
+      ""type"": ""systemic_factor""
+    },
+    {
+      ""source"": ""Dublin-Cork Mainline Incident"",
+      ""target"": ""Asset Management"",
+      ""type"": ""systemic_factor""
+    },
+    {
+      ""source"": ""Dublin-Cork Mainline Incident"",
+      ""target"": ""Operational planning and control"",
+      ""type"": ""systemic_factor""
+    }
+  ]
+}"
+IE-200608 BnM Collision LC Offaly.pdf,gpt-4o-mini,1,"{
+  ""nodes"": [
+    {
+      ""id"": ""Kilcolgan Level Crossing Accident"",
+      ""type"": ""UniqueAccident""
+    },
+    {
+      ""id"": ""Level Crossing Accident"",
+      ""type"": ""AccidentType""
+    },
+    {
+      ""id"": ""Kilcolgan Level Crossing"",
+      ""type"": ""TrackSection""
+    },
+    {
+      ""id"": ""08/06/2020"",
+      ""type"": ""Date""
+    },
+    {
+      ""id"": ""13:15"",
+      ""type"": ""Time""
+    },
+    {
+      ""id"": ""Ireland"",
+      ""type"": ""Country""
+    },
+    {
+      ""id"": ""Bord na M\u00f3na"",
+      ""type"": ""RegulatoryBody""
+    },
+    {
+      ""id"": ""Other contributing factors"",
+      ""type"": ""ContributingFactor""
+    },
+    {
+      ""id"": ""Competence"",
+      ""type"": ""SystemicFactor""
+    },
+    {
+      ""id"": ""Actions to address risks"",
+      ""type"": ""SystemicFactor""
+    }
+  ],
+  ""rels"": [
+    {
+      ""source"": ""Kilcolgan Level Crossing Accident"",
+      ""target"": ""Ireland"",
+      ""type"": ""occurred_in""
+    },
+    {
+      ""source"": ""Kilcolgan Level Crossing Accident"",
+      ""target"": ""Level Crossing Accident"",
+      ""type"": ""is_type""
+    },
+    {
+      ""source"": ""Kilcolgan Level Crossing Accident"",
+      ""target"": ""Kilcolgan Level Crossing"",
+      ""type"": ""is_track_section""
+    },
+    {
+      ""source"": ""Kilcolgan Level Crossing Accident"",
+      ""target"": ""Bord na M\u00f3na"",
+      ""type"": ""investigated_by""
+    },
+    {
+      ""source"": ""Kilcolgan Level Crossing Accident"",
+      ""target"": ""08/06/2020"",
+      ""type"": ""has_date""
+    },
+    {
+      ""source"": ""Kilcolgan Level Crossing Accident"",
+      ""target"": ""13:15"",
+      ""type"": ""has_time""
+    },
+    {
+      ""source"": ""Kilcolgan Level Crossing Accident"",
+      ""target"": ""Other contributing factors"",
+      ""type"": ""contributing_factor""
+    },
+    {
+      ""source"": ""Kilcolgan Level Crossing Accident"",
+      ""target"": ""Competence"",
+      ""type"": ""systemic_factor""
+    },
+    {
+      ""source"": ""Kilcolgan Level Crossing Accident"",
+      ""target"": ""Actions to address risks"",
+      ""type"": ""systemic_factor""
+    }
+  ]
+}"
+IE-6218-200111 Collision RRME Rosslare.pdf,gpt-4o-mini,1,"{
+  ""nodes"": [
+    {
+      ""id"": ""Train A602 Collision"",
+      ""type"": ""UniqueAccident""
+    },
+    {
+      ""id"": ""Collision of train with obstacle within the clearance gauge"",
+      ""type"": ""AccidentType""
+    },
+    {
+      ""id"": ""Level Crossing"",
+      ""type"": ""TrackSection""
+    },
+    {
+      ""id"": ""20/10/2023"",
+      ""type"": ""Date""
+    },
+    {
+      ""id"": ""10:52"",
+      ""type"": ""Time""
+    },
+    {
+      ""id"": ""Ireland"",
+      ""type"": ""Country""
+    },
+    {
+      ""id"": ""Railway Accident Investigation Unit"",
+      ""type"": ""RegulatoryBody""
+    },
+    {
+      ""id"": ""Communication"",
+      ""type"": ""ContributingFactor""
+    },
+    {
+      ""id"": ""Instructions"",
+      ""type"": ""ContributingFactor""
+    },
+    {
+      ""id"": ""Safety objectives and planning"",
+      ""type"": ""SystemicFactor""
+    },
+    {
+      ""id"": ""Organizational roles, responsibilities, accountabilities and authorities"",
+      ""type"": ""SystemicFactor""
+    }
+  ],
+  ""rels"": [
+    {
+      ""source"": ""Train A602 Collision"",
+      ""target"": ""Ireland"",
+      ""type"": ""occurred_in""
+    },
+    {
+      ""source"": ""Train A602 Collision"",
+      ""target"": ""Collision of train with obstacle within the clearance gauge"",
+      ""type"": ""is_type""
+    },
+    {
+      ""source"": ""Train A602 Collision"",
+      ""target"": ""Level Crossing"",
+      ""type"": ""is_track_section""
+    },
+    {
+      ""source"": ""Train A602 Collision"",
+      ""target"": ""Railway Accident Investigation Unit"",
+      ""type"": ""investigated_by""
+    },
+    {
+      ""source"": ""Train A602 Collision"",
+      ""target"": ""20/10/2023"",
+      ""type"": ""has_date""
+    },
+    {
+      ""source"": ""Train A602 Collision"",
+      ""target"": ""10:52"",
+      ""type"": ""has_time""
+    },
+    {
+      ""source"": ""Train A602 Collision"",
+      ""target"": ""Communication"",
+      ""type"": ""contributing_factor""
+    },
+    {
+      ""source"": ""Train A602 Collision"",
+      ""target"": ""Instructions"",
+      ""type"": ""contributing_factor""
+    },
+    {
+      ""source"": ""Train A602 Collision"",
+      ""target"": ""Safety objectives and planning"",
+      ""type"": ""systemic_factor""
+    },
+    {
+      ""source"": ""Train A602 Collision"",
+      ""target"": ""Organizational roles, responsibilities, accountabilities and authorities"",
+      ""type"": ""systemic_factor""
+    }
+  ]
+}"
+IE-6262-200429 LC Collision XM240.pdf,gpt-4o-mini,1,"{
+  ""nodes"": [
+    {
+      ""id"": ""Kilnageer Level Crossing Accident"",
+      ""type"": ""UniqueAccident""
+    },
+    {
+      ""id"": ""Level Crossing Accident involving a train and crossing vehicles"",
+      ""type"": ""AccidentType""
+    },
+    {
+      ""id"": ""Kilnageer Level Crossing XM240"",
+      ""type"": ""TrackSection""
+    },
+    {
+      ""id"": ""29/04/2020"",
+      ""type"": ""Date""
+    },
+    {
+      ""id"": ""13:40"",
+      ""type"": ""Time""
+    },
+    {
+      ""id"": ""Ireland"",
+      ""type"": ""Country""
+    },
+    {
+      ""id"": ""Road Safety Authority"",
+      ""type"": ""RegulatoryBody""
+    },
+    {
+      ""id"": ""Attention"",
+      ""type"": ""ContributingFactor""
+    },
+    {
+      ""id"": ""Instructions"",
+      ""type"": ""ContributingFactor""
+    },
+    {
+      ""id"": ""Other operation"",
+      ""type"": ""SystemicFactor""
+    }
+  ],
+  ""rels"": [
+    {
+      ""source"": ""Kilnageer Level Crossing Accident"",
+      ""target"": ""Ireland"",
+      ""type"": ""occurred_in""
+    },
+    {
+      ""source"": ""Kilnageer Level Crossing Accident"",
+      ""target"": ""Level Crossing Accident involving a train and crossing vehicles"",
+      ""type"": ""is_type""
+    },
+    {
+      ""source"": ""Kilnageer Level Crossing Accident"",
+      ""target"": ""Kilnageer Level Crossing XM240"",
+      ""type"": ""is_track_section""
+    },
+    {
+      ""source"": ""Kilnageer Level Crossing Accident"",
+      ""target"": ""Road Safety Authority"",
+      ""type"": ""investigated_by""
+    },
+    {
+      ""source"": ""Kilnageer Level Crossing Accident"",
+      ""target"": ""29/04/2020"",
+      ""type"": ""has_date""
+    },
+    {
+      ""source"": ""Kilnageer Level Crossing Accident"",
+      ""target"": ""13:40"",
+      ""type"": ""has_time""
+    },
+    {
+      ""source"": ""Kilnageer Level Crossing Accident"",
+      ""target"": ""Attention"",
+      ""type"": ""contributing_factor""
+    },
+    {
+      ""source"": ""Kilnageer Level Crossing Accident"",
+      ""target"": ""Instructions"",
+      ""type"": ""contributing_factor""
+    },
+    {
+      ""source"": ""Kilnageer Level Crossing Accident"",
+      ""target"": ""Other operation"",
+      ""type"": ""systemic_factor""
+    }
+  ]
+}"
+IE-6291-200524 LC XA068 Ashfield.pdf,gpt-4o-mini,1,"{
+  ""nodes"": [
+    {
+      ""id"": ""Level Crossing Incident at LC XA068"",
+      ""type"": ""UniqueAccident""
+    },
+    {
+      ""id"": ""Level Crossing Accident involving a train and pedestrians"",
+      ""type"": ""AccidentType""
+    },
+    {
+      ""id"": ""LC XA068"",
+      ""type"": ""TrackSection""
+    },
+    {
+      ""id"": ""24/05/2020"",
+      ""type"": ""Date""
+    },
+    {
+      ""id"": ""12:13"",
+      ""type"": ""Time""
+    },
+    {
+      ""id"": ""Ireland"",
+      ""type"": ""Country""
+    },
+    {
+      ""id"": ""Intentions"",
+      ""type"": ""ContributingFactor""
+    },
+    {
+      ""id"": ""Instructions"",
+      ""type"": ""ContributingFactor""
+    },
+    {
+      ""id"": ""Awareness"",
+      ""type"": ""ContributingFactor""
+    },
+    {
+      ""id"": ""Actions to address risks"",
+      ""type"": ""SystemicFactor""
+    },
+    {
+      ""id"": ""Railway Accident Investigation Unit"",
+      ""type"": ""RegulatoryBody""
+    }
+  ],
+  ""rels"": [
+    {
+      ""source"": ""Level Crossing Incident at LC XA068"",
+      ""target"": ""Ireland"",
+      ""type"": ""occurred_in""
+    },
+    {
+      ""source"": ""Level Crossing Incident at LC XA068"",
+      ""target"": ""Level Crossing Accident involving a train and pedestrians"",
+      ""type"": ""is_type""
+    },
+    {
+      ""source"": ""Level Crossing Incident at LC XA068"",
+      ""target"": ""LC XA068"",
+      ""type"": ""is_track_section""
+    },
+    {
+      ""source"": ""Level Crossing Incident at LC XA068"",
+      ""target"": ""Railway Accident Investigation Unit"",
+      ""type"": ""investigated_by""
+    },
+    {
+      ""source"": ""Level Crossing Incident at LC XA068"",
+      ""target"": ""24/05/2020"",
+      ""type"": ""has_date""
+    },
+    {
+      ""source"": ""Level Crossing Incident at LC XA068"",
+      ""target"": ""12:13"",
+      ""type"": ""has_time""
+    },
+    {
+      ""source"": ""Level Crossing Incident at LC XA068"",
+      ""target"": ""Intentions"",
+      ""type"": ""contributing_factor""
+    },
+    {
+      ""source"": ""Level Crossing Incident at LC XA068"",
+      ""target"": ""Instructions"",
+      ""type"": ""contributing_factor""
+    },
+    {
+      ""source"": ""Level Crossing Incident at LC XA068"",
+      ""target"": ""Awareness"",
+      ""type"": ""contributing_factor""
+    },
+    {
+      ""source"": ""Level Crossing Incident at LC XA068"",
+      ""target"": ""Actions to address risks"",
+      ""type"": ""systemic_factor""
+    }
+  ]
+}"
+IE-6305 - 200707_locomotive_224.pdf,gpt-4o-mini,1,"{
+  ""nodes"": [
+    {
+      ""id"": ""Locomotive 224 Incident"",
+      ""type"": ""UniqueAccident""
+    },
+    {
+      ""id"": ""Weld failure"",
+      ""type"": ""AccidentType""
+    },
+    {
+      ""id"": ""Cork Kent to Dublin Heuston service"",
+      ""type"": ""TrackSection""
+    },
+    {
+      ""id"": ""06/07/2020"",
+      ""type"": ""Date""
+    },
+    {
+      ""id"": ""14:25"",
+      ""type"": ""Time""
+    },
+    {
+      ""id"": ""Ireland"",
+      ""type"": ""Country""
+    },
+    {
+      ""id"": ""Railway Accident Investigation Unit"",
+      ""type"": ""RegulatoryBody""
+    },
+    {
+      ""id"": ""Tools"",
+      ""type"": ""ContributingFactor""
+    },
+    {
+      ""id"": ""Learning from accidents and incidents"",
+      ""type"": ""SystemicFactor""
+    }
+  ],
+  ""rels"": [
+    {
+      ""source"": ""Locomotive 224 Incident"",
+      ""target"": ""Ireland"",
+      ""type"": ""occurred_in""
+    },
+    {
+      ""source"": ""Locomotive 224 Incident"",
+      ""target"": ""Weld failure"",
+      ""type"": ""is_type""
+    },
+    {
+      ""source"": ""Locomotive 224 Incident"",
+      ""target"": ""Cork Kent to Dublin Heuston service"",
+      ""type"": ""is_track_section""
+    },
+    {
+      ""source"": ""Locomotive 224 Incident"",
+      ""target"": ""Railway Accident Investigation Unit"",
+      ""type"": ""investigated_by""
+    },
+    {
+      ""source"": ""Locomotive 224 Incident"",
+      ""target"": ""06/07/2020"",
+      ""type"": ""has_date""
+    },
+    {
+      ""source"": ""Locomotive 224 Incident"",
+      ""target"": ""14:25"",
+      ""type"": ""has_time""
+    },
+    {
+      ""source"": ""Locomotive 224 Incident"",
+      ""target"": ""Tools"",
+      ""type"": ""contributing_factor""
+    },
+    {
+      ""source"": ""Locomotive 224 Incident"",
+      ""target"": ""Learning from accidents and incidents"",
+      ""type"": ""systemic_factor""
+    }
+  ]
+}"
+IE-6305 - 200707_locomotive_224.pdf,gemini-2.5-flash-preview-04-17,2,"{
+  ""nodes"": [
+    {
+      ""id"": ""Locomotive 224 Chassis Plate Fracture"",
+      ""type"": ""UniqueAccident""
+    },
+    {
+      ""id"": ""Technical Failure of the rolling stock"",
+      ""type"": ""AccidentType""
+    },
+    {
+      ""id"": ""near Limerick Junction"",
+      ""type"": ""TrackSection""
+    },
+    {
+      ""id"": ""06/07/2020"",
+      ""type"": ""Date""
+    },
+    {
+      ""id"": ""Ireland"",
+      ""type"": ""Country""
+    },
+    {
+      ""id"": ""Railway Accident Investigation Unit (RAIU)"",
+      ""type"": ""RegulatoryBody""
+    },
+    {
+      ""id"": ""Tools"",
+      ""type"": ""ContributingFactor""
+    },
+    {
+      ""id"": ""Reinforcement"",
+      ""type"": ""ContributingFactor""
+    },
+    {
+      ""id"": ""Performance relevant factor"",
+      ""type"": ""ContributingFactor""
+    },
+    {
+      ""id"": ""Competence"",
+      ""type"": ""SystemicFactor""
+    }
+  ],
+  ""rels"": [
+    {
+      ""source"": ""Locomotive 224 Chassis Plate Fracture"",
+      ""target"": ""Ireland"",
+      ""type"": ""occurred_in""
+    },
+    {
+      ""source"": ""Locomotive 224 Chassis Plate Fracture"",
+      ""target"": ""Technical Failure of the rolling stock"",
+      ""type"": ""is_type""
+    },
+    {
+      ""source"": ""Locomotive 224 Chassis Plate Fracture"",
+      ""target"": ""near Limerick Junction"",
+      ""type"": ""is_track_section""
+    },
+    {
+      ""source"": ""Locomotive 224 Chassis Plate Fracture"",
+      ""target"": ""Railway Accident Investigation Unit (RAIU)"",
+      ""type"": ""investigated_by""
+    },
+    {
+      ""source"": ""Locomotive 224 Chassis Plate Fracture"",
+      ""target"": ""06/07/2020"",
+      ""type"": ""has_date""
+    },
+    {
+      ""source"": ""Locomotive 224 Chassis Plate Fracture"",
+      ""target"": ""Tools"",
+      ""type"": ""contributing_factor""
+    },
+    {
+      ""source"": ""Locomotive 224 Chassis Plate Fracture"",
+      ""target"": ""Reinforcement"",
+      ""type"": ""contributing_factor""
+    },
+    {
+      ""source"": ""Locomotive 224 Chassis Plate Fracture"",
+      ""target"": ""Performance relevant factor"",
+      ""type"": ""contributing_factor""
+    },
+    {
+      ""source"": ""Locomotive 224 Chassis Plate Fracture"",
+      ""target"": ""Competence"",
+      ""type"": ""systemic_factor""
+    }
+  ]
+}"
+IE-6291-200524 LC XA068 Ashfield.pdf,gemini-2.5-flash-preview-04-17,2,"{
+  ""nodes"": [
+    {
+      ""id"": ""MOP trapped at LC XA068 Ashfield"",
+      ""type"": ""UniqueAccident""
+    },
+    {
+      ""id"": ""Level Crossing Accident involving a train and pedestrians"",
+      ""type"": ""AccidentType""
+    },
+    {
+      ""id"": ""LC XA068 Ashfield"",
+      ""type"": ""TrackSection""
+    },
+    {
+      ""id"": ""24/05/2020"",
+      ""type"": ""Date""
+    },
+    {
+      ""id"": ""12:13"",
+      ""type"": ""Time""
+    },
+    {
+      ""id"": ""Ireland"",
+      ""type"": ""Country""
+    },
+    {
+      ""id"": ""Railway Accident Investigation Unit"",
+      ""type"": ""RegulatoryBody""
+    },
+    {
+      ""id"": ""Awareness"",
+      ""type"": ""ContributingFactor""
+    }
+  ],
+  ""rels"": [
+    {
+      ""source"": ""MOP trapped at LC XA068 Ashfield"",
+      ""target"": ""Ireland"",
+      ""type"": ""occurred_in""
+    },
+    {
+      ""source"": ""MOP trapped at LC XA068 Ashfield"",
+      ""target"": ""Level Crossing Accident involving a train and pedestrians"",
+      ""type"": ""is_type""
+    },
+    {
+      ""source"": ""MOP trapped at LC XA068 Ashfield"",
+      ""target"": ""LC XA068 Ashfield"",
+      ""type"": ""is_track_section""
+    },
+    {
+      ""source"": ""MOP trapped at LC XA068 Ashfield"",
+      ""target"": ""Railway Accident Investigation Unit"",
+      ""type"": ""investigated_by""
+    },
+    {
+      ""source"": ""MOP trapped at LC XA068 Ashfield"",
+      ""target"": ""24/05/2020"",
+      ""type"": ""has_date""
+    },
+    {
+      ""source"": ""MOP trapped at LC XA068 Ashfield"",
+      ""target"": ""12:13"",
+      ""type"": ""has_time""
+    },
+    {
+      ""source"": ""MOP trapped at LC XA068 Ashfield"",
+      ""target"": ""Awareness"",
+      ""type"": ""contributing_factor""
+    }
+  ]
+}"
+IE-6262-200429 LC Collision XM240.pdf,gemini-2.5-flash-preview-04-17,2,"{
+  ""nodes"": [
+    {
+      ""id"": ""Kilnageer Level Crossing Accident"",
+      ""type"": ""UniqueAccident""
+    },
+    {
+      ""id"": ""Level Crossing Accident involving a train and crossing vehicles"",
+      ""type"": ""AccidentType""
+    },
+    {
+      ""id"": ""Kilnageer Level Crossing (LC) XM240"",
+      ""type"": ""TrackSection""
+    },
+    {
+      ""id"": ""29/04/2020"",
+      ""type"": ""Date""
+    },
+    {
+      ""id"": ""13:40"",
+      ""type"": ""Time""
+    },
+    {
+      ""id"": ""Ireland"",
+      ""type"": ""Country""
+    },
+    {
+      ""id"": ""Railway Accident Investigation Unit (RAIU)"",
+      ""type"": ""RegulatoryBody""
+    },
+    {
+      ""id"": ""Performance relevant factor"",
+      ""type"": ""ContributingFactor""
+    },
+    {
+      ""id"": ""Design"",
+      ""type"": ""ContributingFactor""
+    }
+  ],
+  ""rels"": [
+    {
+      ""source"": ""Kilnageer Level Crossing Accident"",
+      ""target"": ""Ireland"",
+      ""type"": ""occurred_in""
+    },
+    {
+      ""source"": ""Kilnageer Level Crossing Accident"",
+      ""target"": ""Level Crossing Accident involving a train and crossing vehicles"",
+      ""type"": ""is_type""
+    },
+    {
+      ""source"": ""Kilnageer Level Crossing Accident"",
+      ""target"": ""Kilnageer Level Crossing (LC) XM240"",
+      ""type"": ""is_track_section""
+    },
+    {
+      ""source"": ""Kilnageer Level Crossing Accident"",
+      ""target"": ""Railway Accident Investigation Unit (RAIU)"",
+      ""type"": ""investigated_by""
+    },
+    {
+      ""source"": ""Kilnageer Level Crossing Accident"",
+      ""target"": ""29/04/2020"",
+      ""type"": ""has_date""
+    },
+    {
+      ""source"": ""Kilnageer Level Crossing Accident"",
+      ""target"": ""13:40"",
+      ""type"": ""has_time""
+    },
+    {
+      ""source"": ""Kilnageer Level Crossing Accident"",
+      ""target"": ""Performance relevant factor"",
+      ""type"": ""contributing_factor""
+    },
+    {
+      ""source"": ""Kilnageer Level Crossing Accident"",
+      ""target"": ""Design"",
+      ""type"": ""contributing_factor""
+    }
+  ]
+}"
+IE-6218-200111 Collision RRME Rosslare.pdf,gemini-2.5-flash-preview-04-17,2,"{
+  ""nodes"": [
+    {
+      ""id"": ""Train A602 RMME Collision at Level Crossing"",
+      ""type"": ""UniqueAccident""
+    },
+    {
+      ""id"": ""Collision of train with obstacle within the clearance gauge"",
+      ""type"": ""AccidentType""
+    },
+    {
+      ""id"": ""Level Crossing"",
+      ""type"": ""TrackSection""
+    },
+    {
+      ""id"": ""10:52"",
+      ""type"": ""Time""
+    },
+    {
+      ""id"": ""Ireland"",
+      ""type"": ""Country""
+    },
+    {
+      ""id"": ""Railway Accident Investigation Unit"",
+      ""type"": ""RegulatoryBody""
+    },
+    {
+      ""id"": ""Performance relevant factor"",
+      ""type"": ""ContributingFactor""
+    },
+    {
+      ""id"": ""Tools"",
+      ""type"": ""ContributingFactor""
+    },
+    {
+      ""id"": ""Other dynamic staff factors"",
+      ""type"": ""ContributingFactor""
+    },
+    {
+      ""id"": ""Other dynamic situational factors"",
+      ""type"": ""ContributingFactor""
+    },
+    {
+      ""id"": ""Awareness"",
+      ""type"": ""ContributingFactor""
+    },
+    {
+      ""id"": ""Safety objectives and planning"",
+      ""type"": ""SystemicFactor""
+    }
+  ],
+  ""rels"": [
+    {
+      ""source"": ""Train A602 RMME Collision at Level Crossing"",
+      ""target"": ""Ireland"",
+      ""type"": ""occurred_in""
+    },
+    {
+      ""source"": ""Train A602 RMME Collision at Level Crossing"",
+      ""target"": ""Collision of train with obstacle within the clearance gauge"",
+      ""type"": ""is_type""
+    },
+    {
+      ""source"": ""Train A602 RMME Collision at Level Crossing"",
+      ""target"": ""Level Crossing"",
+      ""type"": ""is_track_section""
+    },
+    {
+      ""source"": ""Train A602 RMME Collision at Level Crossing"",
+      ""target"": ""Railway Accident Investigation Unit"",
+      ""type"": ""investigated_by""
+    },
+    {
+      ""source"": ""Train A602 RMME Collision at Level Crossing"",
+      ""target"": ""10:52"",
+      ""type"": ""has_time""
+    },
+    {
+      ""source"": ""Train A602 RMME Collision at Level Crossing"",
+      ""target"": ""Performance relevant factor"",
+      ""type"": ""contributing_factor""
+    },
+    {
+      ""source"": ""Train A602 RMME Collision at Level Crossing"",
+      ""target"": ""Tools"",
+      ""type"": ""contributing_factor""
+    },
+    {
+      ""source"": ""Train A602 RMME Collision at Level Crossing"",
+      ""target"": ""Other dynamic staff factors"",
+      ""type"": ""contributing_factor""
+    },
+    {
+      ""source"": ""Train A602 RMME Collision at Level Crossing"",
+      ""target"": ""Other dynamic situational factors"",
+      ""type"": ""contributing_factor""
+    },
+    {
+      ""source"": ""Train A602 RMME Collision at Level Crossing"",
+      ""target"": ""Awareness"",
+      ""type"": ""contributing_factor""
+    },
+    {
+      ""source"": ""Train A602 RMME Collision at Level Crossing"",
+      ""target"": ""Safety objectives and planning"",
+      ""type"": ""systemic_factor""
+    }
+  ]
+}"
+IE-200608 BnM Collision LC Offaly.pdf,gemini-2.5-flash-preview-04-17,2,"{
+  ""nodes"": [
+    {
+      ""id"": ""Kilcolgan Level Crossing Accident involving Flat Wagon"",
+      ""type"": ""UniqueAccident""
+    },
+    {
+      ""id"": ""Level Crossing Accident involving one or more rail vehicles"",
+      ""type"": ""AccidentType""
+    },
+    {
+      ""id"": ""Kilcolgan Level Crossing"",
+      ""type"": ""TrackSection""
+    },
+    {
+      ""id"": ""08/06/2020"",
+      ""type"": ""Date""
+    },
+    {
+      ""id"": ""13:15"",
+      ""type"": ""Time""
+    },
+    {
+      ""id"": ""Ireland"",
+      ""type"": ""Country""
+    },
+    {
+      ""id"": ""Performance relevant factor"",
+      ""type"": ""ContributingFactor""
+    },
+    {
+      ""id"": ""Reinforcement"",
+      ""type"": ""ContributingFactor""
+    },
+    {
+      ""id"": ""Learning from accidents and incidents"",
+      ""type"": ""SystemicFactor""
+    },
+    {
+      ""id"": ""Actions to address risks"",
+      ""type"": ""SystemicFactor""
+    },
+    {
+      ""id"": ""Railway Accident Investigation Unit (RAIU)"",
+      ""type"": ""RegulatoryBody""
+    }
+  ],
+  ""rels"": [
+    {
+      ""source"": ""Kilcolgan Level Crossing Accident involving Flat Wagon"",
+      ""target"": ""Level Crossing Accident involving one or more rail vehicles"",
+      ""type"": ""is_type""
+    },
+    {
+      ""source"": ""Kilcolgan Level Crossing Accident involving Flat Wagon"",
+      ""target"": ""Kilcolgan Level Crossing"",
+      ""type"": ""is_track_section""
+    },
+    {
+      ""source"": ""Kilcolgan Level Crossing Accident involving Flat Wagon"",
+      ""target"": ""08/06/2020"",
+      ""type"": ""has_date""
+    },
+    {
+      ""source"": ""Kilcolgan Level Crossing Accident involving Flat Wagon"",
+      ""target"": ""13:15"",
+      ""type"": ""has_time""
+    },
+    {
+      ""source"": ""Kilcolgan Level Crossing Accident involving Flat Wagon"",
+      ""target"": ""Ireland"",
+      ""type"": ""occurred_in""
+    },
+    {
+      ""source"": ""Kilcolgan Level Crossing Accident involving Flat Wagon"",
+      ""target"": ""Railway Accident Investigation Unit (RAIU)"",
+      ""type"": ""investigated_by""
+    },
+    {
+      ""source"": ""Kilcolgan Level Crossing Accident involving Flat Wagon"",
+      ""target"": ""Performance relevant factor"",
+      ""type"": ""contributing_factor""
+    },
+    {
+      ""source"": ""Kilcolgan Level Crossing Accident involving Flat Wagon"",
+      ""target"": ""Reinforcement"",
+      ""type"": ""contributing_factor""
+    },
+    {
+      ""source"": ""Kilcolgan Level Crossing Accident involving Flat Wagon"",
+      ""target"": ""Learning from accidents and incidents"",
+      ""type"": ""systemic_factor""
+    },
+    {
+      ""source"": ""Kilcolgan Level Crossing Accident involving Flat Wagon"",
+      ""target"": ""Actions to address risks"",
+      ""type"": ""systemic_factor""
+    }
+  ]
+}"
+IE-10404 - 230222 Broken Rail Emly.pdf,gemini-2.5-flash-preview-04-17,2,"{
+  ""nodes"": [
+    {
+      ""id"": ""Broken Rail near Emly LC"",
+      ""type"": ""UniqueAccident""
+    },
+    {
+      ""id"": ""Broken rail"",
+      ""type"": ""AccidentType""
+    },
+    {
+      ""id"": ""Dublin to Cork mainline near Emly LC (110 miles 355 yards)"",
+      ""type"": ""TrackSection""
+    },
+    {
+      ""id"": ""22/02/2023"",
+      ""type"": ""Date""
+    },
+    {
+      ""id"": ""10:35"",
+      ""type"": ""Time""
+    },
+    {
+      ""id"": ""Ireland"",
+      ""type"": ""Country""
+    },
+    {
+      ""id"": ""Railway Accident Investigation Unit"",
+      ""type"": ""RegulatoryBody""
+    },
+    {
+      ""id"": ""Tools"",
+      ""type"": ""ContributingFactor""
+    },
+    {
+      ""id"": ""Performance relevant factor"",
+      ""type"": ""ContributingFactor""
+    },
+    {
+      ""id"": ""Integration of human and organizational factors"",
+      ""type"": ""SystemicFactor""
+    },
+    {
+      ""id"": ""Operational planning and control"",
+      ""type"": ""SystemicFactor""
+    }
+  ],
+  ""rels"": [
+    {
+      ""source"": ""Broken Rail near Emly LC"",
+      ""target"": ""Ireland"",
+      ""type"": ""occurred_in""
+    },
+    {
+      ""source"": ""Broken Rail near Emly LC"",
+      ""target"": ""Broken rail"",
+      ""type"": ""is_type""
+    },
+    {
+      ""source"": ""Broken Rail near Emly LC"",
+      ""target"": ""Dublin to Cork mainline near Emly LC (110 miles 355 yards)"",
+      ""type"": ""is_track_section""
+    },
+    {
+      ""source"": ""Broken Rail near Emly LC"",
+      ""target"": ""Railway Accident Investigation Unit"",
+      ""type"": ""investigated_by""
+    },
+    {
+      ""source"": ""Broken Rail near Emly LC"",
+      ""target"": ""22/02/2023"",
+      ""type"": ""has_date""
+    },
+    {
+      ""source"": ""Broken Rail near Emly LC"",
+      ""target"": ""10:35"",
+      ""type"": ""has_time""
+    },
+    {
+      ""source"": ""Broken Rail near Emly LC"",
+      ""target"": ""Tools"",
+      ""type"": ""contributing_factor""
+    },
+    {
+      ""source"": ""Broken Rail near Emly LC"",
+      ""target"": ""Performance relevant factor"",
+      ""type"": ""contributing_factor""
+    },
+    {
+      ""source"": ""Broken Rail near Emly LC"",
+      ""target"": ""Integration of human and organizational factors"",
+      ""type"": ""systemic_factor""
+    },
+    {
+      ""source"": ""Broken Rail near Emly LC"",
+      ""target"": ""Operational planning and control"",
+      ""type"": ""systemic_factor""
+    }
+  ]
+}"
+IE-10397 - 211207 Clontarf.pdf,gemini-2.5-flash-preview-04-17,2,"{
+  ""nodes"": [
+    {
+      ""id"": ""Clontarf Road Double SPAD 07/12/2021"",
+      ""type"": ""UniqueAccident""
+    },
+    {
+      ""id"": ""Signal passed at danger with passing of a danger point"",
+      ""type"": ""AccidentType""
+    },
+    {
+      ""id"": ""Clontarf Road Station area (Signals DN287 & DN295)"",
+      ""type"": ""TrackSection""
+    },
+    {
+      ""id"": ""07/12/2021"",
+      ""type"": ""Date""
+    },
+    {
+      ""id"": ""16:03"",
+      ""type"": ""Time""
+    },
+    {
+      ""id"": ""Ireland"",
+      ""type"": ""Country""
+    },
+    {
+      ""id"": ""Fatigue"",
+      ""type"": ""ContributingFactor""
+    },
+    {
+      ""id"": ""Competence"",
+      ""type"": ""SystemicFactor""
+    },
+    {
+      ""id"": ""Actions to address risks"",
+      ""type"": ""SystemicFactor""
+    },
+    {
+      ""id"": ""Railway Accident Investigation Unit (RAIU)"",
+      ""type"": ""RegulatoryBody""
+    }
+  ],
+  ""rels"": [
+    {
+      ""source"": ""Clontarf Road Double SPAD 07/12/2021"",
+      ""target"": ""Ireland"",
+      ""type"": ""occurred_in""
+    },
+    {
+      ""source"": ""Clontarf Road Double SPAD 07/12/2021"",
+      ""target"": ""Signal passed at danger with passing of a danger point"",
+      ""type"": ""is_type""
+    },
+    {
+      ""source"": ""Clontarf Road Double SPAD 07/12/2021"",
+      ""target"": ""Clontarf Road Station area (Signals DN287 & DN295)"",
+      ""type"": ""is_track_section""
+    },
+    {
+      ""source"": ""Clontarf Road Double SPAD 07/12/2021"",
+      ""target"": ""Railway Accident Investigation Unit (RAIU)"",
+      ""type"": ""investigated_by""
+    },
+    {
+      ""source"": ""Clontarf Road Double SPAD 07/12/2021"",
+      ""target"": ""07/12/2021"",
+      ""type"": ""has_date""
+    },
+    {
+      ""source"": ""Clontarf Road Double SPAD 07/12/2021"",
+      ""target"": ""16:03"",
+      ""type"": ""has_time""
+    },
+    {
+      ""source"": ""Clontarf Road Double SPAD 07/12/2021"",
+      ""target"": ""Fatigue"",
+      ""type"": ""contributing_factor""
+    },
+    {
+      ""source"": ""Clontarf Road Double SPAD 07/12/2021"",
+      ""target"": ""Competence"",
+      ""type"": ""systemic_factor""
+    },
+    {
+      ""source"": ""Clontarf Road Double SPAD 07/12/2021"",
+      ""target"": ""Actions to address risks"",
+      ""type"": ""systemic_factor""
+    }
+  ]
+}"
+IE-10375 - 210827 Collision with track equipment.pdf,gemini-2.5-flash-preview-04-17,2,"{
+  ""nodes"": [
+    {
+      ""id"": ""Curragh Station Worksite Collision 2021"",
+      ""type"": ""UniqueAccident""
+    },
+    {
+      ""id"": ""Collision of train with obstacle within the clearance gauge"",
+      ""type"": ""AccidentType""
+    },
+    {
+      ""id"": ""adjacent to old Curragh Station, County Kildare"",
+      ""type"": ""TrackSection""
+    },
+    {
+      ""id"": ""26/08/2021"",
+      ""type"": ""Date""
+    },
+    {
+      ""id"": ""23:00"",
+      ""type"": ""Time""
+    },
+    {
+      ""id"": ""Ireland"",
+      ""type"": ""Country""
+    },
+    {
+      ""id"": ""RAIU (Railway Accident Investigation Unit)"",
+      ""type"": ""RegulatoryBody""
+    },
+    {
+      ""id"": ""Reinforcement"",
+      ""type"": ""ContributingFactor""
+    },
+    {
+      ""id"": ""Safety Policy"",
+      ""type"": ""SystemicFactor""
+    }
+  ],
+  ""rels"": [
+    {
+      ""source"": ""Curragh Station Worksite Collision 2021"",
+      ""target"": ""Ireland"",
+      ""type"": ""occurred_in""
+    },
+    {
+      ""source"": ""Curragh Station Worksite Collision 2021"",
+      ""target"": ""Collision of train with obstacle within the clearance gauge"",
+      ""type"": ""is_type""
+    },
+    {
+      ""source"": ""Curragh Station Worksite Collision 2021"",
+      ""target"": ""adjacent to old Curragh Station, County Kildare"",
+      ""type"": ""is_track_section""
+    },
+    {
+      ""source"": ""Curragh Station Worksite Collision 2021"",
+      ""target"": ""RAIU (Railway Accident Investigation Unit)"",
+      ""type"": ""investigated_by""
+    },
+    {
+      ""source"": ""Curragh Station Worksite Collision 2021"",
+      ""target"": ""26/08/2021"",
+      ""type"": ""has_date""
+    },
+    {
+      ""source"": ""Curragh Station Worksite Collision 2021"",
+      ""target"": ""23:00"",
+      ""type"": ""has_time""
+    },
+    {
+      ""source"": ""Curragh Station Worksite Collision 2021"",
+      ""target"": ""Reinforcement"",
+      ""type"": ""contributing_factor""
+    },
+    {
+      ""source"": ""Curragh Station Worksite Collision 2021"",
+      ""target"": ""Safety Policy"",
+      ""type"": ""systemic_factor""
+    }
+  ]
+}"
