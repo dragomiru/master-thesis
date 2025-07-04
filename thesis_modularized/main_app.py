@@ -14,7 +14,7 @@ from llm_interaction import llm_models, prompts, chains
 from validation import schemas as validation_schemas
 from storage import csv_logger, neo4j_handler
 
-# --- Page Configuration ---
+# --- Page configuration ---
 st.set_page_config(
     page_title=config.APP_TITLE,
     page_icon=config.APP_FAVICON,
@@ -59,7 +59,7 @@ def set_png_as_centered_bg(png_file):
 
 set_png_as_centered_bg('data/wu_logo.png')
 
-# --- Functions ---
+# --- Functions for cold start ---
 def initialize_llm(_model_identifier):
     """
     Function not cached, unlike others, to allow for LLM model switch when running the app.
@@ -139,7 +139,7 @@ def get_cached_vectorstore_sys_factors(_static_sys_factors_data, _embeddings_mod
         sys_factor_chunks, _embeddings_model
     )
 
-# --- Main Application UI ---
+# --- Main application UI ---
 st.title(f"{config.APP_FAVICON} {config.APP_TITLE}")
 with st.sidebar:
     st.header("⚙️ Processing Controls")
@@ -193,7 +193,6 @@ with st.sidebar:
 embeddings_model = load_embeddings_model(config.EMBEDDINGS_MODEL_NAME)
 static_categories_dicts, static_contr_factors_dicts, static_sys_factors_dicts = load_static_data()
 
-
 # --- Initialize static vector stores using cached functions ---
 vectorstore_categories = None
 vectorstore_contr_factors = None
@@ -210,8 +209,7 @@ if embeddings_model and static_categories_dicts and static_contr_factors_dicts a
 else:
     st.error("Failed to load embeddings model or static data. Cannot create static vector stores.")
 
-
-# --- Processing Logic ---
+# --- Processing logic ---
 if process_button and uploaded_files:
     if not embeddings_model:
         st.error("Embeddings model not loaded. Cannot process.")
@@ -406,3 +404,5 @@ if process_button and uploaded_files:
     
     st.balloons()
     st.success("All selected PDF(s) processed!")
+else:
+    st.info("Welcome. Please upload one or multiple accident reports in the left sidepanel, and select LLM type. Also, tick the summary and storing boxes depending on your requirements.")

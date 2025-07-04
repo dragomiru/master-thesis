@@ -49,15 +49,6 @@ def append_pdf_json_result(csv_file_path: str, pdf_name: str, model_type: str, e
         # Filter for the current PDF and model's past records
         pdf_model_history = df[(df["pdf_name"] == pdf_name) & (df["model_type"] == model_type)]
 
-        # Check for duplicates: If this JSON output already exists for the same PDF & model, skip re-adding
-        if not pdf_model_history.empty:
-            latest_iteration_data = pdf_model_history[
-                pdf_model_history["iteration_number"] == pdf_model_history["iteration_number"].max()
-            ]
-            if not latest_iteration_data.empty and latest_iteration_data.iloc[0]["refined_output"] == refined_output_str:
-                print(f"[INFO] No changes detected in JSON for {pdf_name} by {model_type} (latest iteration), skipping new entry.")
-                return df
-
         # Determine new iteration number
         if not pdf_model_history.empty:
             iteration_number = pdf_model_history["iteration_number"].max() + 1

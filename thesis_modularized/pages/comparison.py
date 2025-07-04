@@ -1,14 +1,11 @@
-# pages/Evaluation.py
-
+# --- General modules ---
+import config
 import streamlit as st
 import pandas as pd
 import numpy as np
 import json
 import re
-import os
-from typing import Optional, Dict, Any
-
-# --- Add project root to sys.path for sibling module imports ---
+from typing import Optional, Dict
 import sys
 import pathlib
 current_file_path = pathlib.Path(__file__).resolve()
@@ -16,21 +13,17 @@ project_root = current_file_path.parent.parent
 if str(project_root) not in sys.path:
     sys.path.insert(0, str(project_root))
 
-import config # Your main configuration file
-
-# --- Page Configuration ---
+# --- Page configuration ---
 st.set_page_config(
-    page_title="LLM Evaluation Dashboard",
-    page_icon="🧪",
+    page_title="LLM Performance Evaluation",
+    page_icon="🎯",
     layout="wide"
 )
 
-st.title("🧪 LLM Performance Evaluation")
-st.markdown("Analyze the accuracy, consistency, and completeness of LLM outputs by uploading your results CSV file.")
+st.title("🎯 LLM Performance Evaluation")
 
-# --- CORE HELPER FUNCTIONS (Adapted from your notebook) ---
-
-@st.cache_data # Cache ERAIL DB loading to speed up reruns
+# --- Core functions ---
+@st.cache_data
 def load_and_preprocess_erail_db(file_path: str) -> Optional[pd.DataFrame]:
     """Loads the ERAIL database and preprocesses date/time columns."""
     try:
@@ -87,11 +80,12 @@ def prepare_llm_data(results_df: pd.DataFrame, json_column_name: str) -> Optiona
                     extracted_entities[factor_type] = None
 
             erail_id_match = re.search(r'([A-Z]{2}-\d+)', str(row["pdf_name"]))
+            erail_occurrence_id = erail_id_match.group(1).upper() if erail_id_match else None
             
             entry = {
                 "pdf_name": row["pdf_name"], "model_type": row.get("model_type"),
                 "iteration_number": row.get("iteration_number"),
-                "ERAIL Occurrence": erail_id_match.group(1) if erail_id_match else None
+                "ERAIL Occurrence": erail_occurrence_id
             }
             
             for entity_type, value in extracted_entities.items():
@@ -136,18 +130,17 @@ def evaluate_metrics(df: pd.DataFrame, llm_col: str, truth_col: str, is_time: bo
             
     return results
 
-# --- CORRECTED FUNCTION SIGNATURE ---
 def perform_field_comparison(df: pd.DataFrame, llm_col: str, truth_col: str, comparison_col_name: str) -> pd.DataFrame:
     """Compares two columns and adds a result column."""
     if llm_col not in df.columns:
         df[comparison_col_name] = "LLM_Column_Missing"
         return df
-    if truth_col not in df.columns: # Changed from erail_col
+    if truth_col not in df.columns: 
         df[comparison_col_name] = "ERAIL_Column_Missing"
         return df
 
     llm_series = df[llm_col].fillna("###NAN_PLACEHOLDER###").astype(str).str.strip()
-    erail_series = df[truth_col].fillna("###NAN_PLACEHOLDER###").astype(str).str.strip() # Changed from erail_col
+    erail_series = df[truth_col].fillna("###NAN_PLACEHOLDER###").astype(str).str.strip()
 
     conditions = [
         (llm_series == "###NAN_PLACEHOLDER###") & (erail_series == "###NAN_PLACEHOLDER###"),
@@ -163,7 +156,6 @@ def display_metrics(title: str, metrics: Dict[str, Optional[float]]):
     """Renders only the valid, calculated metrics in an intelligible way."""
     st.subheader(title)
     
-    # Define the desired order of metrics
     metric_keys_ordered = ["Abs. Accuracy", "2min Accuracy", "5min Accuracy", "Consistency", "Completeness"]
     
     # Filter out metrics that were not calculated (i.e., are None or NaN)
@@ -182,8 +174,10 @@ def display_metrics(title: str, metrics: Dict[str, Optional[float]]):
             st.metric(label=key, value=f"{val:.1f}%")
             st.progress(int(val))
 
-# --- UI AND MAIN LOGIC ---
-uploaded_llm_results_file = st.file_uploader("Upload your results CSV file", type="csv")
+# --- Main logic and UI ---
+with st.sidebar:
+    st.header("📄 CSV Upload")
+    uploaded_llm_results_file = st.file_uploader("Choose results CSV file", type="csv")
 
 if uploaded_llm_results_file:
     with st.sidebar:
@@ -275,17 +269,15 @@ if uploaded_llm_results_file:
             comparison_df_for_display = merged_df.copy()
             display_cols_ordered = ["ERAIL Occurrence", "model_type"]
             
-            # --- CORRECTED LOOP ---
             for field in variables_to_evaluate:
                 match_col_name = f"{field['var_name'].replace(' ', '')}_Match"
-                # Call perform_field_comparison with the correct key: 'truth_col'
                 comparison_df_for_display = perform_field_comparison(
                     comparison_df_for_display, 
                     field["llm_col"], 
-                    field["truth_col"], # Use the correct key
+                    field["truth_col"],
                     match_col_name
                 )
-                # Append columns for display
+
                 if field["llm_col"] in comparison_df_for_display.columns:
                     display_cols_ordered.append(field["llm_col"])
                 if field["truth_col"] in comparison_df_for_display.columns:
@@ -297,5 +289,5 @@ if uploaded_llm_results_file:
             st.dataframe(comparison_df_for_display[final_display_cols])
 
 else:
-    st.info("Upload a CSV file and select your options in the sidebar to begin.")
+    st.info("Upload your extraction results CSV file and select your options in the sidebar to begin.")
 
