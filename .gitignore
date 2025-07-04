@@ -3,6 +3,7 @@ personal-keys.txt
 
 # Ignore Jupyter notebook checkpoints
 .ipynb_checkpoints/
+.pdf
 
 # Ignore large datasets if not needed
 *.json
