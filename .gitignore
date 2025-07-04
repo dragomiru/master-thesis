@@ -15,3 +15,4 @@ personal-keys.txt
 Thumbs.db
 *.log
 *.tmp
+.env
