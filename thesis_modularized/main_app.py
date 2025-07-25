@@ -149,7 +149,7 @@ with st.sidebar:
     )
 
     # Update list as required with newer / different LLM models
-    available_llms = ["gemini-2.5-flash-preview-04-17", "gemini-1.5-flash-latest", "gpt-4o-mini"] 
+    available_llms = ["gemini-2.5-pro", "gemini-2.5-flash-preview-04-17", "gemini-1.5-flash-latest", "gpt-4o-mini"] 
     try:
         default_llm_index = available_llms.index(config.DEFAULT_LLM_MODEL)
     except ValueError:
