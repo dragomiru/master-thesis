@@ -16,3 +16,6 @@ Thumbs.db
 *.log
 *.tmp
 .env
+
+# Ignore reports
+reports/
